@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Car Detailers | Premium Mobile Auto Care</title>
+    <style>
+        /* Global Styles & Sleek Modern Theme */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: #0b0c10; color: #c5c6c7; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        
+        /* Navigation */
+        nav { background: #1f2833; padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #ff0022; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
+        .logo span { color: #ff0022; }
+        .nav-links a { margin-left: 20px; font-weight: 500; font-size: 0.95rem; color: #fff; transition: 0.3s; }
+        .nav-links a:hover { color: #ff0022; }
+
+        /* Hero Section */
+        header { background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)), url('https://unsplash.com') no-repeat center center/cover; padding: 120px 20px; text-align: center; }
+        header h1 { font-size: 3.5rem; color: #fff; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px; }
+        header p { font-size: 1.25rem; margin-bottom: 35px; color: #c5c6c7; max-width: 650px; margin-left: auto; margin-right: auto; }
+        
+        /* Buttons */
+        .btn { display: inline-block; background: #ff0022; color: white; padding: 14px 32px; font-weight: bold; border-radius: 4px; text-transform: uppercase; font-size: 0.95rem; transition: 0.3s; border: none; cursor: pointer; }
+        .btn:hover { background: #cc001b; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 0, 34, 0.4); }
+
+        /* Section Layouts */
+        section { padding: 90px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 50px; position: relative; font-size: 2.2rem; text-transform: uppercase; color: #fff; letter-spacing: 1px; }
+        .section-title::after { content: ''; display: block; width: 70px; height: 4px; background: #ff0022; margin: 15px auto 0; }
+
+        /* Services Grid & Interactive Cards */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; align-items: start; }
+        .service-card { background: #1f2833; padding: 35px 25px; border-radius: 8px; border-top: 5px solid #45f3ff; transition: 0.3s; position: relative; display: flex; flex-direction: flex-wrap; height: 100%; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .service-card:hover { transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        
+        /* Featured Highlight Card style */
+        .service-card.popular { border-top: 5px solid #ff0022; background: #232d39; }
+        .badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #ff0022; color: white; padding: 4px 14px; font-size: 0.75rem; font-weight: bold; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .service-card h3 { color: #fff; margin-bottom: 5px; font-size: 1.4rem; text-transform: uppercase; }
+        .starting-text { font-size: 0.85rem; color: #858688; text-transform: uppercase; display: block; margin-top: 10px; }
+        .price { font-size: 2.2rem; color: #fff; font-weight: bold; margin-bottom: 5px; display: block; }
+        .price span { color: #ff0022; }
+        .sub-desc { font-size: 0.9rem; color: #a5a6a7; margin-bottom: 25px; min-height: 45px; display: block; font-style: italic; }
+        
+        .service-card ul { list-style: none; font-size: 0.95rem; color: #c5c6c7; margin-bottom: 30px; text-align: left; }
+        .service-card ul li { margin-bottom: 10px; line-height: 1.4; }
+        .service-card ul li::before { content: "✓ "; color: #45f3ff; font-weight: bold; margin-right: 5px; }
+        .service-card.popular ul li::before { content: "✓ "; color: #ff0022; }
+        .card-btn-container { margin-top: auto; text-align: center; }
+
+        /* Gallery Grid */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        .gallery-item { background: #1f2833; border-radius: 4px; overflow: hidden; height: 220px; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; filter: brightness(85%); transition: 0.4s; }
+        .gallery-item img:hover { filter: brightness(100%); transform: scale(1.03); }
+
+        /* Contact Section */
+        .contact-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; text-align: center; }
+        .info-block h3 { color: #fff; margin-bottom: 12px; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .info-block p { color: #c5c6c7; font-size: 1.1rem; }
+
+        /* Footer */
+        footer { background: #0b0c10; text-align: center; padding: 40px 20px; color: #666; font-size: 0.9rem; border-top: 1px solid #1f2833; }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            header h1 { font-size: 2.4rem; }
+            nav { flex-direction: column; gap: 15px; text-align: center; }
+            .nav-links a { margin: 0 10px; }
+            .services-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">Your Car <span>Detailers</span></div>
+        <div class="nav-links">
+            <a href="#services">Packages</a>
+            <a href="#gallery">Our Work</a>
+            <a href="#contact">Book Service</a>
+        </div>
+    </nav>
+
+    <!-- Hero Header Profile -->
+    <header>
+        <h1>Showroom Shine, Delivered to You.</h1>
+        <p>Premium 100% Mobile Auto Detailing Services. We bring advanced techniques, pro coatings, and that new car feeling straight to your doorstep or driveway.</p>
+        <a href="tel:3238804067" class="btn">Call to Book Now</a>
+    </header>
+
+    <!-- Services Details Packages Grid -->
+    <section id="services">
+        <h2 class="section-title">Choose Your Detailing Package</h2>
+        <div class="services-grid">
+            
+            <!-- Package 1: Express Detail -->
+            <div class="service-card">
+                <h3>Express Detail</h3>
+                <span class="starting-text">Starting At</span>
+                <span class="price">$150</span>
+                <span class="sub-desc">Perfect for regularly maintained vehicles that need a quick refresh.</span>
+                <ul>
+                    <li>Foam pre-wash</li>
+                    <li>Hand wash</li>
+                    <li>Wheels & tires cleaned</li>
+                    <li>Tire dressing</li>
+                    <li>Exterior windows cleaned</li>
+                    <li>Light interior vacuum</li>
+                    <li>Dashboard & center console wiped down</li>
+                    <li>Door jamb cleaning</li>
+                    <li>Air freshener</li>
+                </ul>
+                <div class="card-btn-container">
+                    <a href="tel:3238804067" class="btn" style="background-color: transparent; border: 2px solid #45f3ff; color: #fff;">Book Now</a>
+                </div>
+            </div>
+
+            <!-- Package 2: Signature Full Detail (MOST POPULAR) -->
+            <div class="service-card popular">
+                <div class="badge">Most Popular</div>
+                <h3>Signature Full Detail</h3>
+                <span class="starting-text">Starting At</span>
+                <span class="price"><span>$250</span></span>
+                <span class="sub-desc">Most vehicles range from $250 depending on size and condition.</span>
+                <ul>
+                    <strong>Everything in the Express Detail PLUS:</strong>
+                    <li style="margin-top: 10px;">Deep interior vacuum</li>
+                    <li>Compressed air blowout for vents & crevices</li>
+                    <li>Dashboard, console & door panels cleaned</li>
+                    <li>UV interior protectant</li>
+                    <li>Cup holders detailed</li>
+                    <li>Floor mats cleaned</li>
+                    <li>Trunk vacuumed</li>
+                    <li>Light steam cleaning</li>
+                    <li>Foam pre-treatment</li>
+                    <li>Wheels, tires & wheel wells cleaned</li>
+                    <li>Premium spray sealant protection</li>
+                    <li>Interior & exterior windows cleaned</li>
+                    <li>Final quality inspection</li>
+                </ul>
+                <div class="card-btn-container">
+                    <a href="tel:3238804067" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <!-- Package 3: Executive Detail -->
+            <div class="service-card">
+                <h3>Executive Detail</h3>
+                <span class="starting-text">Starting At</span>
+                <span class="price">$350</span>
+                <span class="sub-desc">Designed for heavily soiled vehicles that require extensive deep cleaning and restoration.</span>
+                <ul>
+                    <strong>Everything in Signature Full Detail PLUS:</strong>
+                    <li style="margin-top: 10px;">Carpet shampoo</li>
+                    <li>Seat shampoo</li>
+                    <li>Full interior steam cleaning</li>
+                    <li>Leather cleaning & conditioning</li>
+                    <li>Interior odor treatment</li>
+                </ul>
+                <div class="card-btn-container">
+                    <a href="tel:3238804067" class="btn" style="background-color: transparent; border: 2px solid #45f3ff; color: #fff;">Book Now</a>
+                </div>
