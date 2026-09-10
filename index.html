@@ -4,27 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Your Mobile Detailers | Houston Mobile Car Detailing</title>
-  <meta name="description" content="Premium mobile car detailing brought directly to your home, workplace, or wherever your vehicle is parked in Houston, Texas.">
+  <title>Your Mobile Detailers | Houston</title>
 
-  <!-- Google Fonts -->
+  <meta
+    name="description"
+    content="Your Mobile Detailers — premium mobile car detailing in Houston, Texas."
+  >
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
+
+    /* =========================================================
+       CORE
+    ========================================================= */
+
     :root {
-      --black: #050607;
-      --black-2: #0b0d0f;
-      --black-3: #111417;
-      --white: #ffffff;
-      --off-white: #f3f4f5;
-      --gray: #92979d;
-      --gray-light: #c6cbd0;
-      --blue: #1683ff;
-      --blue-dark: #0867d7;
-      --border: rgba(255,255,255,.12);
-      --container: 1240px;
+      --bg: #020407;
+      --bg2: #05080d;
+      --panel: rgba(8, 13, 20, .72);
+      --blue: #1494ff;
+      --blue2: #00c8ff;
+      --white: #f5f9ff;
+      --muted: #7f8b99;
+      --line: rgba(20,148,255,.22);
+      --green: #00ff9d;
     }
 
     * {
@@ -38,10 +45,11 @@
     }
 
     body {
-      background: var(--black);
+      background: var(--bg);
       color: var(--white);
-      font-family: "Inter", sans-serif;
+      font-family: Inter, sans-serif;
       overflow-x: hidden;
+      cursor: default;
     }
 
     body::selection {
@@ -55,113 +63,151 @@
     }
 
     img {
-      display: block;
       width: 100%;
+      display: block;
     }
 
     button,
     input,
     select,
     textarea {
-      font: inherit;
+      font-family: inherit;
     }
 
-    .container {
-      width: min(100% - 40px, var(--container));
-      margin: auto;
+    /* =========================================================
+       BACKGROUND FX
+    ========================================================= */
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9990;
+      opacity: .035;
+      background-image:
+        radial-gradient(circle at 20% 20%, white 0 1px, transparent 1px),
+        radial-gradient(circle at 80% 70%, white 0 1px, transparent 1px);
+      background-size: 5px 5px, 7px 7px;
     }
 
-    /* =========================
-       PRELOADER
-    ========================= */
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -4;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(20,148,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(20,148,255,.045) 1px, transparent 1px);
+      background-size: 70px 70px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
+
+    .glow {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(20,148,255,.11),
+        transparent 68%
+      );
+      pointer-events: none;
+      z-index: -3;
+      transform: translate(-50%, -50%);
+    }
+
+    /* =========================================================
+       LOADER
+    ========================================================= */
 
     .loader {
       position: fixed;
       inset: 0;
-      z-index: 9999;
-      background: var(--black);
-      display: grid;
-      place-items: center;
-      animation: loaderOut .8s ease 1.5s forwards;
+      z-index: 10000;
+      background: #010204;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: loaderHide 1s ease 2s forwards;
       pointer-events: none;
     }
 
-    .loader-inner {
+    .loader-box {
+      width: 300px;
       text-align: center;
-      animation: loaderIn .7s ease forwards;
     }
 
     .loader-logo {
-      width: 105px;
-      margin: 0 auto 18px;
-      object-fit: contain;
+      width: 150px;
+      margin: 0 auto 25px;
     }
 
-    .loader-line {
-      width: 120px;
+    .loader-system {
+      font-size: 9px;
+      color: var(--blue);
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .loader-bar {
       height: 2px;
-      background: var(--blue);
-      transform-origin: left;
-      animation: loaderLine 1.2s ease infinite;
+      background: rgba(255,255,255,.1);
+      overflow: hidden;
     }
 
-    @keyframes loaderIn {
-      from {
-        opacity: 0;
-        transform: translateY(15px);
-      }
+    .loader-bar span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue), var(--blue2));
+      animation: loadBar 1.7s ease forwards;
+      box-shadow: 0 0 15px var(--blue);
+    }
+
+    @keyframes loadBar {
       to {
-        opacity: 1;
-        transform: translateY(0);
+        width: 100%;
       }
     }
 
-    @keyframes loaderLine {
-      0% {
-        transform: scaleX(0);
-      }
-      50% {
-        transform: scaleX(1);
-      }
-      100% {
-        transform: scaleX(0);
-        transform-origin: right;
-      }
-    }
-
-    @keyframes loaderOut {
+    @keyframes loaderHide {
       to {
         opacity: 0;
         visibility: hidden;
       }
     }
 
-    /* =========================
-       NAVBAR
-    ========================= */
+    /* =========================================================
+       NAV
+    ========================================================= */
 
-    .navbar {
+    .nav {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      z-index: 1000;
-      padding: 22px 0;
+      z-index: 900;
+      border-bottom: 1px solid transparent;
       transition: .35s ease;
     }
 
-    .navbar.scrolled {
-      padding: 13px 0;
-      background: rgba(5,6,7,.88);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(255,255,255,.08);
+    .nav.scrolled {
+      background: rgba(2,4,7,.78);
+      backdrop-filter: blur(20px);
+      border-color: var(--line);
+      box-shadow: 0 10px 50px rgba(0,0,0,.35);
     }
 
     .nav-inner {
+      max-width: 1400px;
+      width: calc(100% - 50px);
+      margin: auto;
+      height: 82px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 30px;
+      gap: 35px;
     }
 
     .logo {
@@ -171,110 +217,138 @@
 
     .nav-links {
       display: flex;
-      align-items: center;
-      gap: 30px;
+      gap: 28px;
       margin-left: auto;
     }
 
     .nav-links a {
       position: relative;
-      color: rgba(255,255,255,.75);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .12em;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      color: #aeb8c4;
       text-transform: uppercase;
-      transition: .3s ease;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -8px;
-      width: 0;
-      height: 2px;
-      background: var(--blue);
-      transition: .3s ease;
+      transition: .25s;
     }
 
     .nav-links a:hover {
       color: white;
+      text-shadow: 0 0 12px rgba(20,148,255,.7);
     }
 
-    .nav-links a:hover::after {
-      width: 100%;
+    .nav-links a::before {
+      content: "//";
+      position: absolute;
+      left: -15px;
+      opacity: 0;
+      color: var(--blue);
+      transition: .25s;
     }
 
-    .nav-phone {
-      font-size: 13px;
-      font-weight: 700;
+    .nav-links a:hover::before {
+      opacity: 1;
+    }
+
+    .nav-call {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--blue2);
       white-space: nowrap;
     }
 
-    .nav-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 20px;
-      background: var(--blue);
-      color: white;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: .12em;
+    .nav-book {
+      border: 1px solid var(--blue);
+      padding: 13px 19px;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .16em;
       text-transform: uppercase;
-      transition: .3s ease;
+      transition: .3s;
+      box-shadow: inset 0 0 0 rgba(20,148,255,0);
     }
 
-    .nav-button:hover {
-      background: white;
-      color: var(--black);
-      transform: translateY(-2px);
+    .nav-book:hover {
+      background: var(--blue);
+      box-shadow:
+        0 0 15px rgba(20,148,255,.45),
+        inset 0 0 20px rgba(255,255,255,.08);
     }
 
-    .menu-btn {
+    .menu {
       display: none;
-      border: 0;
+      margin-left: auto;
       background: transparent;
-      color: white;
+      border: 0;
       cursor: pointer;
-      width: 40px;
-      height: 40px;
     }
 
-    .menu-btn span {
+    .menu span {
       display: block;
-      width: 24px;
+      width: 25px;
       height: 2px;
-      margin: 5px auto;
       background: white;
-      transition: .3s ease;
+      margin: 5px;
     }
 
-    /* =========================
+    /* =========================================================
+       HUD ELEMENTS
+    ========================================================= */
+
+    .hud {
+      position: absolute;
+      z-index: 5;
+      color: rgba(255,255,255,.42);
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .hud-top {
+      top: 105px;
+      right: 35px;
+    }
+
+    .hud-bottom {
+      bottom: 35px;
+      left: 35px;
+    }
+
+    .hud-line {
+      width: 55px;
+      height: 1px;
+      background: var(--blue);
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 10px;
+      box-shadow: 0 0 10px var(--blue);
+    }
+
+    /* =========================================================
        HERO
-    ========================= */
+    ========================================================= */
 
     .hero {
-      min-height: 100vh;
       position: relative;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       overflow: hidden;
-      background: var(--black);
+      background: #020406;
     }
 
-    .hero-bg {
+    .hero-image {
       position: absolute;
       inset: 0;
-      overflow: hidden;
     }
 
-    .hero-bg img {
+    .hero-image img {
       height: 100%;
       object-fit: cover;
       object-position: center;
-      animation: heroZoom 9s ease-out forwards;
-      transform: scale(1.09);
+      filter: saturate(.9) contrast(1.1);
+      transform: scale(1.12);
+      animation: heroZoom 10s cubic-bezier(.2,.7,.2,1) forwards;
     }
 
     @keyframes heroZoom {
@@ -283,187 +357,188 @@
       }
     }
 
-    .hero-overlay {
+    .hero::before {
+      content: "";
       position: absolute;
       inset: 0;
+      z-index: 1;
       background:
-        linear-gradient(90deg, rgba(0,0,0,.92) 0%, rgba(0,0,0,.68) 42%, rgba(0,0,0,.22) 100%),
-        linear-gradient(0deg, rgba(0,0,0,.8) 0%, transparent 50%);
+        linear-gradient(
+          90deg,
+          rgba(1,3,5,.97) 0%,
+          rgba(1,3,5,.83) 38%,
+          rgba(1,3,5,.38) 72%,
+          rgba(1,3,5,.75) 100%
+        ),
+        linear-gradient(
+          0deg,
+          rgba(1,3,5,.92),
+          transparent 55%
+        );
     }
 
-    .hero::after {
-      content: "";
+    .scan {
       position: absolute;
-      right: 7%;
-      top: 27%;
-      width: 1px;
-      height: 45%;
+      z-index: 3;
+      left: 0;
+      right: 0;
+      top: -10%;
+      height: 1px;
       background: linear-gradient(
+        90deg,
         transparent,
-        rgba(22,131,255,.8),
+        rgba(0,200,255,.7),
         transparent
       );
-      opacity: .65;
+      box-shadow: 0 0 18px rgba(0,200,255,.7);
+      animation: scan 5s linear infinite;
+      pointer-events: none;
     }
 
-    .hero-content {
+    @keyframes scan {
+      from {
+        top: -10%;
+      }
+      to {
+        top: 110%;
+      }
+    }
+
+    .hero-inner {
       position: relative;
-      z-index: 2;
+      z-index: 4;
+      width: min(1400px, calc(100% - 50px));
+      margin: auto;
       padding-top: 90px;
-      max-width: 950px;
     }
 
-    .eyebrow {
+    .hero-status {
       display: flex;
       align-items: center;
-      gap: 13px;
+      gap: 10px;
       margin-bottom: 22px;
-      color: var(--blue);
-      font-size: 11px;
+      font-size: 9px;
       font-weight: 800;
       letter-spacing: .2em;
+      color: var(--blue2);
       text-transform: uppercase;
       opacity: 0;
-      animation: revealUp .8s ease .25s forwards;
+      animation: enter .8s ease .3s forwards;
     }
 
-    .eyebrow::before {
-      content: "";
-      width: 42px;
-      height: 2px;
-      background: var(--blue);
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 15px var(--green);
+      animation: pulse 1.4s infinite;
+    }
+
+    @keyframes pulse {
+      50% {
+        opacity: .3;
+        transform: scale(.7);
+      }
     }
 
     .hero h1 {
-      max-width: 920px;
       font-family: "Bebas Neue", sans-serif;
-      font-size: clamp(70px, 10vw, 140px);
-      line-height: .84;
-      letter-spacing: .015em;
+      font-size: clamp(85px, 12vw, 180px);
+      line-height: .76;
+      letter-spacing: .02em;
       font-weight: 400;
+      max-width: 1050px;
       text-transform: uppercase;
-      margin-bottom: 32px;
       opacity: 0;
-      animation: revealUp 1s cubic-bezier(.2,.8,.2,1) .4s forwards;
+      animation: enter 1s cubic-bezier(.2,.8,.2,1) .45s forwards;
     }
 
-    .hero h1 span {
+    .hero h1 .blue {
       color: var(--blue);
-      display: block;
+      text-shadow:
+        0 0 15px rgba(20,148,255,.4),
+        0 0 50px rgba(20,148,255,.15);
     }
 
-    .hero-description {
-      max-width: 550px;
-      color: rgba(255,255,255,.72);
-      font-size: 16px;
+    .hero-sub {
+      max-width: 520px;
+      margin-top: 30px;
+      color: #aab3be;
+      font-size: 14px;
       line-height: 1.8;
-      margin-bottom: 35px;
       opacity: 0;
-      animation: revealUp .8s ease .65s forwards;
+      animation: enter .8s ease .7s forwards;
     }
 
     .hero-actions {
       display: flex;
-      flex-wrap: wrap;
       gap: 12px;
+      margin-top: 32px;
       opacity: 0;
-      animation: revealUp .8s ease .8s forwards;
+      animation: enter .8s ease .85s forwards;
     }
 
     .btn {
-      min-height: 54px;
+      min-height: 55px;
       padding: 0 27px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: .15em;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .18em;
       text-transform: uppercase;
-      transition: .35s ease;
+      transition: .35s;
     }
 
-    .btn-primary {
+    .btn-blue {
       background: var(--blue);
       color: white;
+      box-shadow:
+        0 0 0 rgba(20,148,255,0),
+        inset 0 0 20px rgba(255,255,255,.06);
     }
 
-    .btn-primary:hover {
-      background: white;
-      color: var(--black);
-      transform: translateY(-3px);
-      box-shadow: 0 15px 35px rgba(22,131,255,.2);
+    .btn-blue:hover {
+      transform: translateY(-4px);
+      background: var(--blue2);
+      box-shadow:
+        0 10px 35px rgba(20,148,255,.3),
+        0 0 25px rgba(20,148,255,.35);
     }
 
-    .btn-outline {
-      border: 1px solid rgba(255,255,255,.35);
-      color: white;
+    .btn-ghost {
+      border: 1px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.02);
+      backdrop-filter: blur(10px);
     }
 
-    .btn-outline:hover {
-      background: white;
-      color: var(--black);
-      border-color: white;
-      transform: translateY(-3px);
+    .btn-ghost:hover {
+      border-color: var(--blue);
+      background: rgba(20,148,255,.08);
+      transform: translateY(-4px);
     }
 
     .hero-phone {
+      margin-top: 25px;
       display: inline-flex;
-      gap: 13px;
       align-items: center;
-      margin-top: 35px;
-      color: white;
-      font-size: 13px;
+      gap: 12px;
+      color: #dbe4ee;
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: .04em;
       opacity: 0;
-      animation: revealUp .8s ease .95s forwards;
+      animation: enter .8s ease 1s forwards;
     }
 
-    .hero-phone span {
-      color: var(--gray);
-      font-size: 10px;
-      letter-spacing: .2em;
+    .hero-phone small {
+      color: var(--muted);
+      letter-spacing: .15em;
+      font-size: 8px;
     }
 
-    .scroll-indicator {
-      position: absolute;
-      z-index: 3;
-      bottom: 35px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      color: rgba(255,255,255,.5);
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-    }
-
-    .scroll-indicator::after {
-      content: "";
-      width: 1px;
-      height: 48px;
-      background: linear-gradient(var(--blue), transparent);
-      animation: scrollLine 1.8s ease-in-out infinite;
-    }
-
-    @keyframes scrollLine {
-      0%, 100% {
-        opacity: .3;
-        transform: scaleY(.65);
-        transform-origin: top;
-      }
-      50% {
-        opacity: 1;
-        transform: scaleY(1);
-      }
-    }
-
-    @keyframes revealUp {
+    @keyframes enter {
       from {
         opacity: 0;
         transform: translateY(35px);
@@ -474,82 +549,82 @@
       }
     }
 
-    /* =========================
-       INTRO STRIP
-    ========================= */
+    /* =========================================================
+       SYSTEM BAR
+    ========================================================= */
 
-    .intro-strip {
-      background: var(--blue);
-      color: white;
-      padding: 24px 0;
-      overflow: hidden;
+    .system-bar {
+      position: relative;
+      z-index: 10;
+      background: rgba(3,7,11,.96);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
     }
 
-    .intro-grid {
+    .system-grid {
+      width: min(1400px, calc(100% - 50px));
+      margin: auto;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(4,1fr);
     }
 
-    .intro-item {
-      padding: 8px 25px;
-      border-right: 1px solid rgba(255,255,255,.25);
-      display: flex;
-      align-items: center;
-      gap: 14px;
+    .system-item {
+      padding: 25px;
+      border-right: 1px solid var(--line);
     }
 
-    .intro-item:last-child {
+    .system-item:last-child {
       border-right: 0;
     }
 
-    .intro-number {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 25px;
-      opacity: .65;
-    }
-
-    .intro-item strong {
-      font-size: 11px;
-      letter-spacing: .08em;
+    .system-label {
+      color: var(--muted);
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: .18em;
       text-transform: uppercase;
+      margin-bottom: 7px;
     }
 
-    /* =========================
-       GENERAL SECTIONS
-    ========================= */
+    .system-value {
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .system-value span {
+      color: var(--green);
+    }
+
+    /* =========================================================
+       SECTION
+    ========================================================= */
 
     .section {
-      padding: 120px 0;
+      position: relative;
+      padding: 130px 0;
+      overflow: hidden;
     }
 
-    .section-dark {
-      background: var(--black);
+    .container {
+      width: min(1200px, calc(100% - 40px));
+      margin: auto;
     }
 
-    .section-light {
-      background: var(--off-white);
-      color: var(--black);
-    }
-
-    .section-head {
-      margin-bottom: 65px;
-    }
-
-    .section-label {
+    .section-tag {
       color: var(--blue);
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: .2em;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .25em;
       text-transform: uppercase;
-      margin-bottom: 13px;
+      margin-bottom: 15px;
     }
 
     .section-title {
       font-family: "Bebas Neue", sans-serif;
-      font-size: clamp(55px, 7vw, 90px);
+      font-size: clamp(65px, 9vw, 115px);
       font-weight: 400;
-      line-height: .9;
-      letter-spacing: .015em;
+      line-height: .8;
+      letter-spacing: .02em;
       text-transform: uppercase;
     }
 
@@ -557,309 +632,355 @@
       color: var(--blue);
     }
 
-    .section-description {
+    .section-copy {
       max-width: 600px;
-      color: var(--gray);
-      font-size: 15px;
-      line-height: 1.8;
-      margin-top: 22px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+      margin-top: 25px;
     }
 
-    .section-light .section-description {
-      color: #666;
+    /* =========================================================
+       WHY
+    ========================================================= */
+
+    .why {
+      background:
+        radial-gradient(
+          circle at 80% 30%,
+          rgba(20,148,255,.08),
+          transparent 30%
+        );
     }
-
-    /* =========================
-       REVEAL
-    ========================= */
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(35px);
-      transition:
-        opacity .8s ease,
-        transform .8s cubic-bezier(.2,.7,.2,1);
-    }
-
-    .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .delay-1 {
-      transition-delay: .1s;
-    }
-
-    .delay-2 {
-      transition-delay: .2s;
-    }
-
-    .delay-3 {
-      transition-delay: .3s;
-    }
-
-    /* =========================
-       WHY SECTION
-    ========================= */
 
     .why-grid {
       display: grid;
-      grid-template-columns: .9fr 1.1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 80px;
       align-items: center;
     }
 
-    .why-image {
+    .image-frame {
       position: relative;
-      overflow: hidden;
+      padding: 12px;
+      border: 1px solid var(--line);
+      background: rgba(20,148,255,.025);
     }
 
-    .why-image::after {
+    .image-frame::before,
+    .image-frame::after {
       content: "";
       position: absolute;
-      inset: 18px;
-      border: 1px solid rgba(255,255,255,.3);
-      pointer-events: none;
+      width: 50px;
+      height: 50px;
+      border-color: var(--blue);
+      border-style: solid;
+      z-index: 2;
     }
 
-    .why-image img {
-      aspect-ratio: 4 / 5;
+    .image-frame::before {
+      top: -1px;
+      left: -1px;
+      border-width: 2px 0 0 2px;
+    }
+
+    .image-frame::after {
+      right: -1px;
+      bottom: -1px;
+      border-width: 0 2px 2px 0;
+    }
+
+    .image-frame img {
+      aspect-ratio: 4/5;
       object-fit: cover;
-      transition: transform 1s ease;
+      filter: saturate(.8);
+      transition: 1s;
     }
 
-    .why-image:hover img {
-      transform: scale(1.04);
+    .image-frame:hover img {
+      transform: scale(1.035);
+      filter: saturate(1);
     }
 
-    .why-content {
-      position: relative;
-    }
-
-    .why-content::before {
-      content: "01";
-      position: absolute;
-      right: 0;
-      top: -55px;
+    .why-copy h3 {
       font-family: "Bebas Neue", sans-serif;
-      font-size: 100px;
-      color: rgba(0,0,0,.06);
-    }
-
-    .why-content h3 {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: clamp(48px, 5vw, 72px);
-      line-height: .9;
+      font-size: clamp(55px,6vw,85px);
+      line-height: .82;
       font-weight: 400;
-      text-transform: uppercase;
       margin-bottom: 25px;
     }
 
-    .why-content h3 span {
+    .why-copy h3 span {
       color: var(--blue);
     }
 
-    .why-content p {
-      color: #666;
-      font-size: 15px;
+    .why-copy p {
+      color: var(--muted);
+      font-size: 14px;
       line-height: 1.9;
-      max-width: 570px;
       margin-bottom: 30px;
     }
 
-    .feature-list {
-      border-top: 1px solid #d5d5d5;
-    }
-
     .feature {
-      padding: 18px 0;
-      border-bottom: 1px solid #d5d5d5;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
-    }
-
-    .feature strong {
-      font-size: 12px;
-      letter-spacing: .1em;
+      padding: 17px 0;
+      border-top: 1px solid rgba(255,255,255,.08);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .08em;
       text-transform: uppercase;
     }
 
-    .feature span {
+    .feature-number {
       color: var(--blue);
-      font-size: 12px;
-      font-weight: 800;
     }
 
-    /* =========================
-       SERVICES
-    ========================= */
+    /* =========================================================
+       SERVICES HUD
+    ========================================================= */
+
+    .services {
+      background: #03070b;
+    }
+
+    .services-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 40px;
+      margin-bottom: 65px;
+    }
+
+    .services-counter {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 70px;
+      color: rgba(255,255,255,.08);
+      line-height: .7;
+    }
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
+      grid-template-columns: repeat(3,1fr);
+      gap: 12px;
     }
 
-    .service-card {
+    .service {
       position: relative;
-      min-height: 275px;
-      padding: 35px;
-      background: var(--black);
+      min-height: 300px;
+      padding: 30px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(20,148,255,.08),
+          rgba(255,255,255,.015) 45%,
+          rgba(0,0,0,.3)
+        );
+      border: 1px solid rgba(20,148,255,.12);
       overflow: hidden;
-      transition: .4s ease;
+      transition: .45s cubic-bezier(.2,.8,.2,1);
     }
 
-    .service-card::before {
+    .service::before {
       content: "";
       position: absolute;
+      top: 0;
       left: 0;
-      bottom: 0;
-      width: 0;
-      height: 3px;
-      background: var(--blue);
-      transition: .4s ease;
-    }
-
-    .service-card:hover {
-      background: var(--black-3);
-      transform: translateY(-5px);
-    }
-
-    .service-card:hover::before {
       width: 100%;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--blue),
+        transparent
+      );
+      transform: translateX(-100%);
+      transition: .6s;
     }
 
-    .service-number {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 24px;
+    .service::after {
+      content: "";
+      position: absolute;
+      right: -60px;
+      bottom: -60px;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: rgba(20,148,255,.08);
+      filter: blur(30px);
+      transition: .5s;
+    }
+
+    .service:hover {
+      transform: translateY(-8px);
+      border-color: rgba(20,148,255,.5);
+      box-shadow:
+        0 20px 60px rgba(0,0,0,.35),
+        0 0 30px rgba(20,148,255,.07);
+    }
+
+    .service:hover::before {
+      transform: translateX(100%);
+    }
+
+    .service:hover::after {
+      transform: scale(1.4);
+      background: rgba(20,148,255,.15);
+    }
+
+    .service-id {
       color: var(--blue);
-      margin-bottom: 35px;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .2em;
     }
 
-    .service-card h3 {
+    .service h3 {
       font-family: "Bebas Neue", sans-serif;
-      font-size: 36px;
+      font-size: 40px;
       font-weight: 400;
-      letter-spacing: .02em;
-      text-transform: uppercase;
-      margin-bottom: 13px;
+      margin-top: 45px;
+      letter-spacing: .03em;
     }
 
-    .service-card p {
-      color: var(--gray);
-      font-size: 13px;
-      line-height: 1.7;
-      max-width: 320px;
+    .service p {
+      max-width: 300px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+      margin-top: 10px;
     }
 
     .service-arrow {
       position: absolute;
-      right: 30px;
-      bottom: 28px;
-      color: rgba(255,255,255,.35);
-      font-size: 24px;
-      transition: .35s ease;
+      right: 25px;
+      bottom: 22px;
+      font-size: 25px;
+      color: rgba(255,255,255,.2);
+      transition: .35s;
     }
 
-    .service-card:hover .service-arrow {
+    .service:hover .service-arrow {
       color: var(--blue);
-      transform: translateX(6px);
+      transform: translate(5px,-5px);
+      text-shadow: 0 0 15px var(--blue);
     }
 
-    /* =========================
+    /* =========================================================
        GALLERY
-    ========================= */
+    ========================================================= */
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 12px;
+    .gallery-head {
+      margin-bottom: 55px;
     }
 
-    .gallery-item {
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12,1fr);
+      gap: 10px;
+    }
+
+    .gallery-card {
       position: relative;
       overflow: hidden;
-      background: var(--black-2);
+      border: 1px solid rgba(255,255,255,.08);
+      background: #030609;
     }
 
-    .gallery-item:nth-child(1) {
+    .gallery-card:nth-child(1) {
       grid-column: span 7;
       grid-row: span 2;
     }
 
-    .gallery-item:nth-child(2),
-    .gallery-item:nth-child(3) {
+    .gallery-card:nth-child(2),
+    .gallery-card:nth-child(3) {
       grid-column: span 5;
     }
 
-    .gallery-item:nth-child(4) {
+    .gallery-card:nth-child(4) {
       grid-column: span 6;
     }
 
-    .gallery-item:nth-child(5) {
-      grid-column: span 6;
-    }
-
-    .gallery-item img {
+    .gallery-card img {
       height: 100%;
       min-height: 280px;
       object-fit: cover;
-      transition: transform .8s cubic-bezier(.2,.7,.2,1);
+      transition: transform 1s cubic-bezier(.2,.8,.2,1);
+      filter: saturate(.8);
     }
 
-    .gallery-item:hover img {
-      transform: scale(1.07);
+    .gallery-card:hover img {
+      transform: scale(1.08);
+      filter: saturate(1.15);
     }
 
-    .gallery-overlay {
+    .gallery-ui {
       position: absolute;
       inset: 0;
-      display: flex;
-      align-items: flex-end;
-      padding: 25px;
-      background: linear-gradient(
-        transparent 40%,
-        rgba(0,0,0,.8)
-      );
-      opacity: 0;
-      transition: .4s ease;
+      padding: 20px;
+      pointer-events: none;
     }
 
-    .gallery-item:hover .gallery-overlay {
+    .gallery-ui::before {
+      content: "";
+      position: absolute;
+      inset: 15px;
+      border: 1px solid rgba(255,255,255,.18);
+      opacity: 0;
+      transition: .4s;
+    }
+
+    .gallery-card:hover .gallery-ui::before {
       opacity: 1;
     }
 
-    .gallery-overlay span {
-      font-size: 10px;
-      font-weight: 800;
+    .gallery-number {
+      position: absolute;
+      top: 25px;
+      left: 25px;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .15em;
+      color: white;
+    }
+
+    .gallery-label {
+      position: absolute;
+      bottom: 25px;
+      left: 25px;
+      font-size: 9px;
+      font-weight: 900;
       letter-spacing: .16em;
       text-transform: uppercase;
     }
 
-    /* =========================
+    /* =========================================================
        PROCESS
-    ========================= */
+    ========================================================= */
 
     .process {
-      background: #0a0c0e;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(
+          circle at 20% 50%,
+          rgba(20,148,255,.08),
+          transparent 25%
+        );
     }
 
     .process-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      border: 1px solid var(--border);
+      grid-template-columns: repeat(3,1fr);
+      margin-top: 60px;
+      border: 1px solid var(--line);
     }
 
     .process-step {
-      padding: 45px 35px;
-      border-right: 1px solid var(--border);
+      min-height: 320px;
+      padding: 35px;
+      border-right: 1px solid var(--line);
       position: relative;
     }
 
@@ -867,239 +988,227 @@
       border-right: 0;
     }
 
-    .process-step-number {
+    .process-big {
       font-family: "Bebas Neue", sans-serif;
-      color: var(--blue);
-      font-size: 60px;
-      line-height: 1;
-      margin-bottom: 30px;
+      font-size: 100px;
+      line-height: .7;
+      color: rgba(20,148,255,.13);
+      transition: .4s;
+    }
+
+    .process-step:hover .process-big {
+      color: rgba(20,148,255,.4);
+      text-shadow: 0 0 25px rgba(20,148,255,.15);
     }
 
     .process-step h3 {
       font-family: "Bebas Neue", sans-serif;
-      font-size: 35px;
+      font-size: 42px;
       font-weight: 400;
-      text-transform: uppercase;
-      margin-bottom: 12px;
+      margin-top: 55px;
     }
 
     .process-step p {
-      color: var(--gray);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+      margin-top: 10px;
+    }
+
+    /* =========================================================
+       CTA
+    ========================================================= */
+
+    .cta {
+      position: relative;
+      padding: 120px 0;
+      overflow: hidden;
+      background:
+        radial-gradient(
+          circle at 50% 100%,
+          rgba(0,200,255,.28),
+          transparent 40%
+        ),
+        #03101b;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cta-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 50px;
+      align-items: end;
+    }
+
+    .cta h2 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(75px, 11vw, 145px);
+      line-height: .76;
+      font-weight: 400;
+    }
+
+    .cta h2 span {
+      color: var(--blue);
+      text-shadow: 0 0 25px rgba(20,148,255,.3);
+    }
+
+    .cta-copy {
+      color: #8998a8;
+      max-width: 500px;
+      margin-top: 25px;
       font-size: 13px;
       line-height: 1.8;
     }
 
-    /* =========================
-       CTA
-    ========================= */
-
-    .cta {
-      position: relative;
-      overflow: hidden;
-      background: var(--blue);
-      padding: 100px 0;
-    }
-
-    .cta::before {
-      content: "DETAIL";
-      position: absolute;
-      right: -20px;
-      bottom: -65px;
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 230px;
-      color: rgba(255,255,255,.08);
-      line-height: 1;
-    }
-
-    .cta-inner {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 40px;
-    }
-
-    .cta h2 {
-      max-width: 750px;
-      font-family: "Bebas Neue", sans-serif;
-      font-size: clamp(60px, 8vw, 105px);
-      font-weight: 400;
-      line-height: .85;
-      text-transform: uppercase;
-    }
-
-    .cta p {
-      margin-top: 20px;
-      max-width: 560px;
-      font-size: 14px;
-      line-height: 1.7;
-      opacity: .85;
-    }
-
-    .cta-right {
-      flex-shrink: 0;
+    .cta-side {
       text-align: right;
-    }
-
-    .cta-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 58px;
-      padding: 0 30px;
-      background: var(--black);
-      color: white;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      transition: .35s ease;
-    }
-
-    .cta-button:hover {
-      background: white;
-      color: var(--black);
-      transform: translateY(-4px);
     }
 
     .cta-phone {
       display: block;
       margin-top: 17px;
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 800;
+      color: var(--blue2);
     }
 
-    /* =========================
-       QUOTE
-    ========================= */
+    /* =========================================================
+       CONTACT
+    ========================================================= */
 
-    .quote-grid {
+    .contact-grid {
       display: grid;
-      grid-template-columns: .7fr 1.3fr;
-      gap: 90px;
-      align-items: start;
+      grid-template-columns: .75fr 1.25fr;
+      gap: 80px;
     }
 
-    .quote-info h2 {
+    .contact-title {
       font-family: "Bebas Neue", sans-serif;
-      font-size: clamp(55px, 6vw, 82px);
-      line-height: .88;
+      font-size: clamp(60px,7vw,95px);
+      line-height: .8;
       font-weight: 400;
-      text-transform: uppercase;
     }
 
-    .quote-info h2 span {
+    .contact-title span {
       color: var(--blue);
     }
 
-    .quote-info p {
+    .contact-text {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.9;
       margin-top: 25px;
-      color: var(--gray);
-      font-size: 14px;
-      line-height: 1.8;
     }
 
-    .quote-form {
+    .contact-number {
+      display: inline-block;
+      margin-top: 25px;
+      color: var(--blue2);
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .form {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
+      grid-template-columns: repeat(2,1fr);
+      gap: 12px;
     }
 
-    .field-full {
-      grid-column: 1 / -1;
-    }
-
-    .field {
-      position: relative;
+    .field.full {
+      grid-column: 1/-1;
     }
 
     .field input,
     .field select,
     .field textarea {
       width: 100%;
-      border: 1px solid rgba(255,255,255,.13);
-      background: #0b0d0f;
+      padding: 18px;
+      background: rgba(255,255,255,.025);
+      border: 1px solid rgba(20,148,255,.15);
       color: white;
-      padding: 17px 18px;
       outline: none;
       border-radius: 0;
-      transition: .3s ease;
+      transition: .3s;
     }
 
     .field textarea {
-      min-height: 125px;
+      min-height: 130px;
       resize: vertical;
+    }
+
+    .field select {
+      color: #8995a3;
     }
 
     .field input::placeholder,
     .field textarea::placeholder {
-      color: #666;
-    }
-
-    .field select {
-      color: #999;
+      color: #586471;
     }
 
     .field input:focus,
-    .field select:focus,
-    .field textarea:focus {
+    .field textarea:focus,
+    .field select:focus {
       border-color: var(--blue);
-      box-shadow: 0 0 0 1px rgba(22,131,255,.15);
+      box-shadow:
+        0 0 0 1px rgba(20,148,255,.1),
+        0 0 25px rgba(20,148,255,.06);
     }
 
-    .quote-submit {
+    .submit {
       border: 0;
       cursor: pointer;
-      min-height: 55px;
       background: var(--blue);
       color: white;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: .16em;
+      min-height: 55px;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .18em;
       text-transform: uppercase;
-      transition: .35s ease;
+      transition: .35s;
     }
 
-    .quote-submit:hover {
-      background: white;
-      color: var(--black);
+    .submit:hover {
+      background: var(--blue2);
+      box-shadow: 0 0 30px rgba(20,148,255,.3);
     }
 
-    /* =========================
+    /* =========================================================
        FOOTER
-    ========================= */
+    ========================================================= */
 
     footer {
-      padding: 65px 0 30px;
-      border-top: 1px solid var(--border);
-      background: #030405;
+      padding: 70px 0 25px;
+      background: #010305;
+      border-top: 1px solid var(--line);
     }
 
-    .footer-top {
+    .footer-grid {
       display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr;
+      grid-template-columns: 1.5fr 1fr 1fr;
       gap: 60px;
       padding-bottom: 55px;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(255,255,255,.07);
     }
 
     .footer-logo {
-      width: 155px;
-      margin-bottom: 22px;
+      width: 150px;
+      margin-bottom: 20px;
     }
 
-    .footer-brand p {
+    .footer-desc {
       max-width: 350px;
-      color: var(--gray);
-      font-size: 13px;
+      color: var(--muted);
+      font-size: 12px;
       line-height: 1.8;
     }
 
-    .footer-col h4 {
-      font-size: 10px;
+    .footer-heading {
       color: var(--blue);
-      letter-spacing: .2em;
+      font-size: 8px;
+      font-weight: 900;
+      letter-spacing: .22em;
       text-transform: uppercase;
       margin-bottom: 20px;
     }
@@ -1107,10 +1216,10 @@
     .footer-col a,
     .footer-col p {
       display: block;
-      color: #aaa;
-      font-size: 13px;
+      color: #8c98a5;
+      font-size: 11px;
       margin-bottom: 12px;
-      transition: .3s ease;
+      transition: .25s;
     }
 
     .footer-col a:hover {
@@ -1123,200 +1232,84 @@
       display: flex;
       justify-content: space-between;
       gap: 20px;
-      color: #555;
-      font-size: 10px;
-      letter-spacing: .08em;
+      color: #4e5964;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: .15em;
       text-transform: uppercase;
     }
 
-    /* =========================
-       RESPONSIVE
-    ========================= */
+    /* =========================================================
+       REVEAL
+    ========================================================= */
 
-    @media (max-width: 1000px) {
+    .reveal {
+      opacity: 0;
+      transform: translateY(45px);
+      transition:
+        opacity .9s ease,
+        transform .9s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay1 {
+      transition-delay: .12s;
+    }
+
+    .delay2 {
+      transition-delay: .24s;
+    }
+
+    .delay3 {
+      transition-delay: .36s;
+    }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+    @media(max-width: 1000px) {
+
       .nav-links,
-      .nav-phone,
-      .nav-button {
+      .nav-call,
+      .nav-book {
         display: none;
       }
 
-      .menu-btn {
+      .menu {
         display: block;
       }
 
-      .nav-links.mobile-open {
+      .nav-links.open {
         position: absolute;
         top: 75px;
         left: 20px;
         right: 20px;
         display: flex;
         flex-direction: column;
-        align-items: stretch;
         gap: 0;
         padding: 10px 20px;
-        background: rgba(8,9,10,.96);
-        backdrop-filter: blur(15px);
-        border: 1px solid var(--border);
+        background: rgba(2,5,8,.97);
+        border: 1px solid var(--line);
+        backdrop-filter: blur(20px);
       }
 
-      .nav-links.mobile-open a {
-        padding: 16px 0;
-        border-bottom: 1px solid var(--border);
-      }
-
-      .nav-links.mobile-open a:last-child {
-        border-bottom: 0;
-      }
-
-      .intro-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .intro-item:nth-child(2) {
-        border-right: 0;
-      }
-
-      .intro-item:nth-child(-n+2) {
-        border-bottom: 1px solid rgba(255,255,255,.25);
+      .nav-links.open a {
+        padding: 17px 0;
+        border-bottom: 1px solid rgba(255,255,255,.08);
       }
 
       .why-grid,
-      .quote-grid {
+      .contact-grid {
         grid-template-columns: 1fr;
-        gap: 55px;
-      }
-
-      .why-image {
-        max-width: 650px;
       }
 
       .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .cta-inner {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .cta-right {
-        text-align: left;
-      }
-
-      .footer-top {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 700px) {
-      .container {
-        width: min(100% - 28px, var(--container));
-      }
-
-      .navbar {
-        padding: 15px 0;
-      }
-
-      .logo {
-        width: 125px;
-      }
-
-      .hero {
-        min-height: 850px;
-      }
-
-      .hero-bg img {
-        object-position: 60% center;
-      }
-
-      .hero-overlay {
-        background:
-          linear-gradient(90deg, rgba(0,0,0,.94), rgba(0,0,0,.45)),
-          linear-gradient(0deg, rgba(0,0,0,.9), transparent);
-      }
-
-      .hero::after {
-        display: none;
-      }
-
-      .hero-content {
-        padding-top: 80px;
-      }
-
-      .hero h1 {
-        font-size: clamp(62px, 18vw, 100px);
-        letter-spacing: .01em;
-      }
-
-      .hero-description {
-        font-size: 14px;
-        max-width: 430px;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-        align-items: stretch;
-        max-width: 310px;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .scroll-indicator {
-        display: none;
-      }
-
-      .section {
-        padding: 80px 0;
-      }
-
-      .intro-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .intro-item,
-      .intro-item:nth-child(2) {
-        border-right: 0;
-        border-bottom: 1px solid rgba(255,255,255,.2);
-      }
-
-      .intro-item:last-child {
-        border-bottom: 0;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .service-card {
-        min-height: 240px;
-      }
-
-      .gallery {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .gallery-item:nth-child(1),
-      .gallery-item:nth-child(2),
-      .gallery-item:nth-child(3),
-      .gallery-item:nth-child(4),
-      .gallery-item:nth-child(5) {
-        grid-column: span 1;
-        grid-row: span 1;
-      }
-
-      .gallery-item:nth-child(1) {
-        grid-column: span 2;
-      }
-
-      .gallery-item img {
-        min-height: 220px;
-      }
-
-      .gallery-overlay {
-        opacity: 1;
+        grid-template-columns: repeat(2,1fr);
       }
 
       .process-grid {
@@ -1325,30 +1318,133 @@
 
       .process-step {
         border-right: 0;
-        border-bottom: 1px solid var(--border);
+        border-bottom: 1px solid var(--line);
       }
 
       .process-step:last-child {
         border-bottom: 0;
       }
 
-      .cta {
-        padding: 75px 0;
-      }
-
-      .cta::before {
-        font-size: 120px;
-      }
-
-      .quote-form {
+      .cta-grid {
         grid-template-columns: 1fr;
       }
 
-      .field-full {
+      .cta-side {
+        text-align: left;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(max-width: 650px) {
+
+      .nav-inner {
+        width: calc(100% - 28px);
+        height: 70px;
+      }
+
+      .logo {
+        width: 120px;
+      }
+
+      .hero-inner {
+        width: calc(100% - 28px);
+        padding-top: 80px;
+      }
+
+      .hero {
+        min-height: 850px;
+      }
+
+      .hero h1 {
+        font-size: clamp(70px, 21vw, 110px);
+      }
+
+      .hero-sub {
+        font-size: 13px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        max-width: 300px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .hud {
+        display: none;
+      }
+
+      .system-grid {
+        width: 100%;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .system-item {
+        padding: 20px 15px;
+      }
+
+      .system-item:nth-child(2) {
+        border-right: 0;
+      }
+
+      .system-item:nth-child(-n+2) {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .section {
+        padding: 90px 0;
+      }
+
+      .container {
+        width: calc(100% - 28px);
+      }
+
+      .services-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service {
+        min-height: 260px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .gallery-card:nth-child(1) {
+        grid-column: span 2;
+        grid-row: span 1;
+      }
+
+      .gallery-card:nth-child(2),
+      .gallery-card:nth-child(3),
+      .gallery-card:nth-child(4) {
+        grid-column: span 1;
+      }
+
+      .gallery-card img {
+        min-height: 220px;
+      }
+
+      .form {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
         grid-column: auto;
       }
 
-      .footer-top {
+      .footer-grid {
         grid-template-columns: 1fr;
         gap: 40px;
       }
@@ -1358,14 +1454,7 @@
       }
     }
 
-    /* =========================
-       REDUCED MOTION
-    ========================= */
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
+    @media(prefers-reduced-motion: reduce) {
 
       *,
       *::before,
@@ -1375,154 +1464,220 @@
         transition-duration: .01ms !important;
       }
 
+      html {
+        scroll-behavior: auto;
+      }
+
       .reveal {
         opacity: 1;
         transform: none;
       }
     }
+
   </style>
 </head>
 
 <body>
 
-  <!-- PRELOADER -->
+  <!-- FX -->
+  <div class="noise"></div>
+  <div class="grid-bg"></div>
+  <div class="glow" id="glow"></div>
+
+
+  <!-- LOADER -->
   <div class="loader">
-    <div class="loader-inner">
-      <img src="images/logo.webp" alt="Your Mobile Detailers" class="loader-logo">
-      <div class="loader-line"></div>
+    <div class="loader-box">
+
+      <img
+        src="images/logo.webp"
+        alt="Your Mobile Detailers"
+        class="loader-logo"
+      >
+
+      <div class="loader-system">
+        INITIALIZING DETAIL SYSTEM
+      </div>
+
+      <div class="loader-bar">
+        <span></span>
+      </div>
+
     </div>
   </div>
 
-  <!-- NAVBAR -->
-  <header class="navbar" id="navbar">
-    <div class="container nav-inner">
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+
+    <div class="nav-inner">
 
       <a href="#home" class="logo">
-        <img src="images/logo.webp" alt="Your Mobile Detailers">
+        <img
+          src="images/logo.webp"
+          alt="Your Mobile Detailers"
+        >
       </a>
 
       <nav class="nav-links" id="navLinks">
+
         <a href="#home">Home</a>
         <a href="#services">Services</a>
-        <a href="#gallery">Gallery</a>
+        <a href="#gallery">Showcase</a>
         <a href="#process">Process</a>
-        <a href="#quote">Contact</a>
+        <a href="#contact">Contact</a>
+
       </nav>
 
-      <a href="tel:+13238804067" class="nav-phone">
+      <a
+        href="tel:+13238804067"
+        class="nav-call"
+      >
         (323) 880-4067
       </a>
 
-      <a href="#quote" class="nav-button">
+      <a href="#contact" class="nav-book">
         Book Now
       </a>
 
-      <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+      <button class="menu" id="menu">
         <span></span>
         <span></span>
         <span></span>
       </button>
 
     </div>
+
   </header>
 
 
   <!-- HERO -->
   <section class="hero" id="home">
 
-    <div class="hero-bg">
-      <img src="images/1.jpg" alt="Premium mobile car detailing">
+    <div class="hero-image">
+      <img
+        src="images/1.jpg"
+        alt="Premium car detailing"
+      >
     </div>
 
-    <div class="hero-overlay"></div>
+    <div class="scan"></div>
 
-    <div class="container">
-      <div class="hero-content">
+    <div class="hud hud-top">
+      SYSTEM // MOBILE_DETAILING // HOUSTON_TX
+    </div>
 
-        <div class="eyebrow">
-          Houston • Mobile Detailing
-        </div>
+    <div class="hud hud-bottom">
+      <span class="hud-line"></span>
+      YOUR VEHICLE // OUR MISSION
+    </div>
 
-        <h1>
-          DETAILING
-          <span>DONE RIGHT.</span>
-          AT YOUR DOOR.
-        </h1>
+    <div class="hero-inner">
 
-        <p class="hero-description">
-          Professional mobile car detailing brought directly
-          to your home, workplace, or wherever your vehicle
-          is parked.
-        </p>
+      <div class="hero-status">
+        <span class="status-dot"></span>
+        MOBILE DETAILING SYSTEM ONLINE
+      </div>
 
-        <div class="hero-actions">
-          <a href="#quote" class="btn btn-primary">
-            Book A Detail
-          </a>
+      <h1>
+        DETAILING
+        <span class="blue">DONE RIGHT.</span>
+        AT YOUR DOOR.
+      </h1>
 
-          <a href="#services" class="btn btn-outline">
-            Explore Services
-          </a>
-        </div>
+      <p class="hero-sub">
+        Premium mobile car detailing brought directly
+        to your home, workplace, or wherever your vehicle
+        is parked.
+      </p>
 
-        <a href="tel:+13238804067" class="hero-phone">
-          <span>CALL</span>
-          (323) 880-4067
+      <div class="hero-actions">
+
+        <a
+          href="#contact"
+          class="btn btn-blue"
+        >
+          Start Your Detail
+        </a>
+
+        <a
+          href="#services"
+          class="btn btn-ghost"
+        >
+          Explore Services
         </a>
 
       </div>
-    </div>
 
-    <div class="scroll-indicator">
-      Scroll
+      <a
+        href="tel:+13238804067"
+        class="hero-phone"
+      >
+        <small>DIRECT LINE</small>
+        (323) 880-4067
+      </a>
+
     </div>
 
   </section>
 
 
-  <!-- INTRO STRIP -->
-  <section class="intro-strip">
-    <div class="container intro-grid">
+  <!-- SYSTEM BAR -->
+  <section class="system-bar">
 
-      <div class="intro-item">
-        <div class="intro-number">01</div>
-        <strong>Mobile Service</strong>
+    <div class="system-grid">
+
+      <div class="system-item">
+        <div class="system-label">Service Mode</div>
+        <div class="system-value">
+          Mobile <span>●</span>
+        </div>
       </div>
 
-      <div class="intro-item">
-        <div class="intro-number">02</div>
-        <strong>Premium Finish</strong>
+      <div class="system-item">
+        <div class="system-label">Availability</div>
+        <div class="system-value">
+          By Appointment
+        </div>
       </div>
 
-      <div class="intro-item">
-        <div class="intro-number">03</div>
-        <strong>Professional</strong>
+      <div class="system-item">
+        <div class="system-label">Service Area</div>
+        <div class="system-value">
+          Houston, TX
+        </div>
       </div>
 
-      <div class="intro-item">
-        <div class="intro-number">04</div>
-        <strong>Easy Booking</strong>
+      <div class="system-item">
+        <div class="system-label">Booking</div>
+        <div class="system-value">
+          Online / Phone
+        </div>
       </div>
 
     </div>
+
   </section>
 
 
   <!-- WHY -->
-  <section class="section section-light" id="about">
+  <section class="section why">
 
     <div class="container">
 
       <div class="why-grid">
 
-        <div class="why-image reveal">
-          <img src="images/2.jpg" alt="Mobile car detailing service">
+        <div class="image-frame reveal">
+          <img
+            src="images/2.jpg"
+            alt="Mobile detailing service"
+          >
         </div>
 
-        <div class="why-content reveal delay-1">
+        <div class="why-copy reveal delay1">
 
-          <div class="section-label">
-            Why Your Mobile Detailers
+          <div class="section-tag">
+            // 01 — THE DIFFERENCE
           </div>
 
           <h3>
@@ -1532,33 +1687,29 @@
           </h3>
 
           <p>
-            Your vehicle deserves more than a quick wash.
+            Your vehicle deserves more than a basic wash.
             We make premium detailing convenient by bringing
-            professional vehicle care directly to you.
+            professional vehicle care directly to your location.
           </p>
 
-          <div class="feature-list">
+          <div class="feature">
+            <span>Mobile Convenience</span>
+            <span class="feature-number">01</span>
+          </div>
 
-            <div class="feature">
-              <strong>Mobile Convenience</strong>
-              <span>01</span>
-            </div>
+          <div class="feature">
+            <span>Professional Service</span>
+            <span class="feature-number">02</span>
+          </div>
 
-            <div class="feature">
-              <strong>Professional Service</strong>
-              <span>02</span>
-            </div>
+          <div class="feature">
+            <span>Attention To Detail</span>
+            <span class="feature-number">03</span>
+          </div>
 
-            <div class="feature">
-              <strong>Attention To Detail</strong>
-              <span>03</span>
-            </div>
-
-            <div class="feature">
-              <strong>Customer First</strong>
-              <span>04</span>
-            </div>
-
+          <div class="feature">
+            <span>Customer First</span>
+            <span class="feature-number">04</span>
           </div>
 
         </div>
@@ -1571,86 +1722,133 @@
 
 
   <!-- SERVICES -->
-  <section class="section section-dark" id="services">
+  <section class="section services" id="services">
 
     <div class="container">
 
-      <div class="section-head reveal">
-        <div class="section-label">
-          What We Do
+      <div class="services-head reveal">
+
+        <div>
+
+          <div class="section-tag">
+            // 02 — SERVICE MODULES
+          </div>
+
+          <h2 class="section-title">
+            CHOOSE YOUR
+            <span>LEVEL.</span>
+          </h2>
+
+          <p class="section-copy">
+            Select the service your vehicle needs.
+            From a focused exterior refresh to a complete
+            interior and exterior detail.
+          </p>
+
         </div>
 
-        <h2 class="section-title">
-          BUILT FOR YOUR
-          <span>VEHICLE.</span>
-        </h2>
+        <div class="services-counter">
+          06
+        </div>
 
-        <p class="section-description">
-          From routine maintenance to a full interior and exterior
-          refresh, choose the service your vehicle needs.
-        </p>
       </div>
+
 
       <div class="services-grid">
 
-        <article class="service-card reveal">
-          <div class="service-number">01</div>
+        <article class="service reveal">
+
+          <div class="service-id">SERVICE // 001</div>
+
           <h3>Exterior Detail</h3>
+
           <p>
             Thorough exterior cleaning designed to restore
             the appearance and finish of your vehicle.
           </p>
-          <div class="service-arrow">→</div>
+
+          <div class="service-arrow">↗</div>
+
         </article>
 
-        <article class="service-card reveal delay-1">
-          <div class="service-number">02</div>
+
+        <article class="service reveal delay1">
+
+          <div class="service-id">SERVICE // 002</div>
+
           <h3>Interior Detail</h3>
+
           <p>
             Deep interior cleaning for seats, carpets,
             surfaces, panels and high-touch areas.
           </p>
-          <div class="service-arrow">→</div>
+
+          <div class="service-arrow">↗</div>
+
         </article>
 
-        <article class="service-card reveal delay-2">
-          <div class="service-number">03</div>
+
+        <article class="service reveal delay2">
+
+          <div class="service-id">SERVICE // 003</div>
+
           <h3>Full Detail</h3>
+
           <p>
             A complete interior and exterior treatment
             for vehicles that need the full reset.
           </p>
-          <div class="service-arrow">→</div>
+
+          <div class="service-arrow">↗</div>
+
         </article>
 
-        <article class="service-card reveal">
-          <div class="service-number">04</div>
+
+        <article class="service reveal">
+
+          <div class="service-id">SERVICE // 004</div>
+
           <h3>Paint Care</h3>
+
           <p>
             Careful washing and finishing focused on
             maintaining a clean, glossy exterior.
           </p>
-          <div class="service-arrow">→</div>
+
+          <div class="service-arrow">↗</div>
+
         </article>
 
-        <article class="service-card reveal delay-1">
-          <div class="service-number">05</div>
+
+        <article class="service reveal delay1">
+
+          <div class="service-id">SERVICE // 005</div>
+
           <h3>Maintenance</h3>
+
           <p>
             Keep your vehicle looking its best with
             convenient recurring detailing service.
           </p>
-          <div class="service-arrow">→</div>
+
+          <div class="service-arrow">↗</div>
+
         </article>
 
-        <article class="service-card reveal delay-2">
-          <div class="service-number">06</div>
+
+        <article class="service reveal delay2">
+
+          <div class="service-id">SERVICE // 006</div>
+
           <h3>Custom Service</h3>
+
           <p>
             Need something specific? Tell us what your
             vehicle needs and we'll help arrange it.
           </p>
-          <div class="service-arrow">→</div>
+
+          <div class="service-arrow">↗</div>
+
         </article>
 
       </div>
@@ -1661,50 +1859,108 @@
 
 
   <!-- GALLERY -->
-  <section class="section section-dark" id="gallery">
+  <section class="section" id="gallery">
 
     <div class="container">
 
-      <div class="section-head reveal">
-        <div class="section-label">
-          Our Work
+      <div class="gallery-head reveal">
+
+        <div class="section-tag">
+          // 03 — VISUAL PROOF
         </div>
 
         <h2 class="section-title">
-          THE DETAIL
-          <span>MAKES</span>
-          THE DIFFERENCE.
+          THE FINISH
+          <span>SPEAKS.</span>
         </h2>
+
+        <p class="section-copy">
+          A closer look at the level of finish we're
+          built around.
+        </p>
+
       </div>
 
-      <div class="gallery">
 
-        <div class="gallery-item reveal">
-          <img src="images/3.jpg" alt="Car detailing result">
-          <div class="gallery-overlay">
-            <span>Exterior Finish</span>
+      <div class="gallery-grid">
+
+        <div class="gallery-card reveal">
+
+          <img
+            src="images/3.jpg"
+            alt="Car detailing result"
+          >
+
+          <div class="gallery-ui">
+            <div class="gallery-number">
+              FRAME // 001
+            </div>
+
+            <div class="gallery-label">
+              Exterior Finish
+            </div>
           </div>
+
         </div>
 
-        <div class="gallery-item reveal delay-1">
-          <img src="images/4.jpg" alt="Professional car detailing">
-          <div class="gallery-overlay">
-            <span>Premium Detail</span>
+
+        <div class="gallery-card reveal delay1">
+
+          <img
+            src="images/4.jpg"
+            alt="Professional detailing"
+          >
+
+          <div class="gallery-ui">
+            <div class="gallery-number">
+              FRAME // 002
+            </div>
+
+            <div class="gallery-label">
+              Premium Detail
+            </div>
           </div>
+
         </div>
 
-        <div class="gallery-item reveal delay-2">
-          <img src="images/5.jpg" alt="Detailed vehicle">
-          <div class="gallery-overlay">
-            <span>Vehicle Care</span>
+
+        <div class="gallery-card reveal delay2">
+
+          <img
+            src="images/5.jpg"
+            alt="Detailed vehicle"
+          >
+
+          <div class="gallery-ui">
+            <div class="gallery-number">
+              FRAME // 003
+            </div>
+
+            <div class="gallery-label">
+              Vehicle Care
+            </div>
           </div>
+
         </div>
 
-        <div class="gallery-item reveal">
-          <img src="images/6.jpg" alt="Mobile detailing">
-          <div class="gallery-overlay">
-            <span>Mobile Service</span>
+
+        <div class="gallery-card reveal">
+
+          <img
+            src="images/6.jpg"
+            alt="Mobile detailing service"
+          >
+
+          <div class="gallery-ui">
+            <div class="gallery-number">
+              FRAME // 004
+            </div>
+
+            <div class="gallery-label">
+              Mobile Service
+            </div>
           </div>
+
         </div>
 
       </div>
@@ -1719,44 +1975,62 @@
 
     <div class="container">
 
-      <div class="section-head reveal">
-        <div class="section-label">
-          Simple Process
-        </div>
-
-        <h2 class="section-title">
-          THREE STEPS.
-          <span>ZERO HASSLE.</span>
-        </h2>
+      <div class="section-tag reveal">
+        // 04 — OPERATION
       </div>
+
+      <h2 class="section-title reveal">
+        THREE STEPS.
+        <span>ZERO HASSLE.</span>
+      </h2>
 
       <div class="process-grid">
 
         <div class="process-step reveal">
-          <div class="process-step-number">01</div>
+
+          <div class="process-big">
+            01
+          </div>
+
           <h3>Request</h3>
+
           <p>
             Tell us about your vehicle and the detailing
             service you're looking for.
           </p>
+
         </div>
 
-        <div class="process-step reveal delay-1">
-          <div class="process-step-number">02</div>
+
+        <div class="process-step reveal delay1">
+
+          <div class="process-big">
+            02
+          </div>
+
           <h3>Schedule</h3>
+
           <p>
-            Choose a convenient time and location for
-            your mobile detailing service.
+            Choose a convenient time and location
+            for your mobile detailing service.
           </p>
+
         </div>
 
-        <div class="process-step reveal delay-2">
-          <div class="process-step-number">03</div>
+
+        <div class="process-step reveal delay2">
+
+          <div class="process-big">
+            03
+          </div>
+
           <h3>Relax</h3>
+
           <p>
             Our detailing team comes to you and takes
             care of the vehicle while you get on with your day.
           </p>
+
         </div>
 
       </div>
@@ -1769,36 +2043,48 @@
   <!-- CTA -->
   <section class="cta">
 
-    <div class="container cta-inner">
+    <div class="container">
 
-      <div class="reveal">
-        <div class="section-label" style="color:white;">
-          Ready When You Are
+      <div class="cta-grid">
+
+        <div class="reveal">
+
+          <div class="section-tag">
+            // READY TO DEPLOY
+          </div>
+
+          <h2>
+            YOUR CAR.
+            <br>
+            YOUR PLACE.
+            <br>
+            OUR <span>DETAIL.</span>
+          </h2>
+
+          <p class="cta-copy">
+            Professional mobile detailing brought directly
+            to your location in Houston.
+          </p>
+
         </div>
 
-        <h2>
-          YOUR CAR.
-          <br>
-          YOUR PLACE.
-          <br>
-          OUR <span>DETAIL.</span>
-        </h2>
+        <div class="cta-side reveal delay1">
 
-        <p>
-          Professional mobile detailing brought directly
-          to your location in Houston.
-        </p>
-      </div>
+          <a
+            href="#contact"
+            class="btn btn-blue"
+          >
+            Request A Quote
+          </a>
 
-      <div class="cta-right reveal delay-1">
+          <a
+            href="tel:+13238804067"
+            class="cta-phone"
+          >
+            (323) 880-4067
+          </a>
 
-        <a href="#quote" class="cta-button">
-          Request A Quote
-        </a>
-
-        <a href="tel:+13238804067" class="cta-phone">
-          (323) 880-4067
-        </a>
+        </div>
 
       </div>
 
@@ -1807,48 +2093,49 @@
   </section>
 
 
-  <!-- QUOTE -->
-  <section class="section section-dark" id="quote">
+  <!-- CONTACT -->
+  <section class="section" id="contact">
 
     <div class="container">
 
-      <div class="quote-grid">
+      <div class="contact-grid">
 
-        <div class="quote-info reveal">
+        <div class="reveal">
 
-          <div class="section-label">
-            Get Started
+          <div class="section-tag">
+            // 05 — BOOKING TERMINAL
           </div>
 
-          <h2>
+          <h2 class="contact-title">
             LET'S GET
             YOUR CAR
-            <span>LOOKING RIGHT.</span>
+            <span>RIGHT.</span>
           </h2>
 
-          <p>
-            Fill out the form and tell us what your vehicle needs.
-            We'll use your information to help arrange the right
-            detailing service.
+          <p class="contact-text">
+            Tell us what your vehicle needs and we'll help
+            arrange the right detailing service.
           </p>
 
-          <p>
-            Prefer to talk? Call
-            <a href="tel:+13238804067" style="color:white;font-weight:700;">
-              (323) 880-4067
-            </a>
-          </p>
+          <a
+            href="tel:+13238804067"
+            class="contact-number"
+          >
+            CALL // (323) 880-4067
+          </a>
 
         </div>
 
 
-        <form class="quote-form reveal delay-1" id="quoteForm">
+        <form
+          class="form reveal delay1"
+          id="quoteForm"
+        >
 
           <div class="field">
             <input
               type="text"
-              name="name"
-              placeholder="Your Name"
+              placeholder="YOUR NAME"
               required
             >
           </div>
@@ -1856,8 +2143,7 @@
           <div class="field">
             <input
               type="tel"
-              name="phone"
-              placeholder="Phone Number"
+              placeholder="PHONE NUMBER"
               required
             >
           </div>
@@ -1865,41 +2151,67 @@
           <div class="field">
             <input
               type="email"
-              name="email"
-              placeholder="Email Address"
+              placeholder="EMAIL ADDRESS"
             >
           </div>
 
           <div class="field">
             <input
               type="text"
-              name="vehicle"
-              placeholder="Vehicle — e.g. 2022 BMW X5"
+              placeholder="VEHICLE — 2022 BMW X5"
               required
             >
           </div>
 
-          <div class="field field-full">
-            <select name="service" required>
-              <option value="">Select Service</option>
-              <option value="Exterior Detail">Exterior Detail</option>
-              <option value="Interior Detail">Interior Detail</option>
-              <option value="Full Detail">Full Detail</option>
-              <option value="Paint Care">Paint Care</option>
-              <option value="Maintenance">Maintenance</option>
-              <option value="Custom Service">Custom Service</option>
+          <div class="field full">
+
+            <select required>
+
+              <option value="">
+                SELECT SERVICE
+              </option>
+
+              <option>
+                Exterior Detail
+              </option>
+
+              <option>
+                Interior Detail
+              </option>
+
+              <option>
+                Full Detail
+              </option>
+
+              <option>
+                Paint Care
+              </option>
+
+              <option>
+                Maintenance
+              </option>
+
+              <option>
+                Custom Service
+              </option>
+
             </select>
+
           </div>
 
-          <div class="field field-full">
+          <div class="field full">
+
             <textarea
-              name="message"
-              placeholder="Tell us anything else about your vehicle..."
+              placeholder="TELL US ABOUT YOUR VEHICLE..."
             ></textarea>
+
           </div>
 
-          <button type="submit" class="quote-submit field-full">
-            Request A Quote
+          <button
+            type="submit"
+            class="submit full"
+          >
+            TRANSMIT REQUEST
           </button>
 
         </form>
@@ -1916,9 +2228,9 @@
 
     <div class="container">
 
-      <div class="footer-top">
+      <div class="footer-grid">
 
-        <div class="footer-brand">
+        <div>
 
           <img
             src="images/logo.webp"
@@ -1926,10 +2238,10 @@
             class="footer-logo"
           >
 
-          <p>
+          <p class="footer-desc">
             Premium mobile car detailing brought directly
-            to your home, workplace, or wherever your vehicle
-            is parked.
+            to your home, workplace, or wherever your
+            vehicle is parked.
           </p>
 
         </div>
@@ -1937,36 +2249,32 @@
 
         <div class="footer-col">
 
-          <h4>Navigation</h4>
+          <div class="footer-heading">
+            Navigation
+          </div>
 
           <a href="#home">Home</a>
           <a href="#services">Services</a>
-          <a href="#gallery">Gallery</a>
+          <a href="#gallery">Showcase</a>
           <a href="#process">Process</a>
-          <a href="#quote">Contact</a>
+          <a href="#contact">Contact</a>
 
         </div>
 
 
         <div class="footer-col">
 
-          <h4>Contact</h4>
+          <div class="footer-heading">
+            Contact
+          </div>
 
           <a href="tel:+13238804067">
             (323) 880-4067
           </a>
 
-          <p>
-            Houston, Texas
-          </p>
-
-          <p>
-            Mobile Service
-          </p>
-
-          <p>
-            By Appointment
-          </p>
+          <p>Houston, Texas</p>
+          <p>Mobile Service</p>
+          <p>By Appointment</p>
 
         </div>
 
@@ -1976,7 +2284,7 @@
       <div class="footer-bottom">
 
         <span>
-          © 2026 Your Mobile Detailers
+          © 2026 YOUR MOBILE DETAILERS
         </span>
 
         <span>
@@ -1993,98 +2301,124 @@
   <!-- JAVASCRIPT -->
   <script>
 
-    /* =========================
-       NAVBAR SCROLL EFFECT
-    ========================= */
+    /* =========================================================
+       NAVBAR
+    ========================================================= */
 
-    const navbar = document.getElementById("navbar");
+    const nav = document.getElementById("nav");
 
-    function handleNavbar() {
+    window.addEventListener("scroll", () => {
+
       if (window.scrollY > 40) {
-        navbar.classList.add("scrolled");
+        nav.classList.add("scrolled");
       } else {
-        navbar.classList.remove("scrolled");
+        nav.classList.remove("scrolled");
       }
-    }
 
-    window.addEventListener("scroll", handleNavbar);
-    handleNavbar();
+    });
 
 
-    /* =========================
+    /* =========================================================
        MOBILE MENU
-    ========================= */
+    ========================================================= */
 
-    const menuBtn = document.getElementById("menuBtn");
+    const menu = document.getElementById("menu");
     const navLinks = document.getElementById("navLinks");
 
-    menuBtn.addEventListener("click", () => {
-      navLinks.classList.toggle("mobile-open");
+    menu.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
     });
 
     document.querySelectorAll(".nav-links a").forEach(link => {
+
       link.addEventListener("click", () => {
-        navLinks.classList.remove("mobile-open");
+        navLinks.classList.remove("open");
       });
+
     });
 
 
-    /* =========================
+    /* =========================================================
        SCROLL REVEAL
-    ========================= */
+    ========================================================= */
 
-    const revealElements = document.querySelectorAll(".reveal");
+    const revealItems =
+      document.querySelectorAll(".reveal");
 
-    const revealObserver = new IntersectionObserver(
-      (entries, observer) => {
+    const observer =
+      new IntersectionObserver(
+        entries => {
 
-        entries.forEach(entry => {
+          entries.forEach(entry => {
 
-          if (entry.isIntersecting) {
+            if (entry.isIntersecting) {
 
-            entry.target.classList.add("is-visible");
+              entry.target.classList.add("show");
 
-            observer.unobserve(entry.target);
+              observer.unobserve(entry.target);
 
-          }
+            }
 
-        });
+          });
 
-      },
-      {
-        threshold: 0.12,
-        rootMargin: "0px 0px -40px 0px"
-      }
-    );
+        },
+        {
+          threshold: .12,
+          rootMargin: "0px 0px -50px 0px"
+        }
+      );
 
-    revealElements.forEach(element => {
-      revealObserver.observe(element);
+    revealItems.forEach(item => {
+      observer.observe(item);
     });
 
 
-    /* =========================
-       QUOTE FORM
-    ========================= */
+    /* =========================================================
+       MOUSE GLOW
+    ========================================================= */
 
-    const quoteForm = document.getElementById("quoteForm");
+    const glow = document.getElementById("glow");
 
-    quoteForm.addEventListener("submit", function(event) {
+    window.addEventListener("mousemove", event => {
+
+      glow.style.left = event.clientX + "px";
+      glow.style.top = event.clientY + "px";
+
+    });
+
+
+    /* =========================================================
+       FORM
+    ========================================================= */
+
+    const form = document.getElementById("quoteForm");
+
+    form.addEventListener("submit", event => {
 
       event.preventDefault();
 
-      const button = quoteForm.querySelector(".quote-submit");
+      const button =
+        form.querySelector(".submit");
 
-      button.textContent = "REQUEST RECEIVED ✓";
+      button.textContent =
+        "REQUEST RECEIVED ✓";
 
-      button.style.background = "#ffffff";
-      button.style.color = "#050607";
+      button.style.background =
+        "#00ff9d";
+
+      button.style.color =
+        "#020407";
 
       setTimeout(() => {
 
-        button.textContent = "Request A Quote";
+        button.textContent =
+          "TRANSMIT REQUEST";
 
-        button.style.background = "";
-        button.style.color = "";
+        button.style.background =
+          "";
+
+        button.style.color =
+          "";
 
       }, 3500);
 
