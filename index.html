@@ -3,29 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Your Mobile Detailers | Premium Mobile Car Detailing Houston</title>
-
-<meta name="description" content="Your Mobile Detailers provides premium mobile car detailing in Houston, Texas. Professional interior, exterior, paint correction, ceramic coating and more. We bring the detail to you.">
+<meta name="theme-color" content="#050a12">
+<meta name="description" content="Your Mobile Detailers — premium mobile car detailing in Houston, Texas. We bring the detail to you.">
+<title>Your Mobile Detailers | Houston Mobile Car Detailing</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#050b13;
-  --bg2:#081321;
-  --bg3:#0b1726;
-  --blue:#1683ff;
-  --blue2:#48adff;
-  --white:#fff;
-  --text:#dce7f3;
-  --muted:#8798aa;
+  --bg:#03070d;
+  --bg2:#07101b;
+  --card:#0a1420;
+  --card2:#0d1927;
+  --blue:#1688ff;
+  --blue2:#49b4ff;
+  --white:#f5f9ff;
+  --muted:#91a1b4;
   --line:rgba(255,255,255,.09);
-  --glass:rgba(255,255,255,.045);
-  --green:#25c77a;
-  --max:1200px;
+  --shadow:0 25px 80px rgba(0,0,0,.45);
   --radius:24px;
 }
 
@@ -40,31 +37,26 @@ html{
 }
 
 body{
-  font-family:"Inter",sans-serif;
-  background:var(--bg);
+  background:
+    radial-gradient(circle at 80% 0%,rgba(20,120,255,.10),transparent 28%),
+    radial-gradient(circle at 10% 35%,rgba(0,100,255,.06),transparent 30%),
+    var(--bg);
   color:var(--white);
-  line-height:1.6;
+  font-family:Inter,Arial,sans-serif;
   overflow-x:hidden;
 }
 
-body::before{
+body:before{
   content:"";
   position:fixed;
   inset:0;
   pointer-events:none;
-  z-index:9999;
-  opacity:.035;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");
-}
-
-::selection{
-  background:var(--blue);
-  color:white;
-}
-
-img{
-  display:block;
-  width:100%;
+  background-image:
+    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:70px 70px;
+  mask-image:linear-gradient(to bottom,black,transparent 80%);
+  z-index:-1;
 }
 
 a{
@@ -72,49 +64,143 @@ a{
   text-decoration:none;
 }
 
-button,input,textarea,select{
+img{
+  max-width:100%;
+  display:block;
+}
+
+button,
+input,
+select,
+textarea{
   font:inherit;
 }
 
 .container{
-  width:min(92%,var(--max));
+  width:min(1180px,92%);
   margin:auto;
 }
 
-/* =========================
-   NAVBAR
-========================= */
+section{
+  padding:110px 0;
+  position:relative;
+}
 
+.section-label{
+  color:var(--blue2);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  margin-bottom:16px;
+}
+
+.section-title{
+  font-family:Manrope,sans-serif;
+  font-size:clamp(36px,5vw,68px);
+  line-height:.98;
+  letter-spacing:-3px;
+  max-width:850px;
+}
+
+.section-title span{
+  color:var(--blue2);
+}
+
+.section-copy{
+  color:var(--muted);
+  max-width:650px;
+  line-height:1.8;
+  margin-top:22px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-height:54px;
+  padding:0 25px;
+  border-radius:14px;
+  font-weight:800;
+  border:1px solid transparent;
+  transition:.35s ease;
+  cursor:pointer;
+}
+
+.btn-primary{
+  background:linear-gradient(135deg,#0877ed,#43b4ff);
+  color:#00101e;
+  box-shadow:0 15px 45px rgba(22,136,255,.25);
+}
+
+.btn-primary:hover{
+  transform:translateY(-3px);
+  box-shadow:0 20px 60px rgba(22,136,255,.38);
+}
+
+.btn-outline{
+  border-color:rgba(255,255,255,.15);
+  background:rgba(255,255,255,.035);
+  color:#fff;
+}
+
+.btn-outline:hover{
+  border-color:rgba(73,180,255,.5);
+  background:rgba(22,136,255,.08);
+  transform:translateY(-3px);
+}
+
+/* NAV */
 .navbar{
   position:fixed;
   top:0;
   left:0;
   right:0;
   z-index:1000;
-  transition:.4s ease;
+  padding:16px 0;
+  transition:.35s ease;
 }
 
 .navbar.scrolled{
-  background:rgba(5,11,19,.86);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--line);
+  background:rgba(3,7,13,.78);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .nav-inner{
-  height:86px;
+  width:min(1200px,94%);
+  margin:auto;
   display:flex;
   align-items:center;
   justify-content:space-between;
 }
 
 .logo{
-  width:195px;
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
 .logo img{
-  max-height:60px;
+  width:54px;
+  height:54px;
   object-fit:contain;
-  object-position:left center;
+}
+
+.logo-text{
+  font-family:Manrope,sans-serif;
+  font-size:14px;
+  font-weight:800;
+  letter-spacing:1px;
+}
+
+.logo-text small{
+  display:block;
+  color:var(--blue2);
+  font-size:8px;
+  letter-spacing:2px;
+  margin-top:3px;
 }
 
 .nav-links{
@@ -124,290 +210,171 @@ button,input,textarea,select{
 }
 
 .nav-links a{
-  position:relative;
-  color:#cbd7e3;
   font-size:13px;
-  font-weight:700;
-  transition:.3s;
-}
-
-.nav-links a:not(.nav-cta)::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-8px;
-  width:0;
-  height:2px;
-  background:var(--blue2);
-  transition:.3s;
+  color:#bdc8d5;
+  font-weight:600;
+  transition:.25s;
 }
 
 .nav-links a:hover{
-  color:white;
+  color:#fff;
 }
 
-.nav-links a:hover::after{
-  width:100%;
-}
-
-.nav-cta{
-  padding:12px 20px;
-  border-radius:999px;
-  background:var(--blue);
-  box-shadow:0 10px 30px rgba(22,131,255,.3);
-}
-
-.nav-cta:hover{
-  transform:translateY(-2px);
-  background:var(--blue2);
+.nav-call{
+  display:inline-flex;
+  padding:11px 17px;
+  border-radius:11px;
+  background:#fff;
+  color:#06101a!important;
+  font-weight:800!important;
 }
 
 .menu-btn{
   display:none;
-  border:0;
-  background:none;
-  color:white;
-  font-size:28px;
+  width:45px;
+  height:45px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:rgba(255,255,255,.04);
+  color:#fff;
   cursor:pointer;
 }
 
-/* =========================
-   HERO
-========================= */
-
+/* HERO */
 .hero{
   min-height:100vh;
-  position:relative;
+  padding-top:150px;
   display:flex;
   align-items:center;
   overflow:hidden;
-  padding:150px 0 100px;
+}
+
+.hero-bg{
+  position:absolute;
+  inset:0;
+  z-index:-2;
+}
+
+.hero-bg img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  filter:brightness(.38) saturate(.85);
+  transform:scale(1.04);
+  animation:heroZoom 14s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom{
+  from{transform:scale(1.04)}
+  to{transform:scale(1.11)}
+}
+
+.hero:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
   background:
-    radial-gradient(circle at 75% 40%,rgba(22,131,255,.16),transparent 30%),
-    radial-gradient(circle at 10% 90%,rgba(22,131,255,.08),transparent 30%),
-    var(--bg);
-}
-
-.hero::before{
-  content:"";
-  position:absolute;
-  width:700px;
-  height:700px;
-  right:-250px;
-  top:-250px;
-  border:1px solid rgba(72,173,255,.08);
-  border-radius:50%;
-  animation:rotateSlow 20s linear infinite;
-}
-
-.hero::after{
-  content:"";
-  position:absolute;
-  width:500px;
-  height:500px;
-  left:-250px;
-  bottom:-250px;
-  border:1px solid rgba(72,173,255,.06);
-  border-radius:50%;
-}
-
-.hero-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:75px;
-  align-items:center;
-  position:relative;
-  z-index:2;
+    linear-gradient(90deg,rgba(3,7,13,.98) 0%,rgba(3,7,13,.82) 40%,rgba(3,7,13,.30) 100%),
+    linear-gradient(0deg,#03070d 0%,transparent 30%);
 }
 
 .hero-content{
-  animation:heroIn 1s ease both;
+  max-width:850px;
 }
 
-.eyebrow{
+.hero-kicker{
   display:inline-flex;
   align-items:center;
-  gap:10px;
-  color:var(--blue2);
-  font-size:11px;
+  gap:9px;
+  padding:9px 13px;
+  border:1px solid rgba(73,180,255,.25);
+  background:rgba(7,18,30,.65);
+  border-radius:999px;
+  color:#b9dcff;
+  font-size:10px;
   font-weight:800;
-  letter-spacing:2.5px;
-  text-transform:uppercase;
-  margin-bottom:22px;
+  letter-spacing:2px;
+  margin-bottom:24px;
 }
 
-.eyebrow::before{
-  content:"";
-  width:32px;
-  height:2px;
-  background:var(--blue);
-  box-shadow:0 0 12px rgba(22,131,255,.7);
+.live-dot{
+  width:7px;
+  height:7px;
+  background:#42b7ff;
+  border-radius:50%;
+  box-shadow:0 0 16px #1688ff;
+  animation:pulse 1.8s infinite;
+}
+
+@keyframes pulse{
+  50%{opacity:.35;transform:scale(.65)}
 }
 
 .hero h1{
-  font-family:"Manrope",sans-serif;
-  font-size:clamp(52px,6.4vw,86px);
-  line-height:.94;
-  letter-spacing:-4px;
-  max-width:700px;
-  margin-bottom:28px;
+  font-family:Manrope,sans-serif;
+  font-size:clamp(56px,8vw,108px);
+  line-height:.87;
+  letter-spacing:-6px;
+  max-width:950px;
 }
 
 .hero h1 span{
-  color:transparent;
-  -webkit-text-stroke:1px var(--blue2);
-  position:relative;
+  color:#5bbcff;
+  text-shadow:0 0 45px rgba(22,136,255,.18);
 }
 
-.hero h1 span::after{
-  content:"DETAIL";
-  position:absolute;
-  left:0;
-  top:0;
-  color:var(--blue2);
-  width:0;
-  overflow:hidden;
-  white-space:nowrap;
-  animation:textReveal 2s .5s forwards;
-}
-
-.hero p{
-  max-width:560px;
-  color:var(--muted);
-  font-size:16px;
-  line-height:1.85;
-  margin-bottom:34px;
+.hero-sub{
+  color:#c0cbd8;
+  font-size:18px;
+  line-height:1.7;
+  max-width:620px;
+  margin:30px 0;
 }
 
 .hero-buttons{
   display:flex;
-  gap:14px;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.hero-meta{
+  margin-top:55px;
+  display:flex;
+  gap:40px;
   flex-wrap:wrap;
 }
 
-.btn{
-  min-height:54px;
-  padding:0 25px;
-  border-radius:13px;
-  display:inline-flex;
-  justify-content:center;
-  align-items:center;
-  font-size:13px;
-  font-weight:800;
-  transition:.3s ease;
-  position:relative;
-  overflow:hidden;
-}
-
-.btn::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  transform:translateX(-110%);
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);
-  transition:.6s;
-}
-
-.btn:hover::before{
-  transform:translateX(110%);
-}
-
-.btn-primary{
-  background:var(--blue);
-  box-shadow:0 15px 40px rgba(22,131,255,.28);
-}
-
-.btn-primary:hover{
-  transform:translateY(-3px);
-  background:var(--blue2);
-}
-
-.btn-secondary{
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.035);
-}
-
-.btn-secondary:hover{
-  border-color:rgba(72,173,255,.5);
-  transform:translateY(-3px);
-}
-
-.hero-visual{
-  position:relative;
-  animation:heroImageIn 1.1s .15s ease both;
-}
-
-.hero-frame{
-  position:relative;
-  padding:10px;
-  border-radius:32px;
-  background:linear-gradient(135deg,rgba(72,173,255,.4),transparent 40%,rgba(22,131,255,.2));
-}
-
-.hero-frame::before{
-  content:"";
-  position:absolute;
-  inset:-1px;
-  border-radius:32px;
-  border:1px solid rgba(72,173,255,.25);
-  pointer-events:none;
-}
-
-.hero-image{
-  height:610px;
-  object-fit:cover;
-  border-radius:25px;
-}
-
-.hero-image-wrap{
-  position:relative;
-  overflow:hidden;
-  border-radius:25px;
-}
-
-.hero-image-wrap::after{
-  content:"";
-  position:absolute;
-  top:0;
-  left:-100%;
-  width:40%;
-  height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);
-  transform:skewX(-18deg);
-  animation:shine 5s 1.5s infinite;
-}
-
-.hero-badge{
-  position:absolute;
-  left:-25px;
-  bottom:35px;
-  padding:18px 22px;
-  border:1px solid var(--line);
-  border-radius:18px;
-  background:rgba(5,11,19,.82);
-  backdrop-filter:blur(18px);
-  box-shadow:0 20px 50px rgba(0,0,0,.3);
-}
-
-.hero-badge strong{
+.meta-item strong{
   display:block;
-  font-size:18px;
-  margin-bottom:2px;
+  font-family:Manrope;
+  font-size:24px;
 }
 
-.hero-badge span{
-  color:var(--muted);
+.meta-item span{
+  color:#8090a3;
   font-size:11px;
+  letter-spacing:1px;
+  text-transform:uppercase;
 }
 
-/* =========================
-   STATS
-========================= */
+.scroll-line{
+  position:absolute;
+  bottom:30px;
+  left:50%;
+  width:1px;
+  height:55px;
+  background:linear-gradient(#5bbcff,transparent);
+}
 
+/* STATS */
 .stats{
+  padding:0;
+  margin-top:-1px;
   border-top:1px solid var(--line);
   border-bottom:1px solid var(--line);
-  background:#07111d;
+  background:rgba(5,12,20,.88);
 }
 
 .stats-grid{
@@ -416,870 +383,1099 @@ button,input,textarea,select{
 }
 
 .stat{
-  padding:28px 20px;
-  text-align:center;
+  padding:35px 25px;
   border-right:1px solid var(--line);
 }
 
 .stat:last-child{
-  border:0;
+  border-right:0;
 }
 
 .stat strong{
   display:block;
-  font-family:"Manrope",sans-serif;
-  font-size:25px;
-  margin-bottom:3px;
+  font-family:Manrope;
+  font-size:35px;
 }
 
 .stat span{
-  color:var(--muted);
+  color:#748497;
   font-size:11px;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
 }
 
-/* =========================
-   GENERAL
-========================= */
-
-section{
-  padding:115px 0;
-}
-
-.section-heading{
-  max-width:700px;
-  margin-bottom:55px;
-}
-
-.section-heading.center{
-  margin-left:auto;
-  margin-right:auto;
-  text-align:center;
-}
-
-.section-heading.center .eyebrow{
-  justify-content:center;
-}
-
-.section-heading h2{
-  font-family:"Manrope",sans-serif;
-  font-size:clamp(38px,4.5vw,60px);
-  line-height:1.02;
-  letter-spacing:-2.8px;
-  margin-bottom:18px;
-}
-
-.section-heading p{
-  color:var(--muted);
-  line-height:1.8;
-}
-
-/* =========================
-   WHY
-========================= */
-
-.why{
-  background:var(--bg2);
-}
-
-.why-grid{
+/* CARDS */
+.card-grid{
   display:grid;
-  grid-template-columns:.9fr 1.1fr;
-  gap:80px;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:55px;
+}
+
+.card{
+  background:linear-gradient(145deg,rgba(15,28,43,.88),rgba(5,12,20,.94));
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:32px;
+  position:relative;
+  overflow:hidden;
+  transition:.45s ease;
+}
+
+.card:before{
+  content:"";
+  position:absolute;
+  width:160px;
+  height:160px;
+  top:-80px;
+  right:-80px;
+  background:rgba(22,136,255,.13);
+  filter:blur(35px);
+  border-radius:50%;
+}
+
+.card:hover{
+  transform:translateY(-9px);
+  border-color:rgba(73,180,255,.35);
+  box-shadow:var(--shadow);
+}
+
+.card-number{
+  color:#52677d;
+  font-size:11px;
+  letter-spacing:2px;
+  font-weight:800;
+}
+
+.card h3{
+  font-family:Manrope;
+  font-size:27px;
+  margin:20px 0 10px;
+}
+
+.card p{
+  color:#8d9caf;
+  line-height:1.7;
+}
+
+.icon{
+  width:52px;
+  height:52px;
+  display:grid;
+  place-items:center;
+  border-radius:15px;
+  background:rgba(22,136,255,.09);
+  border:1px solid rgba(73,180,255,.15);
+  color:#62bfff;
+  font-size:22px;
+}
+
+/* IMAGE FEATURE */
+.image-feature{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:70px;
   align-items:center;
 }
 
-.image-card{
+.image-wrap{
   position:relative;
+  border-radius:30px;
   overflow:hidden;
-  border-radius:26px;
   border:1px solid var(--line);
+  box-shadow:var(--shadow);
 }
 
-.image-card::after{
+.image-wrap img{
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  transition:transform 1s ease;
+}
+
+.image-wrap:hover img{
+  transform:scale(1.06);
+}
+
+.image-wrap:after{
   content:"";
   position:absolute;
-  inset:0;
-  background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.45));
-  pointer-events:none;
+  top:0;
+  left:-80%;
+  width:45%;
+  height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.13),transparent);
+  transform:skewX(-20deg);
+  transition:1s;
 }
 
-.image-card img{
-  height:560px;
-  object-fit:cover;
-  transition:transform .8s ease;
+.image-wrap:hover:after{
+  left:140%;
 }
 
-.image-card:hover img{
-  transform:scale(1.045);
-}
-
-.corner-label{
-  position:absolute;
-  z-index:2;
-  left:22px;
-  bottom:20px;
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:2px;
-  color:white;
-}
-
-.features{
+.feature-list{
+  margin-top:30px;
   display:grid;
-  gap:16px;
+  gap:14px;
 }
 
 .feature{
-  position:relative;
   display:flex;
-  gap:18px;
-  padding:22px;
+  gap:15px;
+  padding:17px;
   border:1px solid var(--line);
-  background:var(--glass);
-  border-radius:18px;
-  transition:.35s ease;
-  overflow:hidden;
+  border-radius:15px;
+  background:rgba(255,255,255,.025);
 }
 
-.feature::before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:0;
-  bottom:0;
-  width:2px;
-  background:var(--blue);
-  transform:scaleY(0);
-  transition:.3s;
+.check{
+  color:#4db7ff;
+  font-weight:900;
 }
 
-.feature:hover{
-  transform:translateX(5px);
-  border-color:rgba(72,173,255,.3);
-  background:rgba(22,131,255,.05);
-}
-
-.feature:hover::before{
-  transform:scaleY(1);
-}
-
-.feature-number{
-  flex:0 0 44px;
-  width:44px;
-  height:44px;
+/* PRICING */
+.pricing-head{
   display:flex;
-  justify-content:center;
-  align-items:center;
-  border-radius:13px;
-  background:rgba(22,131,255,.11);
-  color:var(--blue2);
-  font-weight:800;
-  font-size:12px;
-}
-
-.feature h3{
-  font-size:16px;
-  margin-bottom:5px;
-}
-
-.feature p{
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.7;
-}
-
-/* =========================
-   PACKAGES
-========================= */
-
-.packages{
-  background:
-    radial-gradient(circle at 50% 0,rgba(22,131,255,.08),transparent 35%),
-    var(--bg);
-}
-
-.package-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-  align-items:stretch;
+  align-items:end;
+  justify-content:space-between;
+  gap:30px;
 }
 
 .package{
-  position:relative;
-  padding:34px 30px;
-  border:1px solid var(--line);
-  border-radius:25px;
-  background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
-  transition:.4s ease;
-  overflow:hidden;
-}
-
-.package::after{
-  content:"";
-  position:absolute;
-  width:180px;
-  height:180px;
-  right:-100px;
-  top:-100px;
-  border-radius:50%;
-  background:rgba(22,131,255,.1);
-  transition:.5s;
-}
-
-.package:hover{
-  transform:translateY(-10px);
-  border-color:rgba(72,173,255,.4);
-  box-shadow:0 25px 70px rgba(0,0,0,.25);
-}
-
-.package:hover::after{
-  transform:scale(1.5);
+  padding:34px;
+  min-height:470px;
 }
 
 .package.popular{
-  border-color:rgba(72,173,255,.5);
+  border-color:rgba(55,166,255,.55);
   background:
-    linear-gradient(145deg,rgba(22,131,255,.13),rgba(255,255,255,.025));
+    linear-gradient(145deg,rgba(13,38,61,.96),rgba(5,13,22,.96));
   transform:translateY(-10px);
 }
 
-.package.popular:hover{
-  transform:translateY(-17px);
-}
-
-.popular-tag{
+.package-badge{
   position:absolute;
-  right:20px;
   top:20px;
-  padding:6px 10px;
-  border-radius:999px;
-  background:var(--blue);
+  right:20px;
   font-size:9px;
-  font-weight:800;
-  letter-spacing:1px;
-}
-
-.package-number{
-  color:var(--blue2);
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:2px;
-  margin-bottom:22px;
-}
-
-.package h3{
-  font-family:"Manrope",sans-serif;
-  font-size:26px;
-  margin-bottom:8px;
+  font-weight:900;
+  letter-spacing:1.5px;
+  padding:8px 10px;
+  border-radius:999px;
+  color:#03111e;
+  background:#53b9ff;
 }
 
 .price{
-  margin-bottom:25px;
-}
-
-.price small{
-  color:var(--muted);
-  font-size:11px;
+  margin:25px 0;
 }
 
 .price strong{
-  display:block;
-  font-family:"Manrope",sans-serif;
-  font-size:43px;
-  line-height:1;
-  margin-top:4px;
+  font-family:Manrope;
+  font-size:50px;
+  letter-spacing:-2px;
 }
 
-.package-description{
-  color:var(--muted);
+.price span{
+  color:#718196;
   font-size:12px;
-  line-height:1.7;
-  min-height:60px;
-  margin-bottom:23px;
 }
 
 .package ul{
   list-style:none;
+  margin-top:28px;
   display:grid;
-  gap:12px;
-  margin-bottom:30px;
+  gap:13px;
 }
 
 .package li{
-  color:#cbd7e3;
-  font-size:12px;
+  color:#a7b4c3;
+  font-size:14px;
   display:flex;
   gap:10px;
 }
 
-.package li::before{
+.package li:before{
   content:"✓";
-  color:var(--blue2);
-  font-weight:800;
+  color:#53b9ff;
+  font-weight:900;
 }
 
 .package .btn{
   width:100%;
+  margin-top:28px;
 }
 
-/* =========================
-   SPECIALTY
-========================= */
-
-.specialty{
-  background:var(--bg2);
-}
-
-.specialty-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px;
-}
-
-.specialty-card{
-  padding:24px 20px;
+/* SIZE TABLE */
+.size-table{
+  margin-top:55px;
+  overflow:hidden;
   border:1px solid var(--line);
-  border-radius:18px;
+  border-radius:22px;
   background:rgba(255,255,255,.025);
-  transition:.3s ease;
 }
 
-.specialty-card:hover{
-  transform:translateY(-5px);
-  border-color:rgba(72,173,255,.3);
-  background:rgba(22,131,255,.05);
+.size-row{
+  display:grid;
+  grid-template-columns:1.5fr repeat(3,1fr);
+  border-bottom:1px solid var(--line);
 }
 
-.specialty-card span{
-  color:var(--blue2);
-  font-size:10px;
+.size-row:last-child{
+  border-bottom:0;
+}
+
+.size-row div{
+  padding:18px 20px;
+  border-right:1px solid var(--line);
+  color:#a5b2c1;
+  font-size:13px;
+}
+
+.size-row div:last-child{
+  border-right:0;
+}
+
+.size-row.head{
+  background:rgba(22,136,255,.08);
+}
+
+.size-row.head div{
+  color:#fff;
   font-weight:800;
+  text-transform:uppercase;
+  font-size:10px;
   letter-spacing:1px;
 }
 
-.specialty-card h3{
+.size-row div:not(:first-child){
+  text-align:center;
+}
+
+.price-blue{
+  color:#55baff!important;
+  font-weight:800;
+}
+
+/* SPECIALTY */
+.specialty{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin-top:45px;
+}
+
+.special{
+  padding:23px;
+  background:rgba(255,255,255,.025);
+  border:1px solid var(--line);
+  border-radius:18px;
+  transition:.35s;
+}
+
+.special:hover{
+  transform:translateY(-5px);
+  border-color:rgba(73,180,255,.3);
+}
+
+.special h4{
   font-size:15px;
-  margin:9px 0 7px;
+  margin-bottom:8px;
 }
 
-.specialty-card strong{
+.special span{
+  color:#57baff;
+  font-weight:800;
   font-size:13px;
+}
+
+/* SERVICE NETWORK MAP */
+.network-section{
+  overflow:hidden;
+}
+
+.map-panel{
+  margin-top:55px;
+  min-height:650px;
+  border-radius:32px;
+  border:1px solid rgba(73,180,255,.15);
+  background:
+    radial-gradient(circle at 50% 52%,rgba(0,132,255,.15),transparent 25%),
+    radial-gradient(circle at 20% 70%,rgba(0,100,255,.08),transparent 30%),
+    #040b13;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 35px 100px rgba(0,0,0,.55);
+}
+
+.map-grid{
+  position:absolute;
+  inset:0;
+  opacity:.32;
+  background-image:
+    linear-gradient(rgba(48,143,214,.15) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(48,143,214,.15) 1px,transparent 1px);
+  background-size:45px 45px;
+  transform:perspective(500px) rotateX(58deg) scale(1.45);
+  transform-origin:center bottom;
+}
+
+.map-title{
+  position:absolute;
+  top:30px;
+  left:32px;
+  z-index:5;
+}
+
+.map-title small{
+  color:#4eb6ff;
+  font-size:9px;
+  letter-spacing:2px;
+  font-weight:900;
+}
+
+.map-title h3{
+  font-family:Manrope;
+  font-size:28px;
+  margin-top:7px;
+}
+
+.map-hud{
+  position:absolute;
+  right:30px;
+  top:30px;
+  padding:15px 17px;
+  border:1px solid rgba(73,180,255,.2);
+  background:rgba(2,9,16,.75);
+  backdrop-filter:blur(12px);
+  border-radius:14px;
+  text-align:right;
+  z-index:5;
+}
+
+.map-hud strong{
+  display:block;
+  color:#56bcff;
+  font-size:11px;
+  letter-spacing:2px;
+}
+
+.map-hud span{
+  color:#66788b;
+  font-size:9px;
+  letter-spacing:1px;
+}
+
+.texas{
+  position:absolute;
+  width:min(620px,65%);
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-47%);
+  opacity:.9;
+}
+
+.texas path{
+  fill:rgba(12,32,48,.82);
+  stroke:#218ad0;
+  stroke-width:2;
+  filter:drop-shadow(0 0 10px rgba(22,136,255,.25));
+}
+
+.route{
+  position:absolute;
+  height:2px;
+  transform-origin:left center;
+  background:linear-gradient(90deg,#31aaff,transparent);
+  opacity:.6;
+  animation:routeGlow 2.6s infinite;
+}
+
+@keyframes routeGlow{
+  0%,100%{opacity:.18}
+  50%{opacity:.85}
+}
+
+.r1{width:230px;left:50%;top:51%;transform:rotate(-22deg)}
+.r2{width:190px;left:50%;top:52%;transform:rotate(22deg)}
+.r3{width:170px;left:49%;top:52%;transform:rotate(48deg)}
+.r4{width:190px;left:51%;top:51%;transform:rotate(-47deg)}
+.r5{width:145px;left:50%;top:50%;transform:rotate(78deg)}
+.r6{width:125px;left:50%;top:52%;transform:rotate(-72deg)}
+.r7{width:270px;left:48%;top:51%;transform:rotate(2deg)}
+
+.location{
+  position:absolute;
+  z-index:10;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:10px;
+  color:#cbd8e5;
+  font-weight:700;
+  letter-spacing:.4px;
+}
+
+.location i{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#45b7ff;
+  box-shadow:0 0 0 5px rgba(69,183,255,.08),0 0 22px #1688ff;
+  animation:locPulse 2s infinite;
+}
+
+@keyframes locPulse{
+  50%{box-shadow:0 0 0 10px rgba(69,183,255,0),0 0 30px #1688ff}
+}
+
+.loc-houston{
+  left:50%;
+  top:51%;
+  transform:translate(-50%,-50%);
+  flex-direction:column;
+  gap:9px;
+}
+
+.loc-houston i{
+  width:16px;
+  height:16px;
+}
+
+.loc-houston span{
   color:#fff;
+  font-size:13px;
 }
 
-/* =========================
-   GALLERY
-========================= */
+.loc-katy{left:32%;top:45%}
+.loc-sugar{left:39%;top:62%}
+.loc-pearland{left:54%;top:69%}
+.loc-cypress{left:37%;top:37%}
+.loc-spring{left:54%;top:32%}
+.loc-woodlands{left:61%;top:28%}
+.loc-missouri{left:42%;top:57%}
 
+.map-bottom{
+  position:absolute;
+  bottom:25px;
+  left:30px;
+  right:30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  z-index:5;
+}
+
+.map-message{
+  max-width:470px;
+}
+
+.map-message strong{
+  display:block;
+  font-family:Manrope;
+  font-size:28px;
+}
+
+.map-message span{
+  display:block;
+  margin-top:8px;
+  color:#7d8d9f;
+  font-size:12px;
+}
+
+.map-signal{
+  display:flex;
+  gap:7px;
+  align-items:center;
+  color:#4eb8ff;
+  font-size:9px;
+  letter-spacing:1.5px;
+  font-weight:800;
+}
+
+.signal-bars{
+  display:flex;
+  gap:3px;
+  align-items:end;
+}
+
+.signal-bars b{
+  width:4px;
+  background:#3baeff;
+  animation:signal 1.2s infinite alternate;
+}
+
+.signal-bars b:nth-child(1){height:7px}
+.signal-bars b:nth-child(2){height:12px;animation-delay:.2s}
+.signal-bars b:nth-child(3){height:17px;animation-delay:.4s}
+.signal-bars b:nth-child(4){height:22px;animation-delay:.6s}
+
+@keyframes signal{
+  to{opacity:.25}
+}
+
+/* DIVERSITY STRIP */
+.diversity{
+  margin-top:20px;
+  padding:30px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:linear-gradient(90deg,rgba(22,136,255,.08),rgba(255,255,255,.02));
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:25px;
+}
+
+.diversity strong{
+  font-family:Manrope;
+  font-size:23px;
+}
+
+.diversity p{
+  color:#7f90a3;
+  font-size:13px;
+  margin-top:6px;
+}
+
+/* GALLERY */
 .gallery{
-  background:#050c15;
-}
-
-.gallery-grid{
   display:grid;
   grid-template-columns:repeat(12,1fr);
-  grid-auto-rows:220px;
+  grid-auto-rows:230px;
   gap:14px;
+  margin-top:55px;
 }
 
 .gallery-item{
-  position:relative;
   overflow:hidden;
   border-radius:20px;
+  position:relative;
   border:1px solid var(--line);
 }
 
-.gallery-item:nth-child(1){
-  grid-column:span 6;
-  grid-row:span 2;
-}
-
-.gallery-item:nth-child(2){
-  grid-column:span 3;
-  grid-row:span 2;
-}
-
-.gallery-item:nth-child(3){
-  grid-column:span 3;
-}
-
-.gallery-item:nth-child(4){
-  grid-column:span 3;
-}
-
-.gallery-item:nth-child(5){
-  grid-column:span 3;
-}
-
-.gallery-item:nth-child(6){
-  grid-column:span 3;
-}
-
-.gallery-item:nth-child(7),
-.gallery-item:nth-child(8),
-.gallery-item:nth-child(9),
-.gallery-item:nth-child(10){
-  grid-column:span 3;
-}
-
 .gallery-item img{
+  width:100%;
   height:100%;
   object-fit:cover;
-  transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .5s;
+  transition:1s cubic-bezier(.2,.7,.2,1);
 }
 
-.gallery-item::after{
+.gallery-item:after{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(135deg,transparent 45%,rgba(22,131,255,.2));
-  opacity:0;
-  transition:.4s;
+  background:linear-gradient(transparent 50%,rgba(0,0,0,.7));
 }
 
 .gallery-item:hover img{
   transform:scale(1.08);
-  filter:saturate(1.1);
 }
 
-.gallery-item:hover::after{
-  opacity:1;
+.g1{grid-column:span 5;grid-row:span 2}
+.g2{grid-column:span 3}
+.g3{grid-column:span 4}
+.g4{grid-column:span 4}
+.g5{grid-column:span 3}
+.g6{grid-column:span 5}
+.g7{grid-column:span 4}
+.g8{grid-column:span 4}
+
+/* TRANSFORMATION */
+.transform-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-top:55px;
 }
 
-/* =========================
-   PROCESS
-========================= */
+.transform-card{
+  position:relative;
+  border-radius:26px;
+  overflow:hidden;
+  border:1px solid var(--line);
+}
 
+.transform-card img{
+  width:100%;
+  aspect-ratio:16/10;
+  object-fit:cover;
+}
+
+.transform-label{
+  position:absolute;
+  left:18px;
+  bottom:18px;
+  padding:9px 12px;
+  background:rgba(2,8,14,.78);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+/* PROCESS */
 .process{
-  background:var(--bg);
-}
-
-.process-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:20px;
+  gap:18px;
+  margin-top:55px;
 }
 
 .process-card{
   position:relative;
-  padding:34px;
-  min-height:260px;
+  padding:30px;
+  min-height:220px;
   border:1px solid var(--line);
   border-radius:22px;
-  background:var(--glass);
-  overflow:hidden;
-  transition:.35s;
-}
-
-.process-card:hover{
-  transform:translateY(-7px);
-  border-color:rgba(72,173,255,.3);
-}
-
-.process-card::after{
-  content:attr(data-number);
-  position:absolute;
-  right:15px;
-  bottom:-35px;
-  font-family:"Manrope",sans-serif;
-  font-size:120px;
-  line-height:1;
-  font-weight:800;
-  color:rgba(255,255,255,.025);
-}
-
-.process-number{
-  color:var(--blue2);
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:2px;
-  margin-bottom:45px;
-}
-
-.process-card h3{
-  font-size:20px;
-  margin-bottom:10px;
-}
-
-.process-card p{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.75;
-  max-width:300px;
-}
-
-/* =========================
-   CTA
-========================= */
-
-.cta-section{
-  padding:70px 0;
-  background:var(--bg);
-}
-
-.cta-box{
-  position:relative;
-  overflow:hidden;
-  padding:75px;
-  border:1px solid rgba(72,173,255,.2);
-  border-radius:30px;
-  background:
-    radial-gradient(circle at 90% 50%,rgba(22,131,255,.2),transparent 35%),
-    linear-gradient(135deg,#0c1d31,#07101d);
-}
-
-.cta-box::before{
-  content:"";
-  position:absolute;
-  width:350px;
-  height:350px;
-  border:1px solid rgba(72,173,255,.1);
-  border-radius:50%;
-  right:-100px;
-  top:-100px;
-}
-
-.cta-box h2{
-  font-family:"Manrope",sans-serif;
-  font-size:clamp(38px,5vw,65px);
-  line-height:1;
-  letter-spacing:-3px;
-  max-width:720px;
-  margin-bottom:20px;
-}
-
-.cta-box p{
-  color:var(--muted);
-  max-width:570px;
-  margin-bottom:30px;
-}
-
-/* =========================
-   QUOTE
-========================= */
-
-.quote{
-  background:var(--bg2);
-}
-
-.quote-grid{
-  display:grid;
-  grid-template-columns:.8fr 1.2fr;
-  gap:80px;
-  align-items:start;
-}
-
-.quote-info h2{
-  font-family:"Manrope",sans-serif;
-  font-size:clamp(38px,4vw,55px);
-  line-height:1.02;
-  letter-spacing:-2px;
-  margin-bottom:18px;
-}
-
-.quote-info p{
-  color:var(--muted);
-  line-height:1.8;
-  margin-bottom:30px;
-}
-
-.contact-card{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  padding:18px;
-  border:1px solid var(--line);
-  border-radius:17px;
-  background:var(--glass);
-  margin-bottom:12px;
-}
-
-.contact-icon{
-  width:42px;
-  height:42px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:12px;
-  background:rgba(22,131,255,.12);
-  color:var(--blue2);
-}
-
-.contact-card small{
-  display:block;
-  color:var(--muted);
-  font-size:10px;
-  margin-bottom:2px;
-}
-
-.contact-card strong{
-  font-size:14px;
-}
-
-.quote-form{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:16px;
-  padding:30px;
-  border:1px solid var(--line);
-  border-radius:25px;
   background:rgba(255,255,255,.025);
 }
 
-.form-group{
-  display:flex;
-  flex-direction:column;
-  gap:7px;
+.process-number{
+  font-family:Manrope;
+  color:rgba(73,180,255,.3);
+  font-size:60px;
+  font-weight:800;
 }
 
-.form-group.full{
+.process h3{
+  font-size:20px;
+  margin:10px 0;
+}
+
+.process p{
+  color:#8190a1;
+  font-size:13px;
+  line-height:1.7;
+}
+
+/* MAINTENANCE */
+.maintenance{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+  align-items:center;
+}
+
+.maintenance-box{
+  padding:38px;
+  border-radius:26px;
+  border:1px solid rgba(73,180,255,.18);
+  background:linear-gradient(145deg,rgba(16,40,63,.8),rgba(5,13,22,.95));
+}
+
+.maintenance-box h3{
+  font-family:Manrope;
+  font-size:32px;
+}
+
+.maintenance-box p{
+  color:#8c9bac;
+  line-height:1.7;
+  margin:13px 0 25px;
+}
+
+.maintenance-list{
+  display:grid;
+  gap:12px;
+}
+
+.maintenance-list div{
+  display:flex;
+  justify-content:space-between;
+  padding:14px 0;
+  border-bottom:1px solid var(--line);
+  color:#aeb9c6;
+  font-size:13px;
+}
+
+.maintenance-list strong{
+  color:#57baff;
+}
+
+/* REVIEWS */
+.review-section{
+  background:
+    radial-gradient(circle at 50% 30%,rgba(22,136,255,.08),transparent 35%);
+}
+
+.review-shell{
+  margin-top:55px;
+  padding:45px;
+  border-radius:30px;
+  border:1px solid var(--line);
+  background:
+    linear-gradient(145deg,rgba(13,25,39,.92),rgba(4,10,17,.95));
+  display:grid;
+  grid-template-columns:1fr 1.4fr;
+  gap:45px;
+  align-items:center;
+}
+
+.google-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:9px 13px;
+  border-radius:10px;
+  background:#fff;
+  color:#202124;
+  font-weight:800;
+  font-size:12px;
+}
+
+.google-g{
+  font-size:20px;
+  font-weight:900;
+}
+
+.review-shell h3{
+  font-family:Manrope;
+  font-size:38px;
+  margin:22px 0 12px;
+}
+
+.review-shell p{
+  color:#8998aa;
+  line-height:1.7;
+}
+
+.review-status{
+  margin-top:24px;
+  padding:20px;
+  border-left:2px solid #43b5ff;
+  background:rgba(22,136,255,.05);
+}
+
+.review-status strong{
+  display:block;
+  color:#fff;
+  margin-bottom:5px;
+}
+
+.review-status span{
+  color:#8292a4;
+  font-size:12px;
+}
+
+.review-visual{
+  min-height:300px;
+  display:grid;
+  place-items:center;
+  position:relative;
+}
+
+.review-ring{
+  width:250px;
+  height:250px;
+  border:1px solid rgba(73,180,255,.18);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  position:relative;
+}
+
+.review-ring:before,
+.review-ring:after{
+  content:"";
+  position:absolute;
+  inset:18px;
+  border:1px dashed rgba(73,180,255,.13);
+  border-radius:50%;
+  animation:spin 15s linear infinite;
+}
+
+.review-ring:after{
+  inset:45px;
+  animation-direction:reverse;
+  animation-duration:10s;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+.review-core{
+  text-align:center;
+  z-index:2;
+}
+
+.review-core strong{
+  display:block;
+  font-family:Manrope;
+  font-size:34px;
+}
+
+.review-core span{
+  color:#5abaff;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.review-note{
+  position:absolute;
+  bottom:5px;
+  text-align:center;
+  color:#647589;
+  font-size:10px;
+  letter-spacing:1px;
+}
+
+/* SERVICE AREA */
+.area-grid{
+  margin-top:50px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.area{
+  padding:13px 17px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:rgba(255,255,255,.025);
+  color:#a9b6c4;
+  font-size:12px;
+  transition:.3s;
+}
+
+.area:hover{
+  color:#fff;
+  border-color:rgba(73,180,255,.35);
+  background:rgba(22,136,255,.08);
+}
+
+/* FORM */
+.quote{
+  padding-top:120px;
+}
+
+.form-wrap{
+  margin-top:55px;
+  display:grid;
+  grid-template-columns:.75fr 1.25fr;
+  gap:20px;
+}
+
+.form-info,
+.form-box{
+  border:1px solid var(--line);
+  border-radius:26px;
+  background:rgba(255,255,255,.025);
+  padding:35px;
+}
+
+.form-info{
+  background:
+    linear-gradient(145deg,rgba(13,35,55,.85),rgba(5,12,20,.9));
+}
+
+.form-info h3{
+  font-family:Manrope;
+  font-size:32px;
+}
+
+.form-info p{
+  color:#8998a9;
+  line-height:1.7;
+  margin:15px 0 30px;
+}
+
+.contact-line{
+  display:flex;
+  gap:13px;
+  align-items:center;
+  padding:16px 0;
+  border-bottom:1px solid var(--line);
+  color:#b6c2ce;
+  font-size:13px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:13px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.field.full{
   grid-column:1/-1;
 }
 
-.form-group label{
-  font-size:11px;
-  font-weight:700;
-  color:#cbd7e3;
+.field label{
+  color:#75879b;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1.2px;
+  font-weight:800;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea{
+.field input,
+.field select,
+.field textarea{
   width:100%;
-  padding:14px;
-  border:1px solid var(--line);
-  outline:none;
+  border:1px solid rgba(255,255,255,.1);
+  background:#07111c;
+  color:#fff;
   border-radius:12px;
-  color:white;
-  background:rgba(255,255,255,.035);
-  transition:.25s;
+  padding:14px;
+  outline:none;
+  transition:.3s;
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus{
-  border-color:rgba(72,173,255,.65);
-  box-shadow:0 0 0 3px rgba(22,131,255,.08);
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:rgba(73,180,255,.55);
+  box-shadow:0 0 0 3px rgba(22,136,255,.07);
 }
 
-.form-group select option{
-  color:#111;
-}
-
-.form-group textarea{
-  min-height:130px;
+.field textarea{
+  min-height:120px;
   resize:vertical;
 }
 
-.quote-form .btn{
-  border:0;
-  grid-column:1/-1;
+.form-submit{
+  width:100%;
+  margin-top:15px;
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* CTA */
+.final-cta{
+  padding:100px 0 120px;
+  text-align:center;
+}
 
+.final-cta-box{
+  padding:80px 30px;
+  border-radius:34px;
+  border:1px solid rgba(73,180,255,.18);
+  background:
+    radial-gradient(circle at 50% 30%,rgba(22,136,255,.15),transparent 35%),
+    linear-gradient(145deg,#091725,#040a11);
+  position:relative;
+  overflow:hidden;
+}
+
+.final-cta h2{
+  font-family:Manrope;
+  font-size:clamp(40px,6vw,75px);
+  letter-spacing:-4px;
+  line-height:1;
+}
+
+.final-cta p{
+  color:#8796a7;
+  margin:20px auto 30px;
+  max-width:580px;
+  line-height:1.7;
+}
+
+/* FOOTER */
 footer{
-  padding:60px 0 25px;
   border-top:1px solid var(--line);
-  background:#040910;
+  padding:35px 0;
 }
 
-.footer-grid{
-  display:grid;
-  grid-template-columns:1.4fr .6fr .7fr;
-  gap:60px;
-  padding-bottom:45px;
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
 }
 
 .footer-logo{
-  width:190px;
-  margin-bottom:17px;
-}
-
-.footer-brand p{
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.8;
-  max-width:370px;
-}
-
-.footer-column h4{
-  font-size:12px;
-  margin-bottom:18px;
-}
-
-.footer-column a{
-  display:block;
-  color:var(--muted);
-  font-size:12px;
-  margin-bottom:11px;
-  transition:.2s;
-}
-
-.footer-column a:hover{
-  color:var(--blue2);
-}
-
-.footer-bottom{
-  padding-top:23px;
-  border-top:1px solid var(--line);
   display:flex;
-  justify-content:space-between;
-  gap:20px;
-  color:#627181;
-  font-size:10px;
+  align-items:center;
+  gap:10px;
 }
 
-/* =========================
-   FLOATING PHONE
-========================= */
+.footer-logo img{
+  width:40px;
+}
 
-.phone-float{
+.footer-logo span{
+  font-weight:800;
+  font-size:12px;
+}
+
+.footer-copy{
+  color:#566577;
+  font-size:11px;
+}
+
+.footer-links{
+  display:flex;
+  gap:18px;
+}
+
+.footer-links a{
+  color:#778698;
+  font-size:11px;
+}
+
+/* FLOAT CALL */
+.float-call{
   position:fixed;
   right:22px;
   bottom:22px;
-  z-index:999;
-  width:58px;
-  height:58px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  width:60px;
+  height:60px;
   border-radius:50%;
-  background:var(--blue);
-  box-shadow:0 10px 35px rgba(22,131,255,.4);
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#0877ed,#55bcff);
+  color:#00111f;
+  z-index:900;
+  box-shadow:0 12px 40px rgba(22,136,255,.4);
+  font-size:22px;
   transition:.3s;
-  font-size:20px;
 }
 
-.phone-float:hover{
+.float-call:hover{
   transform:scale(1.08);
-  background:var(--blue2);
 }
 
-/* =========================
-   SCROLL REVEAL
-========================= */
-
+/* REVEAL */
 .reveal{
   opacity:0;
   transform:translateY(35px);
-  transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1);
+  transition:opacity .8s ease,transform .8s ease;
 }
 
 .reveal.show{
   opacity:1;
-  transform:translateY(0);
+  transform:none;
 }
 
-/* =========================
-   ANIMATIONS
-========================= */
+.delay-1{transition-delay:.1s}
+.delay-2{transition-delay:.2s}
+.delay-3{transition-delay:.3s}
 
-@keyframes heroIn{
-  from{
-    opacity:0;
-    transform:translateY(35px);
-  }
-  to{
-    opacity:1;
-    transform:none;
-  }
-}
-
-@keyframes heroImageIn{
-  from{
-    opacity:0;
-    transform:translateX(45px) scale(.97);
-  }
-  to{
-    opacity:1;
-    transform:none;
-  }
-}
-
-@keyframes textReveal{
-  to{
-    width:100%;
-  }
-}
-
-@keyframes shine{
-  0%,45%{left:-100%}
-  65%,100%{left:140%}
-}
-
-@keyframes rotateSlow{
-  to{
-    transform:rotate(360deg);
-  }
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width:1000px){
-
-  .hero-grid,
-  .why-grid,
-  .quote-grid{
-    grid-template-columns:1fr;
-  }
-
-  .hero-grid{
-    gap:50px;
-  }
-
-  .hero-visual{
-    max-width:750px;
-  }
-
-  .package-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .package.popular{
-    transform:none;
-  }
-
-  .specialty-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .footer-grid{
-    grid-template-columns:1fr 1fr;
-  }
-}
-
-@media(max-width:760px){
-
-  .nav-inner{
-    height:72px;
-  }
-
-  .logo{
-    width:160px;
-  }
-
-  .menu-btn{
-    display:block;
-  }
+/* RESPONSIVE */
+@media(max-width:950px){
 
   .nav-links{
     position:absolute;
-    display:none;
-    left:0;
-    right:0;
-    top:72px;
+    top:78px;
+    left:3%;
+    right:3%;
     padding:20px;
+    background:rgba(3,9,16,.96);
+    backdrop-filter:blur(18px);
+    border:1px solid var(--line);
+    border-radius:18px;
+    display:none;
     flex-direction:column;
     align-items:stretch;
-    gap:5px;
-    background:rgba(5,11,19,.98);
-    border-bottom:1px solid var(--line);
   }
 
   .nav-links.active{
@@ -1287,168 +1483,203 @@ footer{
   }
 
   .nav-links a{
-    padding:13px 10px;
+    padding:12px 5px;
   }
 
-  .nav-cta{
+  .nav-call{
     text-align:center;
+    justify-content:center;
   }
 
-  .hero{
-    padding:125px 0 75px;
+  .menu-btn{
+    display:grid;
+    place-items:center;
   }
 
-  .hero h1{
-    font-size:clamp(47px,14vw,65px);
-    letter-spacing:-3px;
+  .image-feature,
+  .maintenance,
+  .form-wrap,
+  .review-shell{
+    grid-template-columns:1fr;
   }
 
-  .hero p{
-    font-size:14px;
+  .card-grid,
+  .process{
+    grid-template-columns:1fr;
   }
 
-  .hero-image{
-    height:440px;
-  }
-
-  .hero-badge{
-    left:10px;
-    bottom:20px;
+  .specialty{
+    grid-template-columns:repeat(2,1fr);
   }
 
   .stats-grid{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:repeat(2,1fr);
   }
 
-  .stat{
+  .stat:nth-child(2){
+    border-right:0;
+  }
+
+  .stat:nth-child(-n+2){
     border-bottom:1px solid var(--line);
-  }
-
-  section{
-    padding:80px 0;
-  }
-
-  .why-grid,
-  .quote-grid{
-    gap:45px;
-  }
-
-  .image-card img{
-    height:420px;
-  }
-
-  .package-grid{
-    grid-template-columns:1fr;
   }
 
   .package.popular{
     transform:none;
   }
 
-  .gallery-grid{
-    grid-template-columns:1fr 1fr;
-    grid-auto-rows:190px;
+  .map-panel{
+    min-height:600px;
   }
 
-  .gallery-item:nth-child(1){
+  .texas{
+    width:90%;
+  }
+}
+
+@media(max-width:650px){
+
+  section{
+    padding:80px 0;
+  }
+
+  .hero{
+    min-height:850px;
+    padding-top:130px;
+  }
+
+  .hero h1{
+    font-size:56px;
+    letter-spacing:-4px;
+  }
+
+  .hero-sub{
+    font-size:15px;
+  }
+
+  .hero-meta{
+    gap:25px;
+    margin-top:35px;
+  }
+
+  .section-title{
+    letter-spacing:-2px;
+  }
+
+  .stats-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .stat{
+    padding:25px 15px;
+  }
+
+  .stat strong{
+    font-size:27px;
+  }
+
+  .image-feature{
+    gap:35px;
+  }
+
+  .specialty{
+    grid-template-columns:1fr;
+  }
+
+  .size-table{
+    overflow-x:auto;
+  }
+
+  .size-row{
+    min-width:620px;
+  }
+
+  .map-panel{
+    min-height:600px;
+  }
+
+  .map-title{
+    left:20px;
+    top:20px;
+  }
+
+  .map-hud{
+    right:20px;
+    top:20px;
+  }
+
+  .map-bottom{
+    left:20px;
+    right:20px;
+    bottom:20px;
+  }
+
+  .map-message strong{
+    font-size:20px;
+  }
+
+  .location{
+    font-size:8px;
+  }
+
+  .loc-katy{left:19%;top:43%}
+  .loc-cypress{left:25%;top:35%}
+  .loc-sugar{left:31%;top:61%}
+  .loc-missouri{left:32%;top:56%}
+  .loc-pearland{left:50%;top:69%}
+  .loc-spring{left:56%;top:32%}
+  .loc-woodlands{left:64%;top:28%}
+
+  .gallery{
+    grid-template-columns:1fr 1fr;
+    grid-auto-rows:170px;
+  }
+
+  .g1,
+  .g6{
     grid-column:span 2;
     grid-row:span 2;
   }
 
-  .gallery-item:nth-child(2){
-    grid-column:span 2;
-  }
-
-  .gallery-item:nth-child(n+3){
+  .g2,.g3,.g4,.g5,.g7,.g8{
     grid-column:span 1;
   }
 
-  .process-grid{
+  .transform-grid{
     grid-template-columns:1fr;
   }
 
-  .cta-box{
-    padding:45px 27px;
+  .review-shell{
+    padding:28px;
   }
 
-  .quote-form{
+  .review-visual{
+    min-height:270px;
+  }
+
+  .form-grid{
     grid-template-columns:1fr;
   }
 
-  .form-group.full,
-  .quote-form .btn{
+  .field.full{
     grid-column:auto;
   }
 
-  .footer-grid{
-    grid-template-columns:1fr;
-    gap:35px;
-  }
-
-  .footer-bottom{
-    flex-direction:column;
-  }
-}
-
-@media(max-width:480px){
-
-  .container{
-    width:90%;
-  }
-
-  .hero-buttons{
+  .diversity{
+    align-items:flex-start;
     flex-direction:column;
   }
 
-  .btn{
-    width:100%;
+  .footer-inner{
+    flex-direction:column;
+    text-align:center;
   }
 
-  .hero-image{
-    height:370px;
-  }
-
-  .gallery-grid{
-    grid-template-columns:1fr;
-    grid-auto-rows:310px;
-  }
-
-  .gallery-item:nth-child(1),
-  .gallery-item:nth-child(2),
-  .gallery-item:nth-child(n+3){
-    grid-column:span 1;
-    grid-row:span 1;
-  }
-
-  .specialty-grid{
-    grid-template-columns:1fr;
-  }
-
-  .stats-grid{
-    grid-template-columns:1fr;
-  }
-
-  .stat{
-    border-right:0;
-  }
-
-  .phone-float{
-    width:52px;
-    height:52px;
+  .float-call{
+    width:54px;
+    height:54px;
     right:15px;
     bottom:15px;
-  }
-}
-
-/* Reduced motion */
-@media(prefers-reduced-motion:reduce){
-  *,
-  *::before,
-  *::after{
-    animation-duration:.01ms!important;
-    animation-iteration-count:1!important;
-    scroll-behavior:auto!important;
-    transition-duration:.01ms!important;
   }
 }
 </style>
@@ -1456,1017 +1687,1169 @@ footer{
 
 <body>
 
-<!-- NAVBAR -->
+<!-- NAV -->
 <header class="navbar" id="navbar">
-  <div class="container nav-inner">
+  <div class="nav-inner">
 
     <a href="#home" class="logo">
-      <img src="images/logo.webp" alt="Your Mobile Detailers">
+      <img src="images/logo.webp" alt="Your Mobile Detailers logo">
+      <div class="logo-text">
+        YOUR MOBILE DETAILERS
+        <small>WE BRING THE DETAIL TO YOU.</small>
+      </div>
     </a>
 
-    <button class="menu-btn" id="menuBtn" aria-label="Open menu">
-      ☰
-    </button>
-
     <nav class="nav-links" id="navLinks">
-      <a href="#home">Home</a>
-      <a href="#packages">Packages</a>
       <a href="#services">Services</a>
-      <a href="#gallery">Our Work</a>
-      <a href="#process">How It Works</a>
-      <a href="#quote" class="nav-cta">Get a Quote</a>
+      <a href="#packages">Packages</a>
+      <a href="#network">Service Area</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#quote">Get a Quote</a>
+      <a class="nav-call" href="tel:+13238804067">Call Now</a>
     </nav>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
 
   </div>
 </header>
 
-
-<main>
-
 <!-- HERO -->
 <section class="hero" id="home">
 
-  <div class="container hero-grid">
+  <div class="hero-bg">
+    <img src="images/1.jpg" alt="Premium mobile car detailing">
+  </div>
 
-    <div class="hero-content">
+  <div class="container">
+    <div class="hero-content reveal">
 
-      <div class="eyebrow">
-        Houston Mobile Detailing
+      <div class="hero-kicker">
+        <i class="live-dot"></i>
+        HOUSTON • MOBILE AUTO DETAILING
       </div>
 
       <h1>
-        WE BRING THE
-        <span>DETAIL</span>
-        TO YOU.
+        YOUR CAR.<br>
+        <span>DETAILED.</span><br>
+        WHEREVER.
       </h1>
 
-      <p>
-        Premium mobile car detailing brought directly to your
-        home, workplace, or wherever your vehicle is parked.
-        Professional care without the shop wait.
+      <p class="hero-sub">
+        Premium mobile detailing brought directly to your home,
+        office, driveway or wherever your vehicle is parked.
       </p>
 
       <div class="hero-buttons">
-
-        <a href="#quote" class="btn btn-primary">
-          Get a Free Quote
-        </a>
-
-        <a href="#packages" class="btn btn-secondary">
-          View Packages
-        </a>
-
+        <a href="#quote" class="btn btn-primary">Get a Free Quote →</a>
+        <a href="tel:+13238804067" class="btn btn-outline">Call (323) 880-4067</a>
       </div>
 
-    </div>
-
-
-    <div class="hero-visual">
-
-      <div class="hero-frame">
-
-        <div class="hero-image-wrap">
-
-          <img
-            src="images/1.jpg"
-            alt="Premium mobile car detailing"
-            class="hero-image"
-          >
-
+      <div class="hero-meta">
+        <div class="meta-item">
+          <strong>Mobile</strong>
+          <span>We Come To You</span>
         </div>
 
-      </div>
+        <div class="meta-item">
+          <strong>Premium</strong>
+          <span>Detail Standards</span>
+        </div>
 
-      <div class="hero-badge">
-        <strong>Mobile. Professional. Convenient.</strong>
-        <span>Serving Houston, Texas</span>
+        <div class="meta-item">
+          <strong>Houston</strong>
+          <span>& Surrounding Areas</span>
+        </div>
       </div>
 
     </div>
-
   </div>
 
+  <div class="scroll-line"></div>
 </section>
-
 
 <!-- STATS -->
 <div class="stats">
-
   <div class="container stats-grid">
 
     <div class="stat">
-      <strong>100%</strong>
-      <span>Mobile Service</span>
+      <strong><span class="counter" data-target="100">0</span>%</strong>
+      <span>Mobile Convenience</span>
     </div>
 
     <div class="stat">
-      <strong>01</strong>
-      <span>Simple Booking</span>
+      <strong><span class="counter" data-target="7">0</span> Days</strong>
+      <span>Weekly Availability</span>
     </div>
 
     <div class="stat">
-      <strong>03</strong>
-      <span>Detail Packages</span>
+      <strong>Houston</strong>
+      <span>Service Focus</span>
     </div>
 
     <div class="stat">
-      <strong>24/7</strong>
-      <span>Quote Requests</span>
+      <strong>On-Site</strong>
+      <span>Professional Service</span>
     </div>
 
   </div>
-
 </div>
 
+<!-- MOBILE DIFFERENCE -->
+<section>
+  <div class="container image-feature">
 
-<!-- WHY -->
-<section class="why">
+    <div class="image-wrap reveal">
+      <img src="images/2.jpg" alt="Mobile car detailing in Houston" loading="lazy">
+    </div>
 
-  <div class="container why-grid">
+    <div class="reveal delay-1">
 
-    <div class="image-card reveal">
+      <div class="section-label">THE MOBILE DIFFERENCE</div>
 
-      <img
-        src="images/2.jpg"
-        alt="Professional vehicle detailing"
-        loading="lazy"
-      >
+      <h2 class="section-title">
+        Your driveway.<br>
+        <span>Our studio.</span>
+      </h2>
 
-      <div class="corner-label">
-        YOUR VEHICLE. YOUR LOCATION.
+      <p class="section-copy">
+        You shouldn't have to spend half your day sitting at a detailing shop.
+        Your Mobile Detailers brings a premium detailing experience directly to you.
+      </p>
+
+      <div class="feature-list">
+
+        <div class="feature">
+          <span class="check">01</span>
+          <div>
+            <strong>We Come To You</strong>
+            <p>Home, office, driveway or wherever your vehicle is parked.</p>
+          </div>
+        </div>
+
+        <div class="feature">
+          <span class="check">02</span>
+          <div>
+            <strong>Professional Process</strong>
+            <p>Careful cleaning, finishing and attention to the details that matter.</p>
+          </div>
+        </div>
+
+        <div class="feature">
+          <span class="check">03</span>
+          <div>
+            <strong>Built Around Your Vehicle</strong>
+            <p>Service recommendations based on vehicle size, condition and goals.</p>
+          </div>
+        </div>
+
       </div>
 
     </div>
+  </div>
+</section>
 
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
 
-    <div class="reveal">
+    <div class="section-label reveal">WHAT WE DO</div>
 
-      <div class="section-heading">
+    <h2 class="section-title reveal">
+      DETAILING WITHOUT<br>
+      <span>THE HASSLE.</span>
+    </h2>
 
-        <div class="eyebrow">
-          The Mobile Difference
-        </div>
+    <p class="section-copy reveal">
+      From everyday maintenance to deep restoration work, we bring the
+      detailing experience directly to your location.
+    </p>
 
-        <h2>
-          Detailing built around your day.
-        </h2>
+    <div class="card-grid">
 
+      <div class="card reveal">
+        <div class="icon">✦</div>
+        <div class="card-number">01 / INTERIOR</div>
+        <h3>Interior Revival</h3>
         <p>
-          You shouldn't have to rearrange your day just to get
-          your vehicle professionally cleaned. We bring the
-          detailing experience directly to you.
+          Deep cleaning for seats, carpets, mats, plastics, dashboards and
+          high-touch surfaces.
         </p>
-
       </div>
 
+      <div class="card reveal delay-1">
+        <div class="icon">◈</div>
+        <div class="card-number">02 / EXTERIOR</div>
+        <h3>Exterior Detail</h3>
+        <p>
+          Safe wash, wheels, tires, paint cleaning and finishing touches
+          designed to bring back the shine.
+        </p>
+      </div>
 
-      <div class="features">
-
-        <div class="feature">
-
-          <div class="feature-number">01</div>
-
-          <div>
-            <h3>We Come To You</h3>
-
-            <p>
-              Home, workplace, driveway or another convenient
-              location — your vehicle stays where it is.
-            </p>
-          </div>
-
-        </div>
-
-
-        <div class="feature">
-
-          <div class="feature-number">02</div>
-
-          <div>
-            <h3>Attention To Detail</h3>
-
-            <p>
-              From interior surfaces to exterior finish,
-              every service is focused on a clean,
-              refreshed appearance.
-            </p>
-          </div>
-
-        </div>
-
-
-        <div class="feature">
-
-          <div class="feature-number">03</div>
-
-          <div>
-            <h3>Simple Scheduling</h3>
-
-            <p>
-              Tell us what your vehicle needs, choose a
-              convenient time, and we'll take care of the rest.
-            </p>
-          </div>
-
-        </div>
-
+      <div class="card reveal delay-2">
+        <div class="icon">◇</div>
+        <div class="card-number">03 / PROTECTION</div>
+        <h3>Paint Protection</h3>
+        <p>
+          Paint correction and ceramic protection options for customers
+          looking for a higher level of finish and protection.
+        </p>
       </div>
 
     </div>
 
   </div>
-
 </section>
 
-
 <!-- PACKAGES -->
-<section class="packages" id="packages">
-
+<section id="packages">
   <div class="container">
 
-    <div class="section-heading center reveal">
-
-      <div class="eyebrow">
-        Detailing Packages
+    <div class="pricing-head">
+      <div>
+        <div class="section-label reveal">PACKAGES</div>
+        <h2 class="section-title reveal">
+          CHOOSE YOUR<br><span>LEVEL OF DETAIL.</span>
+        </h2>
       </div>
 
-      <h2>
-        Choose your level of clean.
-      </h2>
-
-      <p>
-        Straightforward packages designed for different
-        vehicle needs. Final pricing may vary by vehicle size
-        and condition.
+      <p class="section-copy reveal">
+        Starting prices. Final pricing may vary based on vehicle size,
+        condition and requested service.
       </p>
-
     </div>
 
-
-    <div class="package-grid">
+    <div class="card-grid">
 
       <!-- ESSENTIAL -->
-      <div class="package reveal">
+      <div class="card package reveal">
 
-        <div class="package-number">
-          PACKAGE 01
-        </div>
+        <div class="card-number">01 / ESSENTIAL</div>
 
         <h3>Essential Detail</h3>
 
-        <div class="price">
-          <small>Starting at</small>
-          <strong>$149+</strong>
-        </div>
-
-        <p class="package-description">
-          A complete refresh for vehicles that need a clean,
-          polished and well-maintained appearance.
+        <p>
+          A professional refresh for vehicles that need a clean,
+          sharp and maintained appearance.
         </p>
 
+        <div class="price">
+          <strong>$149</strong>
+          <span>+ starting at</span>
+        </div>
+
         <ul>
-          <li>Interior vacuum & wipe-down</li>
-          <li>Dashboard & console cleaning</li>
-          <li>Windows & glass</li>
-          <li>Exterior wash</li>
-          <li>Wheels & tires</li>
-          <li>Exterior finish treatment</li>
+          <li>Exterior hand wash</li>
+          <li>Wheels & tires cleaned</li>
+          <li>Interior vacuum</li>
+          <li>Dash & surface wipe-down</li>
+          <li>Glass cleaned</li>
+          <li>Tire dressing</li>
         </ul>
 
-        <a href="#quote" class="btn btn-secondary">
-          Request This Package
-        </a>
+        <a href="#quote" class="btn btn-outline">Request This Package</a>
 
       </div>
 
-
       <!-- SIGNATURE -->
-      <div class="package popular reveal">
+      <div class="card package popular reveal delay-1">
 
-        <div class="popular-tag">
-          MOST POPULAR
-        </div>
+        <div class="package-badge">MOST POPULAR</div>
 
-        <div class="package-number">
-          PACKAGE 02
-        </div>
+        <div class="card-number">02 / SIGNATURE</div>
 
         <h3>Signature Detail</h3>
 
-        <div class="price">
-          <small>Starting at</small>
-          <strong>$249+</strong>
-        </div>
-
-        <p class="package-description">
-          Our complete interior and exterior detail for
-          customers looking for the full treatment.
+        <p>
+          Our balanced full-detail experience for customers who want
+          a noticeably deeper transformation.
         </p>
+
+        <div class="price">
+          <strong>$249</strong>
+          <span>+ starting at</span>
+        </div>
 
         <ul>
           <li>Everything in Essential</li>
           <li>Deep interior cleaning</li>
           <li>Carpet & mat treatment</li>
-          <li>Detailed trim & panels</li>
-          <li>Enhanced exterior finish</li>
-          <li>Tire dressing</li>
-          <li>Final detail inspection</li>
+          <li>Interior detailing</li>
+          <li>Paint decontamination</li>
+          <li>Premium finishing touches</li>
         </ul>
 
-        <a href="#quote" class="btn btn-primary">
-          Request This Package
-        </a>
+        <a href="#quote" class="btn btn-primary">Book Signature →</a>
 
       </div>
 
-
       <!-- EXECUTIVE -->
-      <div class="package reveal">
+      <div class="card package reveal delay-2">
 
-        <div class="package-number">
-          PACKAGE 03
-        </div>
+        <div class="card-number">03 / EXECUTIVE</div>
 
         <h3>Executive Detail</h3>
 
-        <div class="price">
-          <small>Starting at</small>
-          <strong>$399+</strong>
-        </div>
-
-        <p class="package-description">
-          A premium-level service focused on deeper cleaning,
-          enhanced finish and maximum presentation.
+        <p>
+          A comprehensive detail for vehicles needing a higher level
+          of cleaning, refinement and presentation.
         </p>
+
+        <div class="price">
+          <strong>$399</strong>
+          <span>+ starting at</span>
+        </div>
 
         <ul>
           <li>Everything in Signature</li>
-          <li>Advanced interior treatment</li>
-          <li>Paint enhancement</li>
-          <li>Deep exterior decontamination</li>
-          <li>Premium protection</li>
+          <li>Enhanced paint treatment</li>
+          <li>Deep stain treatment</li>
+          <li>Detailed trim cleaning</li>
           <li>Engine bay detail</li>
-          <li>Final presentation check</li>
+          <li>Premium finishing process</li>
         </ul>
 
-        <a href="#quote" class="btn btn-secondary">
-          Request This Package
-        </a>
+        <a href="#quote" class="btn btn-outline">Request This Package</a>
 
       </div>
 
     </div>
 
+    <!-- VEHICLE SIZE TABLE -->
+    <div class="size-table reveal">
+
+      <div class="size-row head">
+        <div>Vehicle Size</div>
+        <div>Essential</div>
+        <div>Signature</div>
+        <div>Executive</div>
+      </div>
+
+      <div class="size-row">
+        <div>Sedan / Coupe</div>
+        <div class="price-blue">$149+</div>
+        <div class="price-blue">$249+</div>
+        <div class="price-blue">$399+</div>
+      </div>
+
+      <div class="size-row">
+        <div>Mid-Size SUV</div>
+        <div class="price-blue">$169+</div>
+        <div class="price-blue">$279+</div>
+        <div class="price-blue">$429+</div>
+      </div>
+
+      <div class="size-row">
+        <div>Truck / Large SUV</div>
+        <div class="price-blue">$189+</div>
+        <div class="price-blue">$299+</div>
+        <div class="price-blue">$459+</div>
+      </div>
+
+      <div class="size-row">
+        <div>3-Row / XL</div>
+        <div class="price-blue">$209+</div>
+        <div class="price-blue">$329+</div>
+        <div class="price-blue">$499+</div>
+      </div>
+
+    </div>
+
   </div>
-
 </section>
-
 
 <!-- SPECIALTY SERVICES -->
-<section class="specialty" id="services">
-
+<section>
   <div class="container">
 
-    <div class="section-heading center reveal">
+    <div class="section-label reveal">SPECIALTY SERVICES</div>
 
-      <div class="eyebrow">
-        Specialty Services
+    <h2 class="section-title reveal">
+      GO BEYOND<br><span>THE BASIC DETAIL.</span>
+    </h2>
+
+    <div class="specialty">
+
+      <div class="special reveal">
+        <h4>Interior Deep Clean</h4>
+        <span>From $149</span>
       </div>
 
-      <h2>
-        Need something more specific?
-      </h2>
-
-      <p>
-        Add-on and specialty services for vehicles that need
-        more than a standard detail.
-      </p>
-
-    </div>
-
-
-    <div class="specialty-grid">
-
-      <div class="specialty-card reveal">
-        <span>01</span>
-        <h3>Interior Deep Clean</h3>
-        <strong>From $149</strong>
+      <div class="special reveal delay-1">
+        <h4>Exterior Detail</h4>
+        <span>From $119</span>
       </div>
 
-      <div class="specialty-card reveal">
-        <span>02</span>
-        <h3>Exterior Detail</h3>
-        <strong>From $119</strong>
+      <div class="special reveal delay-2">
+        <h4>Paint Correction</h4>
+        <span>From $349</span>
       </div>
 
-      <div class="specialty-card reveal">
-        <span>03</span>
-        <h3>Paint Correction</h3>
-        <strong>From $349</strong>
+      <div class="special reveal delay-3">
+        <h4>Ceramic Coating</h4>
+        <span>From $599</span>
       </div>
 
-      <div class="specialty-card reveal">
-        <span>04</span>
-        <h3>Ceramic Coating</h3>
-        <strong>From $599</strong>
+      <div class="special reveal">
+        <h4>Pet Hair Removal</h4>
+        <span>Custom Quote</span>
       </div>
 
-      <div class="specialty-card reveal">
-        <span>05</span>
-        <h3>Pet Hair Removal</h3>
-        <strong>Custom Quote</strong>
+      <div class="special reveal delay-1">
+        <h4>Odor Removal</h4>
+        <span>From $75</span>
       </div>
 
-      <div class="specialty-card reveal">
-        <span>06</span>
-        <h3>Odor Removal</h3>
-        <strong>From $75</strong>
+      <div class="special reveal delay-2">
+        <h4>Headlight Restoration</h4>
+        <span>From $89</span>
       </div>
 
-      <div class="specialty-card reveal">
-        <span>07</span>
-        <h3>Headlight Restoration</h3>
-        <strong>From $89</strong>
-      </div>
-
-      <div class="specialty-card reveal">
-        <span>08</span>
-        <h3>Engine Bay Detail</h3>
-        <strong>From $75</strong>
+      <div class="special reveal delay-3">
+        <h4>Engine Bay Detail</h4>
+        <span>From $75</span>
       </div>
 
     </div>
 
   </div>
-
 </section>
 
+<!-- HOUSTON NETWORK MAP -->
+<section class="network-section" id="network">
+
+  <div class="container">
+
+    <div class="section-label reveal">THE SERVICE NETWORK</div>
+
+    <h2 class="section-title reveal">
+      HOUSTON IS<br>
+      <span>OUR PLAYGROUND.</span>
+    </h2>
+
+    <p class="section-copy reveal">
+      Different neighborhoods. Different vehicles. One standard of detail.
+      We bring the service to wherever your vehicle is parked.
+    </p>
+
+    <div class="map-panel reveal">
+
+      <div class="map-grid"></div>
+
+      <div class="map-title">
+        <small>LIVE SERVICE NETWORK</small>
+        <h3>Houston / Texas</h3>
+      </div>
+
+      <div class="map-hud">
+        <strong>WE COME TO YOU</strong>
+        <span>MOBILE DETAILING NETWORK</span>
+      </div>
+
+      <!-- Stylized Texas -->
+      <svg class="texas" viewBox="0 0 500 560" aria-label="Stylized Texas service map">
+        <path d="M104 30
+                 L170 35
+                 L195 74
+                 L252 91
+                 L285 120
+                 L323 129
+                 L350 162
+                 L395 176
+                 L417 216
+                 L404 260
+                 L424 302
+                 L398 337
+                 L382 384
+                 L341 398
+                 L320 439
+                 L286 458
+                 L259 505
+                 L220 523
+                 L182 497
+                 L145 482
+                 L117 448
+                 L83 430
+                 L72 390
+                 L48 361
+                 L61 319
+                 L42 278
+                 L56 236
+                 L43 197
+                 L66 164
+                 L55 124
+                 L82 93
+                 L79 59
+                 Z"/>
+      </svg>
+
+      <!-- Routes -->
+      <div class="route r1"></div>
+      <div class="route r2"></div>
+      <div class="route r3"></div>
+      <div class="route r4"></div>
+      <div class="route r5"></div>
+      <div class="route r6"></div>
+      <div class="route r7"></div>
+
+      <!-- Locations -->
+      <div class="location loc-houston">
+        <i></i>
+        <span>HOUSTON</span>
+      </div>
+
+      <div class="location loc-katy">
+        <i></i>
+        <span>KATY</span>
+      </div>
+
+      <div class="location loc-sugar">
+        <i></i>
+        <span>SUGAR LAND</span>
+      </div>
+
+      <div class="location loc-pearland">
+        <i></i>
+        <span>PEARLAND</span>
+      </div>
+
+      <div class="location loc-cypress">
+        <i></i>
+        <span>CYPRESS</span>
+      </div>
+
+      <div class="location loc-spring">
+        <i></i>
+        <span>SPRING</span>
+      </div>
+
+      <div class="location loc-woodlands">
+        <i></i>
+        <span>THE WOODLANDS</span>
+      </div>
+
+      <div class="location loc-missouri">
+        <i></i>
+        <span>MISSOURI CITY</span>
+      </div>
+
+      <div class="map-bottom">
+
+        <div class="map-message">
+          <strong>Different neighborhoods. One standard.</strong>
+          <span>
+            Serving Houston and surrounding communities with mobile detailing
+            brought directly to you.
+          </span>
+        </div>
+
+        <div class="map-signal">
+          NETWORK ACTIVE
+          <div class="signal-bars">
+            <b></b>
+            <b></b>
+            <b></b>
+            <b></b>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="diversity reveal">
+      <div>
+        <strong>Houston • One City • Many Communities</strong>
+        <p>
+          From city streets to suburban driveways, every vehicle gets the
+          same attention to detail.
+        </p>
+      </div>
+
+      <a href="#quote" class="btn btn-outline">Check Availability →</a>
+    </div>
+
+  </div>
+</section>
 
 <!-- GALLERY -->
-<section class="gallery" id="gallery">
+<section id="gallery">
 
   <div class="container">
 
-    <div class="section-heading center reveal">
+    <div class="section-label reveal">THE WORK</div>
 
-      <div class="eyebrow">
-        Our Work
+    <h2 class="section-title reveal">
+      DETAILING<br>
+      <span>IN MOTION.</span>
+    </h2>
+
+    <p class="section-copy reveal">
+      A glimpse into the surfaces, finishes and details we're built around.
+    </p>
+
+    <div class="gallery">
+
+      <div class="gallery-item g1 reveal">
+        <img src="images/3.jpg" alt="Car detailing" loading="lazy">
       </div>
 
-      <h2>
-        Clean. Sharp. Detailed.
-      </h2>
-
-      <p>
-        A closer look at the vehicles and finishes behind
-        Your Mobile Detailers.
-      </p>
-
-    </div>
-
-
-    <div class="gallery-grid">
-
-      <div class="gallery-item reveal">
-        <img src="images/3.jpg" alt="Vehicle detailing work" loading="lazy">
+      <div class="gallery-item g2 reveal delay-1">
+        <img src="images/4.jpg" alt="Premium vehicle detail" loading="lazy">
       </div>
 
-      <div class="gallery-item reveal">
-        <img src="images/4.jpg" alt="Professional car detail" loading="lazy">
+      <div class="gallery-item g3 reveal delay-2">
+        <img src="images/5.jpg" alt="Automotive detailing" loading="lazy">
       </div>
 
-      <div class="gallery-item reveal">
-        <img src="images/5.jpg" alt="Car detailing finish" loading="lazy">
+      <div class="gallery-item g4 reveal">
+        <img src="images/6.jpg" alt="Car cleaning" loading="lazy">
       </div>
 
-      <div class="gallery-item reveal">
-        <img src="images/6.jpg" alt="Mobile detailing service" loading="lazy">
+      <div class="gallery-item g5 reveal delay-1">
+        <img src="images/7.jpg" alt="Detailing finish" loading="lazy">
       </div>
 
-      <div class="gallery-item reveal">
-        <img src="images/7.jpg" alt="Automotive detailing" loading="lazy">
+      <div class="gallery-item g6 reveal delay-2">
+        <img src="images/8.jpg" alt="Mobile detailing service" loading="lazy">
       </div>
 
-      <div class="gallery-item reveal">
-        <img src="images/8.jpg" alt="Premium vehicle detail" loading="lazy">
+      <div class="gallery-item g7 reveal">
+        <img src="images/9.jpg" alt="Car transformation" loading="lazy">
       </div>
 
-      <div class="gallery-item reveal">
-        <img src="images/9.jpg" alt="Detailed vehicle exterior" loading="lazy">
-      </div>
-
-      <div class="gallery-item reveal">
-        <img src="images/10.jpg" alt="Professional vehicle finish" loading="lazy">
+      <div class="gallery-item g8 reveal delay-1">
+        <img src="images/10.jpg" alt="Premium car detail" loading="lazy">
       </div>
 
     </div>
 
   </div>
-
 </section>
 
+<!-- TRANSFORMATION -->
+<section>
+
+  <div class="container">
+
+    <div class="section-label reveal">THE TRANSFORMATION</div>
+
+    <h2 class="section-title reveal">
+      BEFORE THE DRIVE.<br>
+      <span>AFTER THE DETAIL.</span>
+    </h2>
+
+    <div class="transform-grid">
+
+      <div class="transform-card reveal">
+        <img src="images/5.jpg" alt="Vehicle detailing transformation" loading="lazy">
+        <div class="transform-label">SURFACE / FINISH</div>
+      </div>
+
+      <div class="transform-card reveal delay-1">
+        <img src="images/9.jpg" alt="Professional car detailing finish" loading="lazy">
+        <div class="transform-label">DETAIL / PRESENTATION</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
 
 <!-- PROCESS -->
-<section class="process" id="process">
+<section>
 
   <div class="container">
 
-    <div class="section-heading center reveal">
+    <div class="section-label reveal">HOW IT WORKS</div>
 
-      <div class="eyebrow">
-        Simple Process
-      </div>
+    <h2 class="section-title reveal">
+      SIMPLE FOR<br><span>YOU.</span>
+    </h2>
 
-      <h2>
-        Three steps. Zero hassle.
-      </h2>
+    <div class="process">
 
-      <p>
-        Getting your vehicle detailed should be simple.
-        Here's how it works.
-      </p>
-
-    </div>
-
-
-    <div class="process-grid">
-
-      <div class="process-card reveal" data-number="01">
-
-        <div class="process-number">
-          STEP 01
-        </div>
-
+      <div class="process-card reveal">
+        <div class="process-number">01</div>
         <h3>Request Your Quote</h3>
-
         <p>
-          Tell us your vehicle, the service you need and
-          anything else we should know.
+          Tell us about your vehicle, location and the type of service you're looking for.
         </p>
-
       </div>
 
-
-      <div class="process-card reveal" data-number="02">
-
-        <div class="process-number">
-          STEP 02
-        </div>
-
-        <h3>Choose Your Time</h3>
-
+      <div class="process-card reveal delay-1">
+        <div class="process-number">02</div>
+        <h3>Choose Your Service</h3>
         <p>
-          We'll help arrange a convenient appointment around
-          your schedule and location.
+          We'll recommend the right detailing package based on your vehicle and goals.
         </p>
-
       </div>
 
-
-      <div class="process-card reveal" data-number="03">
-
-        <div class="process-number">
-          STEP 03
-        </div>
-
+      <div class="process-card reveal delay-2">
+        <div class="process-number">03</div>
         <h3>We Come To You</h3>
-
         <p>
-          Your vehicle gets the attention it deserves right
-          where it's parked.
+          Sit back while your vehicle gets detailed right where it's parked.
         </p>
-
       </div>
 
     </div>
 
   </div>
-
 </section>
 
+<!-- MAINTENANCE -->
+<section>
 
-<!-- CTA -->
-<section class="cta-section">
+  <div class="container maintenance">
 
-  <div class="container">
+    <div class="reveal">
 
-    <div class="cta-box reveal">
+      <div class="section-label">KEEP IT CLEAN</div>
 
-      <div class="eyebrow">
-        Ready When You Are
-      </div>
-
-      <h2>
-        Your car deserves more than a quick wash.
+      <h2 class="section-title">
+        YOUR CAR<br>
+        <span>STAYS READY.</span>
       </h2>
 
-      <p>
-        Give your vehicle a professional refresh without
-        leaving your driveway. Request your quote today.
+      <p class="section-copy">
+        Once your vehicle is properly detailed, maintenance becomes easier.
+        Build a recurring routine and keep that fresh-detail look longer.
       </p>
 
-      <a href="#quote" class="btn btn-primary">
-        Get My Quote
+      <a href="#quote" class="btn btn-primary" style="margin-top:28px;">
+        Ask About Maintenance →
       </a>
 
     </div>
 
-  </div>
+    <div class="maintenance-box reveal delay-1">
 
-</section>
-
-
-<!-- QUOTE -->
-<section class="quote" id="quote">
-
-  <div class="container quote-grid">
-
-    <div class="quote-info reveal">
-
-      <div class="eyebrow">
-        Get Started
-      </div>
-
-      <h2>
-        Let's get your car looking right.
-      </h2>
+      <h3>Maintenance Plans</h3>
 
       <p>
-        Send us a few details about your vehicle and we'll
-        help determine the right service for you.
+        Ideal for customers who want their vehicle consistently clean
+        without waiting until it needs another deep detail.
       </p>
 
-
-      <div class="contact-card">
-
-        <div class="contact-icon">
-          ☎
+      <div class="maintenance-list">
+        <div>
+          <span>Every 2 Weeks</span>
+          <strong>Custom</strong>
         </div>
 
         <div>
-          <small>CALL OR TEXT</small>
-          <strong>(323) 880-4067</strong>
+          <span>Monthly</span>
+          <strong>Custom</strong>
         </div>
+
+        <div>
+          <span>Every 6 Weeks</span>
+          <strong>Custom</strong>
+        </div>
+
+        <div>
+          <span>Fleet / Multiple Vehicles</span>
+          <strong>Quote</strong>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- GOOGLE REVIEWS -->
+<section class="review-section" id="reviews">
+
+  <div class="container">
+
+    <div class="section-label reveal">CUSTOMER EXPERIENCE</div>
+
+    <h2 class="section-title reveal">
+      REAL PEOPLE.<br>
+      <span>REAL REVIEWS.</span>
+    </h2>
+
+    <p class="section-copy reveal">
+      We're building our customer experience from the ground up.
+      As our first Houston clients experience the service, their genuine
+      Google feedback will appear here.
+    </p>
+
+    <div class="review-shell reveal">
+
+      <div>
+
+        <div class="google-badge">
+          <span class="google-g">G</span>
+          Google Reviews
+        </div>
+
+        <h3>Our review wall is coming.</h3>
+
+        <p>
+          No fake testimonials. No made-up ratings. Just real feedback
+          from real customers.
+        </p>
+
+        <div class="review-status">
+          <strong>Building our first customer experiences.</strong>
+          <span>
+            Once customers leave genuine Google reviews, we'll showcase
+            them here.
+          </span>
+        </div>
+
+        <!-- ADD YOUR GOOGLE BUSINESS PROFILE LINK HERE LATER -->
+        <a href="#quote" class="btn btn-outline" style="margin-top:24px;">
+          Become One of Our First Clients →
+        </a>
 
       </div>
 
+      <div class="review-visual">
 
-      <div class="contact-card">
+        <div class="review-ring">
 
-        <div class="contact-icon">
-          ◆
+          <div class="review-core">
+            <strong>GOOGLE</strong>
+            <span>REVIEWS</span>
+          </div>
+
         </div>
 
-        <div>
-          <small>SERVICE AREA</small>
-          <strong>Houston, Texas</strong>
+        <div class="review-note">
+          REAL CUSTOMER FEEDBACK • COMING SOON
         </div>
 
       </div>
 
     </div>
 
+  </div>
+</section>
 
-    <form class="quote-form reveal" id="quoteForm">
+<!-- SERVICE AREAS -->
+<section>
 
-      <div class="form-group">
+  <div class="container">
 
-        <label for="name">
-          Name
-        </label>
+    <div class="section-label reveal">SERVICE AREA</div>
 
-        <input
-          id="name"
-          name="name"
-          type="text"
-          placeholder="Your name"
-          required
-        >
+    <h2 class="section-title reveal">
+      WE COME TO<br>
+      <span>YOUR AREA.</span>
+    </h2>
 
-      </div>
+    <p class="section-copy reveal">
+      Currently focused on Houston and surrounding communities.
+      If you're nearby and don't see your area listed, ask us.
+    </p>
 
+    <div class="area-grid reveal">
 
-      <div class="form-group">
+      <div class="area">Houston</div>
+      <div class="area">Katy</div>
+      <div class="area">Sugar Land</div>
+      <div class="area">Spring</div>
+      <div class="area">Cypress</div>
+      <div class="area">Pearland</div>
+      <div class="area">The Woodlands</div>
+      <div class="area">Missouri City</div>
+      <div class="area">Pasadena</div>
+      <div class="area">Surrounding Areas</div>
 
-        <label for="phone">
-          Phone
-        </label>
+    </div>
 
-        <input
-          id="phone"
-          name="phone"
-          type="tel"
-          placeholder="Your phone number"
-          required
-        >
+  </div>
+</section>
 
-      </div>
+<!-- QUOTE FORM -->
+<section class="quote" id="quote">
 
+  <div class="container">
 
-      <div class="form-group">
+    <div class="section-label reveal">GET STARTED</div>
 
-        <label for="vehicle">
-          Vehicle
-        </label>
+    <h2 class="section-title reveal">
+      LET'S DETAIL<br>
+      <span>YOUR VEHICLE.</span>
+    </h2>
 
-        <input
-          id="vehicle"
-          name="vehicle"
-          type="text"
-          placeholder="Year, make & model"
-          required
-        >
+    <p class="section-copy reveal">
+      Tell us a little about your vehicle and what you need.
+      We'll use the information to help recommend the right service.
+    </p>
 
-      </div>
+    <div class="form-wrap">
 
+      <div class="form-info reveal">
 
-      <div class="form-group">
+        <h3>Request a Quote</h3>
 
-        <label for="service">
-          Service
-        </label>
+        <p>
+          Mobile detailing means you don't have to rearrange your day.
+          Tell us where the vehicle is and we'll take it from there.
+        </p>
 
-        <select id="service" name="service" required>
+        <div class="contact-line">
+          <span>☎</span>
+          <a href="tel:+13238804067">(323) 880-4067</a>
+        </div>
 
-          <option value="">
-            Select a service
-          </option>
+        <div class="contact-line">
+          <span>⌖</span>
+          <span>Houston, Texas & Surrounding Areas</span>
+        </div>
 
-          <option value="Essential Detail">
-            Essential Detail — $149+
-          </option>
-
-          <option value="Signature Detail">
-            Signature Detail — $249+
-          </option>
-
-          <option value="Executive Detail">
-            Executive Detail — $399+
-          </option>
-
-          <option value="Interior Deep Clean">
-            Interior Deep Clean — $149+
-          </option>
-
-          <option value="Exterior Detail">
-            Exterior Detail — $119+
-          </option>
-
-          <option value="Paint Correction">
-            Paint Correction — $349+
-          </option>
-
-          <option value="Ceramic Coating">
-            Ceramic Coating — $599+
-          </option>
-
-          <option value="Custom Request">
-            Custom Request
-          </option>
-
-        </select>
+        <div class="contact-line">
+          <span>◷</span>
+          <span>Flexible Mobile Scheduling</span>
+        </div>
 
       </div>
 
+      <div class="form-box reveal delay-1">
 
-      <div class="form-group full">
+        <form id="quoteForm">
 
-        <label for="message">
-          Vehicle Details
-        </label>
+          <div class="form-grid">
 
-        <textarea
-          id="message"
-          name="message"
-          placeholder="Tell us about your vehicle, its condition, or anything you'd like us to know."
-        ></textarea>
+            <div class="field">
+              <label for="name">Full Name</label>
+              <input id="name" type="text" placeholder="Your name" required>
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" type="tel" placeholder="Your phone number" required>
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" type="email" placeholder="you@email.com">
+            </div>
+
+            <div class="field">
+              <label for="vehicle">Vehicle</label>
+              <input id="vehicle" type="text" placeholder="Example: 2021 BMW X5">
+            </div>
+
+            <div class="field">
+              <label for="service">Service</label>
+              <select id="service">
+                <option>Essential Detail</option>
+                <option>Signature Detail</option>
+                <option>Executive Detail</option>
+                <option>Interior Deep Clean</option>
+                <option>Exterior Detail</option>
+                <option>Paint Correction</option>
+                <option>Ceramic Coating</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="location">City / Area</label>
+              <input id="location" type="text" placeholder="Houston / Katy / etc.">
+            </div>
+
+            <div class="field full">
+              <label for="message">Tell Us About Your Vehicle</label>
+              <textarea id="message" placeholder="Anything we should know about the vehicle?"></textarea>
+            </div>
+
+          </div>
+
+          <button class="btn btn-primary form-submit" type="submit">
+            Request My Quote →
+          </button>
+
+        </form>
 
       </div>
 
+    </div>
 
-      <button type="submit" class="btn btn-primary">
-        Request My Quote
-      </button>
+  </div>
+</section>
 
-    </form>
+<!-- FINAL CTA -->
+<section class="final-cta">
+
+  <div class="container">
+
+    <div class="final-cta-box reveal">
+
+      <div class="section-label">YOUR CAR DESERVES BETTER</div>
+
+      <h2>
+        WE BRING<br>
+        <span style="color:#56bcff;">THE DETAIL TO YOU.</span>
+      </h2>
+
+      <p>
+        Premium mobile car detailing across Houston and surrounding areas.
+        Your location. Your schedule. Your vehicle.
+      </p>
+
+      <div class="hero-buttons" style="justify-content:center;">
+        <a href="#quote" class="btn btn-primary">Get a Free Quote →</a>
+        <a href="tel:+13238804067" class="btn btn-outline">Call Us</a>
+      </div>
+
+    </div>
 
   </div>
 
 </section>
-
-</main>
-
 
 <!-- FOOTER -->
 <footer>
 
-  <div class="container">
+  <div class="container footer-inner">
 
-    <div class="footer-grid">
-
-      <div class="footer-brand">
-
-        <img
-          src="images/logo.webp"
-          alt="Your Mobile Detailers"
-          class="footer-logo"
-        >
-
-        <p>
-          Premium mobile car detailing designed around your
-          schedule. We bring the detail to you.
-        </p>
-
-      </div>
-
-
-      <div class="footer-column">
-
-        <h4>Navigation</h4>
-
-        <a href="#home">Home</a>
-        <a href="#packages">Packages</a>
-        <a href="#services">Services</a>
-        <a href="#gallery">Our Work</a>
-        <a href="#process">How It Works</a>
-
-      </div>
-
-
-      <div class="footer-column">
-
-        <h4>Contact</h4>
-
-        <a href="tel:+13238804067">
-          (323) 880-4067
-        </a>
-
-        <a href="#quote">
-          Request a Quote
-        </a>
-
-        <a href="#home">
-          Houston, Texas
-        </a>
-
-      </div>
-
+    <div class="footer-logo">
+      <img src="images/logo.webp" alt="Your Mobile Detailers">
+      <span>YOUR MOBILE DETAILERS</span>
     </div>
 
+    <div class="footer-copy">
+      © 2026 Your Mobile Detailers. All rights reserved.
+    </div>
 
-    <div class="footer-bottom">
-
-      <span>
-        © 2026 Your Mobile Detailers. All rights reserved.
-      </span>
-
-      <span>
-        WE BRING THE DETAIL TO YOU.
-      </span>
-
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#packages">Packages</a>
+      <a href="#quote">Contact</a>
     </div>
 
   </div>
 
 </footer>
 
-
-<!-- FLOATING PHONE -->
-<a
-  href="tel:+13238804067"
-  class="phone-float"
-  aria-label="Call Your Mobile Detailers"
->
+<!-- FLOAT CALL -->
+<a class="float-call" href="tel:+13238804067" aria-label="Call Your Mobile Detailers">
   ☎
 </a>
 
-
 <script>
 
-/* =========================
-   NAVBAR SCROLL
-========================= */
-
+/* NAVBAR */
 const navbar = document.getElementById("navbar");
 
-window.addEventListener("scroll", () => {
-
-  if(window.scrollY > 40){
-    navbar.classList.add("scrolled");
-  }else{
-    navbar.classList.remove("scrolled");
-  }
-
+window.addEventListener("scroll",()=>{
+  navbar.classList.toggle("scrolled",window.scrollY > 40);
 });
 
-
-/* =========================
-   MOBILE MENU
-========================= */
-
+/* MOBILE MENU */
 const menuBtn = document.getElementById("menuBtn");
 const navLinks = document.getElementById("navLinks");
 
-menuBtn.addEventListener("click", () => {
-
+menuBtn.addEventListener("click",()=>{
   navLinks.classList.toggle("active");
-
 });
 
-document.querySelectorAll(".nav-links a").forEach(link => {
-
-  link.addEventListener("click", () => {
-
+document.querySelectorAll(".nav-links a").forEach(link=>{
+  link.addEventListener("click",()=>{
     navLinks.classList.remove("active");
-
   });
-
 });
 
+/* REVEAL */
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+      observer.unobserve(entry.target);
+    }
+  });
+},{
+  threshold:.12
+});
 
-/* =========================
-   SCROLL REVEAL
-========================= */
+document.querySelectorAll(".reveal").forEach(el=>{
+  observer.observe(el);
+});
 
-const revealElements = document.querySelectorAll(".reveal");
+/* COUNTERS */
+const counterObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(!entry.isIntersecting) return;
 
-const revealObserver = new IntersectionObserver(
+    const counter = entry.target;
+    const target = Number(counter.dataset.target);
+    let current = 0;
+    const duration = 1300;
+    const start = performance.now();
 
-  entries => {
+    function update(now){
+      const progress = Math.min((now-start)/duration,1);
+      const eased = 1-Math.pow(1-progress,3);
+      current = Math.floor(target*eased);
+      counter.textContent = current;
 
-    entries.forEach(entry => {
-
-      if(entry.isIntersecting){
-
-        entry.target.classList.add("show");
-
-        revealObserver.unobserve(entry.target);
-
+      if(progress<1){
+        requestAnimationFrame(update);
+      }else{
+        counter.textContent = target;
       }
+    }
 
-    });
-
-  },
-
-  {
-    threshold:.12
-  }
-
-);
-
-revealElements.forEach(element => {
-
-  revealObserver.observe(element);
-
+    requestAnimationFrame(update);
+    counterObserver.unobserve(counter);
+  });
+},{
+  threshold:.7
 });
 
+document.querySelectorAll(".counter").forEach(counter=>{
+  counterObserver.observe(counter);
+});
 
-/* =========================
-   QUOTE FORM
-========================= */
+/* FORM */
+const form = document.getElementById("quoteForm");
 
-const quoteForm = document.getElementById("quoteForm");
+form.addEventListener("submit",(e)=>{
+  e.preventDefault();
 
-quoteForm.addEventListener("submit", function(event){
-
-  event.preventDefault();
-
-  const button = quoteForm.querySelector("button");
-
-  const originalText = button.textContent;
+  const button = form.querySelector("button");
 
   button.textContent = "Request Received ✓";
-  button.style.background = "#25c77a";
+  button.style.background = "linear-gradient(135deg,#1c9c63,#45d59a)";
+  button.style.color = "#03140d";
 
-  setTimeout(() => {
-
-    button.textContent = originalText;
+  setTimeout(()=>{
+    button.textContent = "Request My Quote →";
     button.style.background = "";
-
-  }, 3500);
-
+    button.style.color = "";
+  },4500);
 });
 
+/* SMOOTH ANCHOR OFFSET */
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+  anchor.addEventListener("click",function(e){
 
-/* =========================
-   SUBTLE MOUSE PARALLAX
-========================= */
+    const target = document.querySelector(this.getAttribute("href"));
 
-const heroVisual = document.querySelector(".hero-visual");
+    if(target){
+      e.preventDefault();
 
-if(window.matchMedia("(min-width: 900px)").matches){
+      const offset = 75;
+      const position =
+        target.getBoundingClientRect().top +
+        window.pageYOffset -
+        offset;
 
-  document.addEventListener("mousemove", event => {
-
-    const x = (window.innerWidth / 2 - event.clientX) / 80;
-    const y = (window.innerHeight / 2 - event.clientY) / 100;
-
-    heroVisual.style.transform =
-      `translate(${x}px, ${y}px)`;
-
+      window.scrollTo({
+        top:position,
+        behavior:"smooth"
+      });
+    }
   });
-
-}
+});
 
 </script>
 
