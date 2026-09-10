@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <url>
-    <loc>https://yourmobiledetailers.com/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://yourmobiledetailers.com/houston.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
+  <url><loc>https://yourmobiledetailers.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://yourmobiledetailers.com/houston.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://yourmobiledetailers.com/katy.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://yourmobiledetailers.com/sugar-land.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://yourmobiledetailers.com/pearland.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://yourmobiledetailers.com/cypress.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://yourmobiledetailers.com/spring.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://yourmobiledetailers.com/the-woodlands.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://yourmobiledetailers.com/missouri-city.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://yourmobiledetailers.com/pasadena.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 </urlset>
