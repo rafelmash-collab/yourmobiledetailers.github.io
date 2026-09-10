@@ -2613,33 +2613,70 @@ footer{
 
       <div class="form-box reveal delay-1">
 
-        <form id="quoteForm">
+        <!-- FORMSPREE -->
+        <form
+          id="quoteForm"
+          action="https://formspree.io/f/mkjnkywz"
+          method="POST"
+        >
+
+          <!-- Email subject -->
+          <input
+            type="hidden"
+            name="subject"
+            value="New Quote Request — Your Mobile Detailers"
+          >
 
           <div class="form-grid">
 
             <div class="field">
               <label for="name">Full Name</label>
-              <input id="name" type="text" placeholder="Your name" required>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Your name"
+                autocomplete="name"
+                required
+              >
             </div>
 
             <div class="field">
               <label for="phone">Phone</label>
-              <input id="phone" type="tel" placeholder="Your phone number" required>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                placeholder="Your phone number"
+                autocomplete="tel"
+                required
+              >
             </div>
 
             <div class="field">
               <label for="email">Email</label>
-              <input id="email" type="email" placeholder="you@email.com">
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="you@email.com"
+                autocomplete="email"
+              >
             </div>
 
             <div class="field">
               <label for="vehicle">Vehicle</label>
-              <input id="vehicle" type="text" placeholder="Example: 2021 BMW X5">
+              <input
+                id="vehicle"
+                name="vehicle"
+                type="text"
+                placeholder="Example: 2021 BMW X5"
+              >
             </div>
 
             <div class="field">
               <label for="service">Service</label>
-              <select id="service">
+              <select id="service" name="service">
                 <option>Essential Detail</option>
                 <option>Signature Detail</option>
                 <option>Executive Detail</option>
@@ -2653,17 +2690,29 @@ footer{
 
             <div class="field">
               <label for="location">City / Area</label>
-              <input id="location" type="text" placeholder="Houston / Katy / etc.">
+              <input
+                id="location"
+                name="location"
+                type="text"
+                placeholder="Houston / Katy / etc."
+              >
             </div>
 
             <div class="field full">
               <label for="message">Tell Us About Your Vehicle</label>
-              <textarea id="message" placeholder="Anything we should know about the vehicle?"></textarea>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Anything we should know about the vehicle?"
+              ></textarea>
             </div>
 
           </div>
 
-          <button class="btn btn-primary form-submit" type="submit">
+          <button
+            class="btn btn-primary form-submit"
+            type="submit"
+          >
             Request My Quote →
           </button>
 
@@ -2731,7 +2780,11 @@ footer{
 </footer>
 
 <!-- FLOAT CALL -->
-<a class="float-call" href="tel:+13238804067" aria-label="Call Your Mobile Detailers">
+<a
+  class="float-call"
+  href="tel:+13238804067"
+  aria-label="Call Your Mobile Detailers"
+>
   ☎
 </a>
 
@@ -2809,23 +2862,69 @@ document.querySelectorAll(".counter").forEach(counter=>{
   counterObserver.observe(counter);
 });
 
-/* FORM */
+/* FORM — FORMSPREE */
 const form = document.getElementById("quoteForm");
 
-form.addEventListener("submit",(e)=>{
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const button = form.querySelector("button");
+  const originalText = button.textContent;
 
-  button.textContent = "Request Received ✓";
-  button.style.background = "linear-gradient(135deg,#1c9c63,#45d59a)";
-  button.style.color = "#03140d";
+  button.disabled = true;
+  button.textContent = "Sending Request...";
 
-  setTimeout(()=>{
-    button.textContent = "Request My Quote →";
-    button.style.background = "";
-    button.style.color = "";
-  },4500);
+  try {
+
+    const response = await fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: {
+        "Accept": "application/json"
+      }
+    });
+
+    if (response.ok) {
+
+      button.textContent = "Request Sent ✓";
+
+      button.style.background =
+        "linear-gradient(135deg,#1c9c63,#45d59a)";
+
+      button.style.color = "#03140d";
+
+      form.reset();
+
+      setTimeout(() => {
+
+        button.disabled = false;
+        button.textContent = originalText;
+        button.style.background = "";
+        button.style.color = "";
+
+      }, 5000);
+
+    } else {
+
+      button.disabled = false;
+      button.textContent = "Try Again →";
+
+      alert(
+        "Something went wrong. Please call (323) 880-4067."
+      );
+
+    }
+
+  } catch (error) {
+
+    button.disabled = false;
+    button.textContent = "Try Again →";
+
+    alert(
+      "Connection error. Please call (323) 880-4067."
+    );
+
+  }
 });
 
 /* SMOOTH ANCHOR OFFSET */
