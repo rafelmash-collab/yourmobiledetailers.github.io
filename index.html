@@ -4,33 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Your Mobile Detailers | Premium Mobile Car Detailing</title>
+  <title>Your Mobile Detailers | Houston Mobile Car Detailing</title>
+  <meta name="description" content="Premium mobile car detailing brought directly to your home, workplace, or wherever your vehicle is parked in Houston, Texas.">
 
-  <meta
-    name="description"
-    content="Premium mobile car detailing. Professional detailing brought directly to your home, workplace, or wherever your vehicle is parked."
-  >
-
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Manrope:wght@600;700;800&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-
     :root {
-      --black: #050505;
-      --black-2: #0b0b0b;
+      --black: #050607;
+      --black-2: #0b0d0f;
+      --black-3: #111417;
       --white: #ffffff;
-      --gray: #a6a6a6;
-      --gray-2: #dedede;
+      --off-white: #f3f4f5;
+      --gray: #92979d;
+      --gray-light: #c6cbd0;
       --blue: #1683ff;
-      --blue-light: #4aa3ff;
-      --line: rgba(255,255,255,0.12);
-      --max: 1220px;
+      --blue-dark: #0867d7;
+      --border: rgba(255,255,255,.12);
+      --container: 1240px;
     }
 
     * {
@@ -47,18 +41,22 @@
       background: var(--black);
       color: var(--white);
       font-family: "Inter", sans-serif;
-      line-height: 1.5;
       overflow-x: hidden;
     }
 
-    img {
-      display: block;
-      width: 100%;
+    body::selection {
+      background: var(--blue);
+      color: white;
     }
 
     a {
       color: inherit;
       text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
     }
 
     button,
@@ -69,8 +67,73 @@
     }
 
     .container {
-      width: min(92%, var(--max));
+      width: min(100% - 40px, var(--container));
       margin: auto;
+    }
+
+    /* =========================
+       PRELOADER
+    ========================= */
+
+    .loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--black);
+      display: grid;
+      place-items: center;
+      animation: loaderOut .8s ease 1.5s forwards;
+      pointer-events: none;
+    }
+
+    .loader-inner {
+      text-align: center;
+      animation: loaderIn .7s ease forwards;
+    }
+
+    .loader-logo {
+      width: 105px;
+      margin: 0 auto 18px;
+      object-fit: contain;
+    }
+
+    .loader-line {
+      width: 120px;
+      height: 2px;
+      background: var(--blue);
+      transform-origin: left;
+      animation: loaderLine 1.2s ease infinite;
+    }
+
+    @keyframes loaderIn {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes loaderLine {
+      0% {
+        transform: scaleX(0);
+      }
+      50% {
+        transform: scaleX(1);
+      }
+      100% {
+        transform: scaleX(0);
+        transform-origin: right;
+      }
+    }
+
+    @keyframes loaderOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
     }
 
     /* =========================
@@ -81,72 +144,110 @@
       position: fixed;
       top: 0;
       left: 0;
-      right: 0;
+      width: 100%;
       z-index: 1000;
-      height: 82px;
-      background: rgba(5,5,5,0.86);
+      padding: 22px 0;
+      transition: .35s ease;
+    }
+
+    .navbar.scrolled {
+      padding: 13px 0;
+      background: rgba(5,6,7,.88);
       backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid rgba(255,255,255,.08);
     }
 
     .nav-inner {
-      height: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 30px;
     }
 
     .logo {
-      width: 175px;
-    }
-
-    .logo img {
-      max-height: 55px;
-      object-fit: contain;
-      object-position: left center;
+      width: 145px;
+      flex-shrink: 0;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 30px;
+      margin-left: auto;
     }
 
     .nav-links a {
-      color: #d4d4d4;
+      position: relative;
+      color: rgba(255,255,255,.75);
       font-size: 12px;
       font-weight: 700;
+      letter-spacing: .12em;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
-      transition: 0.25s ease;
+      transition: .3s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 0;
+      height: 2px;
+      background: var(--blue);
+      transition: .3s ease;
     }
 
     .nav-links a:hover {
-      color: var(--blue-light);
+      color: white;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
     }
 
     .nav-phone {
-      color: white !important;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
     }
 
-    .nav-cta {
+    .nav-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
       background: var(--blue);
-      color: white !important;
-      padding: 12px 19px;
-      border-radius: 2px;
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: .3s ease;
     }
 
-    .nav-cta:hover {
-      background: var(--blue-light);
+    .nav-button:hover {
+      background: white;
+      color: var(--black);
+      transform: translateY(-2px);
     }
 
     .menu-btn {
       display: none;
-      background: none;
       border: 0;
+      background: transparent;
       color: white;
-      font-size: 28px;
       cursor: pointer;
+      width: 40px;
+      height: 40px;
+    }
+
+    .menu-btn span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      margin: 5px auto;
+      background: white;
+      transition: .3s ease;
     }
 
     /* =========================
@@ -157,75 +258,93 @@
       min-height: 100vh;
       position: relative;
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       overflow: hidden;
-      padding: 150px 0 90px;
+      background: var(--black);
     }
 
     .hero-bg {
       position: absolute;
       inset: 0;
-      z-index: -2;
+      overflow: hidden;
     }
 
     .hero-bg img {
-      width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center;
-      filter: brightness(0.43) contrast(1.08);
+      animation: heroZoom 9s ease-out forwards;
+      transform: scale(1.09);
+    }
+
+    @keyframes heroZoom {
+      to {
+        transform: scale(1);
+      }
     }
 
     .hero-overlay {
       position: absolute;
       inset: 0;
-      z-index: -1;
       background:
-        linear-gradient(
-          90deg,
-          rgba(0,0,0,0.94) 0%,
-          rgba(0,0,0,0.72) 42%,
-          rgba(0,0,0,0.18) 100%
-        ),
-        linear-gradient(
-          0deg,
-          rgba(0,0,0,0.92) 0%,
-          transparent 45%
-        );
+        linear-gradient(90deg, rgba(0,0,0,.92) 0%, rgba(0,0,0,.68) 42%, rgba(0,0,0,.22) 100%),
+        linear-gradient(0deg, rgba(0,0,0,.8) 0%, transparent 50%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: 7%;
+      top: 27%;
+      width: 1px;
+      height: 45%;
+      background: linear-gradient(
+        transparent,
+        rgba(22,131,255,.8),
+        transparent
+      );
+      opacity: .65;
     }
 
     .hero-content {
-      max-width: 820px;
+      position: relative;
+      z-index: 2;
+      padding-top: 90px;
+      max-width: 950px;
     }
 
     .eyebrow {
       display: flex;
       align-items: center;
-      gap: 12px;
-      color: var(--blue-light);
+      gap: 13px;
+      margin-bottom: 22px;
+      color: var(--blue);
       font-size: 11px;
       font-weight: 800;
+      letter-spacing: .2em;
       text-transform: uppercase;
-      letter-spacing: 2.5px;
-      margin-bottom: 22px;
+      opacity: 0;
+      animation: revealUp .8s ease .25s forwards;
     }
 
     .eyebrow::before {
       content: "";
-      width: 38px;
+      width: 42px;
       height: 2px;
       background: var(--blue);
     }
 
     .hero h1 {
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(58px, 8vw, 112px);
-      line-height: 0.88;
-      letter-spacing: -6px;
-      font-weight: 800;
+      max-width: 920px;
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(70px, 10vw, 140px);
+      line-height: .84;
+      letter-spacing: .015em;
+      font-weight: 400;
       text-transform: uppercase;
-      max-width: 900px;
-      margin-bottom: 30px;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: revealUp 1s cubic-bezier(.2,.8,.2,1) .4s forwards;
     }
 
     .hero h1 span {
@@ -234,32 +353,34 @@
     }
 
     .hero-description {
-      max-width: 590px;
-      color: #d0d0d0;
+      max-width: 550px;
+      color: rgba(255,255,255,.72);
       font-size: 16px;
       line-height: 1.8;
       margin-bottom: 35px;
+      opacity: 0;
+      animation: revealUp .8s ease .65s forwards;
     }
 
     .hero-actions {
       display: flex;
-      align-items: center;
-      gap: 14px;
       flex-wrap: wrap;
+      gap: 12px;
+      opacity: 0;
+      animation: revealUp .8s ease .8s forwards;
     }
 
     .btn {
       min-height: 54px;
+      padding: 0 27px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0 25px;
-      border-radius: 2px;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
-      letter-spacing: 0.8px;
+      letter-spacing: .15em;
       text-transform: uppercase;
-      transition: 0.25s ease;
+      transition: .35s ease;
     }
 
     .btn-primary {
@@ -268,34 +389,89 @@
     }
 
     .btn-primary:hover {
-      background: var(--blue-light);
-      transform: translateY(-2px);
+      background: white;
+      color: var(--black);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(22,131,255,.2);
     }
 
     .btn-outline {
-      border: 1px solid rgba(255,255,255,0.45);
+      border: 1px solid rgba(255,255,255,.35);
       color: white;
-      background: rgba(0,0,0,0.25);
     }
 
     .btn-outline:hover {
-      border-color: white;
       background: white;
-      color: black;
+      color: var(--black);
+      border-color: white;
+      transform: translateY(-3px);
     }
 
     .hero-phone {
-      margin-top: 28px;
       display: inline-flex;
+      gap: 13px;
       align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      font-weight: 700;
+      margin-top: 35px;
       color: white;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      opacity: 0;
+      animation: revealUp .8s ease .95s forwards;
     }
 
     .hero-phone span {
-      color: var(--blue-light);
+      color: var(--gray);
+      font-size: 10px;
+      letter-spacing: .2em;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      z-index: 3;
+      bottom: 35px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,.5);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    .scroll-indicator::after {
+      content: "";
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(var(--blue), transparent);
+      animation: scrollLine 1.8s ease-in-out infinite;
+    }
+
+    @keyframes scrollLine {
+      0%, 100% {
+        opacity: .3;
+        transform: scaleY(.65);
+        transform-origin: top;
+      }
+      50% {
+        opacity: 1;
+        transform: scaleY(1);
+      }
+    }
+
+    @keyframes revealUp {
+      from {
+        opacity: 0;
+        transform: translateY(35px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* =========================
@@ -303,19 +479,23 @@
     ========================= */
 
     .intro-strip {
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      background: #080808;
+      background: var(--blue);
+      color: white;
+      padding: 24px 0;
+      overflow: hidden;
     }
 
     .intro-grid {
       display: grid;
-      grid-template-columns: repeat(4,1fr);
+      grid-template-columns: repeat(4, 1fr);
     }
 
     .intro-item {
-      padding: 27px 22px;
-      border-right: 1px solid var(--line);
+      padding: 8px 25px;
+      border-right: 1px solid rgba(255,255,255,.25);
+      display: flex;
+      align-items: center;
+      gap: 14px;
     }
 
     .intro-item:last-child {
@@ -323,212 +503,271 @@
     }
 
     .intro-number {
-      color: var(--blue);
-      font-size: 11px;
-      font-weight: 800;
-      margin-bottom: 8px;
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 25px;
+      opacity: .65;
     }
 
     .intro-item strong {
-      display: block;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 3px;
-    }
-
-    .intro-item span {
-      color: #858585;
       font-size: 11px;
-    }
-
-    /* =========================
-       GENERAL
-    ========================= */
-
-    section {
-      padding: 125px 0;
-    }
-
-    .section-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 40px;
-      margin-bottom: 65px;
-    }
-
-    .section-title {
-      max-width: 780px;
-    }
-
-    .section-title h2 {
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(42px, 6vw, 78px);
-      line-height: 0.95;
-      letter-spacing: -4px;
+      letter-spacing: .08em;
       text-transform: uppercase;
     }
 
-    .section-copy {
-      max-width: 430px;
-      color: var(--gray);
-      font-size: 14px;
-      line-height: 1.8;
-    }
-
     /* =========================
-       WHY US
+       GENERAL SECTIONS
     ========================= */
 
-    .why {
-      background: var(--white);
+    .section {
+      padding: 120px 0;
+    }
+
+    .section-dark {
+      background: var(--black);
+    }
+
+    .section-light {
+      background: var(--off-white);
       color: var(--black);
     }
 
-    .why .eyebrow {
+    .section-head {
+      margin-bottom: 65px;
+    }
+
+    .section-label {
+      color: var(--blue);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: 13px;
+    }
+
+    .section-title {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(55px, 7vw, 90px);
+      font-weight: 400;
+      line-height: .9;
+      letter-spacing: .015em;
+      text-transform: uppercase;
+    }
+
+    .section-title span {
       color: var(--blue);
     }
 
+    .section-description {
+      max-width: 600px;
+      color: var(--gray);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-top: 22px;
+    }
+
+    .section-light .section-description {
+      color: #666;
+    }
+
+    /* =========================
+       REVEAL
+    ========================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-1 {
+      transition-delay: .1s;
+    }
+
+    .delay-2 {
+      transition-delay: .2s;
+    }
+
+    .delay-3 {
+      transition-delay: .3s;
+    }
+
+    /* =========================
+       WHY SECTION
+    ========================= */
+
     .why-grid {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 75px;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 80px;
       align-items: center;
     }
 
     .why-image {
       position: relative;
-    }
-
-    .why-image img {
-      height: 620px;
-      object-fit: cover;
-      filter: grayscale(100%);
+      overflow: hidden;
     }
 
     .why-image::after {
       content: "";
       position: absolute;
-      width: 150px;
-      height: 150px;
-      border: 2px solid var(--blue);
-      right: -20px;
-      bottom: -20px;
-      z-index: 0;
+      inset: 18px;
+      border: 1px solid rgba(255,255,255,.3);
+      pointer-events: none;
     }
 
     .why-image img {
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      transition: transform 1s ease;
+    }
+
+    .why-image:hover img {
+      transform: scale(1.04);
+    }
+
+    .why-content {
       position: relative;
-      z-index: 1;
     }
 
-    .why-content .section-title {
-      margin-bottom: 35px;
+    .why-content::before {
+      content: "01";
+      position: absolute;
+      right: 0;
+      top: -55px;
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 100px;
+      color: rgba(0,0,0,.06);
     }
 
-    .why-content .section-title h2 {
-      font-size: clamp(40px,5vw,65px);
+    .why-content h3 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(48px, 5vw, 72px);
+      line-height: .9;
+      font-weight: 400;
+      text-transform: uppercase;
+      margin-bottom: 25px;
     }
 
-    .why-content .section-copy {
+    .why-content h3 span {
+      color: var(--blue);
+    }
+
+    .why-content p {
       color: #666;
-      margin-bottom: 35px;
+      font-size: 15px;
+      line-height: 1.9;
+      max-width: 570px;
+      margin-bottom: 30px;
     }
 
-    .why-points {
-      border-top: 1px solid #ddd;
+    .feature-list {
+      border-top: 1px solid #d5d5d5;
     }
 
-    .why-point {
-      display: grid;
-      grid-template-columns: 45px 1fr;
-      gap: 18px;
-      padding: 22px 0;
-      border-bottom: 1px solid #ddd;
+    .feature {
+      padding: 18px 0;
+      border-bottom: 1px solid #d5d5d5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
     }
 
-    .why-point-number {
+    .feature strong {
+      font-size: 12px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .feature span {
       color: var(--blue);
       font-size: 12px;
-      font-weight: 900;
-    }
-
-    .why-point h3 {
-      font-size: 15px;
-      text-transform: uppercase;
-      margin-bottom: 5px;
-    }
-
-    .why-point p {
-      color: #777;
-      font-size: 13px;
-      line-height: 1.7;
+      font-weight: 800;
     }
 
     /* =========================
        SERVICES
     ========================= */
 
-    .services {
-      background: var(--black);
-    }
-
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(3,1fr);
-      border-top: 1px solid var(--line);
-      border-left: 1px solid var(--line);
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
     }
 
     .service-card {
-      min-height: 285px;
-      padding: 32px;
-      border-right: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
       position: relative;
-      transition: 0.3s ease;
+      min-height: 275px;
+      padding: 35px;
+      background: var(--black);
+      overflow: hidden;
+      transition: .4s ease;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 3px;
+      background: var(--blue);
+      transition: .4s ease;
     }
 
     .service-card:hover {
-      background: #0d0d0d;
+      background: var(--black-3);
+      transform: translateY(-5px);
+    }
+
+    .service-card:hover::before {
+      width: 100%;
     }
 
     .service-number {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 24px;
       color: var(--blue);
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 1px;
-      margin-bottom: 75px;
+      margin-bottom: 35px;
     }
 
     .service-card h3 {
-      font-family: "Manrope", sans-serif;
-      font-size: 25px;
-      line-height: 1;
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 36px;
+      font-weight: 400;
+      letter-spacing: .02em;
       text-transform: uppercase;
-      margin-bottom: 12px;
+      margin-bottom: 13px;
     }
 
     .service-card p {
-      color: #858585;
+      color: var(--gray);
       font-size: 13px;
       line-height: 1.7;
-      max-width: 330px;
+      max-width: 320px;
     }
 
     .service-arrow {
       position: absolute;
-      right: 28px;
-      top: 30px;
-      font-size: 22px;
-      color: #555;
-      transition: 0.3s ease;
+      right: 30px;
+      bottom: 28px;
+      color: rgba(255,255,255,.35);
+      font-size: 24px;
+      transition: .35s ease;
     }
 
     .service-card:hover .service-arrow {
       color: var(--blue);
-      transform: translate(3px,-3px);
+      transform: translateX(6px);
     }
 
     /* =========================
@@ -536,29 +775,15 @@
     ========================= */
 
     .gallery {
-      background: #f2f2f2;
-      color: #080808;
-    }
-
-    .gallery .eyebrow {
-      color: var(--blue);
-    }
-
-    .gallery .section-copy {
-      color: #666;
-    }
-
-    .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(12,1fr);
-      grid-auto-rows: 250px;
+      grid-template-columns: repeat(12, 1fr);
       gap: 12px;
     }
 
     .gallery-item {
-      overflow: hidden;
       position: relative;
-      background: #ddd;
+      overflow: hidden;
+      background: var(--black-2);
     }
 
     .gallery-item:nth-child(1) {
@@ -566,30 +791,53 @@
       grid-row: span 2;
     }
 
-    .gallery-item:nth-child(2) {
-      grid-column: span 5;
-    }
-
+    .gallery-item:nth-child(2),
     .gallery-item:nth-child(3) {
       grid-column: span 5;
     }
 
     .gallery-item:nth-child(4) {
-      grid-column: span 12;
-      height: 330px;
+      grid-column: span 6;
+    }
+
+    .gallery-item:nth-child(5) {
+      grid-column: span 6;
     }
 
     .gallery-item img {
-      width: 100%;
       height: 100%;
+      min-height: 280px;
       object-fit: cover;
-      filter: grayscale(20%);
-      transition: 0.6s ease;
+      transition: transform .8s cubic-bezier(.2,.7,.2,1);
     }
 
     .gallery-item:hover img {
-      transform: scale(1.04);
-      filter: grayscale(0%);
+      transform: scale(1.07);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      padding: 25px;
+      background: linear-gradient(
+        transparent 40%,
+        rgba(0,0,0,.8)
+      );
+      opacity: 0;
+      transition: .4s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-overlay span {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
     }
 
     /* =========================
@@ -597,46 +845,48 @@
     ========================= */
 
     .process {
-      background: var(--black);
+      background: #0a0c0e;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
 
     .process-grid {
       display: grid;
-      grid-template-columns: repeat(3,1fr);
-      border-top: 1px solid var(--line);
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--border);
     }
 
-    .process-card {
-      padding: 38px 30px 30px;
-      border-right: 1px solid var(--line);
-      min-height: 270px;
+    .process-step {
+      padding: 45px 35px;
+      border-right: 1px solid var(--border);
+      position: relative;
     }
 
-    .process-card:last-child {
+    .process-step:last-child {
       border-right: 0;
     }
 
-    .process-number {
+    .process-step-number {
+      font-family: "Bebas Neue", sans-serif;
       color: var(--blue);
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 1.5px;
-      margin-bottom: 80px;
-    }
-
-    .process-card h3 {
-      font-family: "Manrope", sans-serif;
-      font-size: 28px;
+      font-size: 60px;
       line-height: 1;
-      text-transform: uppercase;
-      margin-bottom: 13px;
+      margin-bottom: 30px;
     }
 
-    .process-card p {
-      color: #858585;
+    .process-step h3 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 35px;
+      font-weight: 400;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .process-step p {
+      color: var(--gray);
       font-size: 13px;
-      line-height: 1.7;
-      max-width: 300px;
+      line-height: 1.8;
     }
 
     /* =========================
@@ -644,46 +894,79 @@
     ========================= */
 
     .cta {
-      padding: 0;
+      position: relative;
+      overflow: hidden;
       background: var(--blue);
+      padding: 100px 0;
+    }
+
+    .cta::before {
+      content: "DETAIL";
+      position: absolute;
+      right: -20px;
+      bottom: -65px;
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 230px;
+      color: rgba(255,255,255,.08);
+      line-height: 1;
     }
 
     .cta-inner {
-      min-height: 340px;
+      position: relative;
+      z-index: 2;
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: space-between;
-      gap: 50px;
+      gap: 40px;
     }
 
     .cta h2 {
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(40px,5vw,72px);
-      line-height: 0.95;
-      letter-spacing: -4px;
+      max-width: 750px;
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(60px, 8vw, 105px);
+      font-weight: 400;
+      line-height: .85;
       text-transform: uppercase;
-      max-width: 800px;
     }
 
-    .cta-actions {
+    .cta p {
+      margin-top: 20px;
+      max-width: 560px;
+      font-size: 14px;
+      line-height: 1.7;
+      opacity: .85;
+    }
+
+    .cta-right {
       flex-shrink: 0;
+      text-align: right;
     }
 
-    .cta .btn {
-      background: white;
-      color: black;
-    }
-
-    .cta .btn:hover {
-      background: black;
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 58px;
+      padding: 0 30px;
+      background: var(--black);
       color: white;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      transition: .35s ease;
+    }
+
+    .cta-button:hover {
+      background: white;
+      color: var(--black);
+      transform: translateY(-4px);
     }
 
     .cta-phone {
       display: block;
-      margin-top: 15px;
-      text-align: center;
-      font-size: 13px;
+      margin-top: 17px;
+      font-size: 14px;
       font-weight: 800;
     }
 
@@ -691,109 +974,96 @@
        QUOTE
     ========================= */
 
-    .quote {
-      background: #f5f5f5;
-      color: black;
-    }
-
     .quote-grid {
       display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
-      gap: 80px;
+      grid-template-columns: .7fr 1.3fr;
+      gap: 90px;
       align-items: start;
     }
 
-    .quote .eyebrow {
+    .quote-info h2 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(55px, 6vw, 82px);
+      line-height: .88;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    .quote-info h2 span {
       color: var(--blue);
     }
 
-    .quote-title h2 {
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(42px,5vw,67px);
-      line-height: 0.95;
-      letter-spacing: -4px;
-      text-transform: uppercase;
-      margin-bottom: 22px;
-    }
-
-    .quote-title p {
-      color: #666;
+    .quote-info p {
+      margin-top: 25px;
+      color: var(--gray);
       font-size: 14px;
       line-height: 1.8;
-      max-width: 400px;
-    }
-
-    .quote-contact {
-      margin-top: 30px;
-      padding-top: 25px;
-      border-top: 1px solid #d7d7d7;
-    }
-
-    .quote-contact span {
-      display: block;
-      color: #888;
-      font-size: 10px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 6px;
-    }
-
-    .quote-contact a {
-      font-size: 20px;
-      font-weight: 800;
     }
 
     .quote-form {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
     }
 
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-
-    .form-group.full {
+    .field-full {
       grid-column: 1 / -1;
     }
 
-    .form-group label {
-      font-size: 10px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+    .field {
+      position: relative;
     }
 
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
+    .field input,
+    .field select,
+    .field textarea {
       width: 100%;
-      padding: 15px;
-      border: 1px solid #d5d5d5;
-      background: white;
-      color: black;
+      border: 1px solid rgba(255,255,255,.13);
+      background: #0b0d0f;
+      color: white;
+      padding: 17px 18px;
       outline: none;
       border-radius: 0;
+      transition: .3s ease;
     }
 
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--blue);
-    }
-
-    .form-group textarea {
-      min-height: 135px;
+    .field textarea {
+      min-height: 125px;
       resize: vertical;
     }
 
-    .quote-form button {
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #666;
+    }
+
+    .field select {
+      color: #999;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 1px rgba(22,131,255,.15);
+    }
+
+    .quote-submit {
       border: 0;
       cursor: pointer;
-      grid-column: 1 / -1;
+      min-height: 55px;
+      background: var(--blue);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      transition: .35s ease;
+    }
+
+    .quote-submit:hover {
+      background: white;
+      color: var(--black);
     }
 
     /* =========================
@@ -801,200 +1071,105 @@
     ========================= */
 
     footer {
-      background: #050505;
-      border-top: 1px solid var(--line);
-      padding: 65px 0 25px;
+      padding: 65px 0 30px;
+      border-top: 1px solid var(--border);
+      background: #030405;
     }
 
-    .footer-main {
+    .footer-top {
       display: grid;
-      grid-template-columns: 1.4fr 0.7fr 0.9fr;
-      gap: 70px;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 60px;
       padding-bottom: 55px;
+      border-bottom: 1px solid var(--border);
     }
 
     .footer-logo {
-      width: 175px;
-      margin-bottom: 20px;
+      width: 155px;
+      margin-bottom: 22px;
     }
 
     .footer-brand p {
-      color: #777;
+      max-width: 350px;
+      color: var(--gray);
       font-size: 13px;
       line-height: 1.8;
-      max-width: 390px;
     }
 
-    .footer-heading {
-      color: white;
-      font-size: 11px;
-      font-weight: 800;
+    .footer-col h4 {
+      font-size: 10px;
+      color: var(--blue);
+      letter-spacing: .2em;
       text-transform: uppercase;
-      letter-spacing: 1.3px;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
-    .footer-links a {
+    .footer-col a,
+    .footer-col p {
       display: block;
-      color: #777;
+      color: #aaa;
       font-size: 13px;
-      margin-bottom: 11px;
-      transition: 0.2s ease;
+      margin-bottom: 12px;
+      transition: .3s ease;
     }
 
-    .footer-links a:hover {
-      color: var(--blue-light);
-    }
-
-    .footer-phone {
-      font-size: 19px !important;
-      font-weight: 800;
-      color: white !important;
+    .footer-col a:hover {
+      color: white;
+      transform: translateX(3px);
     }
 
     .footer-bottom {
-      padding-top: 22px;
-      border-top: 1px solid var(--line);
+      padding-top: 25px;
       display: flex;
       justify-content: space-between;
       gap: 20px;
       color: #555;
       font-size: 10px;
+      letter-spacing: .08em;
       text-transform: uppercase;
-      letter-spacing: 0.7px;
     }
 
     /* =========================
        RESPONSIVE
     ========================= */
 
-    @media (max-width: 950px) {
-
-      .nav-links {
-        gap: 16px;
-      }
-
-      .hero h1 {
-        font-size: clamp(54px,10vw,90px);
-      }
-
-      .why-grid,
-      .quote-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .why-image {
-        max-width: 700px;
-      }
-
-      .services-grid {
-        grid-template-columns: repeat(2,1fr);
-      }
-
-      .process-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .process-card {
-        border-right: 0;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .cta-inner {
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-      }
-
-      .footer-main {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 760px) {
-
-      .navbar {
-        height: 72px;
-      }
-
-      .logo {
-        width: 155px;
+    @media (max-width: 1000px) {
+      .nav-links,
+      .nav-phone,
+      .nav-button {
+        display: none;
       }
 
       .menu-btn {
         display: block;
       }
 
-      .nav-links {
-        display: none;
+      .nav-links.mobile-open {
         position: absolute;
-        top: 72px;
-        left: 0;
-        right: 0;
-        padding: 20px;
-        background: rgba(5,5,5,0.98);
-        flex-direction: column;
-        align-items: stretch;
-        gap: 4px;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .nav-links.active {
+        top: 75px;
+        left: 20px;
+        right: 20px;
         display: flex;
-      }
-
-      .nav-links a {
-        padding: 13px 8px;
-      }
-
-      .nav-cta {
-        text-align: center;
-      }
-
-      .hero {
-        min-height: 850px;
-        padding: 120px 0 60px;
-        align-items: flex-end;
-      }
-
-      .hero-bg img {
-        object-position: 62% center;
-      }
-
-      .hero-overlay {
-        background:
-          linear-gradient(
-            90deg,
-            rgba(0,0,0,0.82),
-            rgba(0,0,0,0.38)
-          ),
-          linear-gradient(
-            0deg,
-            rgba(0,0,0,0.96),
-            transparent 60%
-          );
-      }
-
-      .hero h1 {
-        font-size: clamp(50px,14vw,75px);
-        letter-spacing: -3px;
-      }
-
-      .hero-description {
-        font-size: 14px;
-      }
-
-      .hero-actions {
         flex-direction: column;
         align-items: stretch;
+        gap: 0;
+        padding: 10px 20px;
+        background: rgba(8,9,10,.96);
+        backdrop-filter: blur(15px);
+        border: 1px solid var(--border);
       }
 
-      .btn {
-        width: 100%;
+      .nav-links.mobile-open a {
+        padding: 16px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links.mobile-open a:last-child {
+        border-bottom: 0;
       }
 
       .intro-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .intro-item:nth-child(2) {
@@ -1002,31 +1177,112 @@
       }
 
       .intro-item:nth-child(-n+2) {
-        border-bottom: 1px solid var(--line);
+        border-bottom: 1px solid rgba(255,255,255,.25);
       }
 
-      section {
-        padding: 85px 0;
+      .why-grid,
+      .quote-grid {
+        grid-template-columns: 1fr;
+        gap: 55px;
       }
 
-      .section-top {
-        display: block;
-        margin-bottom: 40px;
+      .why-image {
+        max-width: 650px;
       }
 
-      .section-title h2 {
-        font-size: clamp(42px,12vw,65px);
-        letter-spacing: -3px;
-        margin-bottom: 25px;
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      .why-image img {
-        height: 420px;
+      .cta-inner {
+        align-items: flex-start;
+        flex-direction: column;
       }
 
-      .why-image::after {
-        width: 90px;
-        height: 90px;
+      .cta-right {
+        text-align: left;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        width: min(100% - 28px, var(--container));
+      }
+
+      .navbar {
+        padding: 15px 0;
+      }
+
+      .logo {
+        width: 125px;
+      }
+
+      .hero {
+        min-height: 850px;
+      }
+
+      .hero-bg img {
+        object-position: 60% center;
+      }
+
+      .hero-overlay {
+        background:
+          linear-gradient(90deg, rgba(0,0,0,.94), rgba(0,0,0,.45)),
+          linear-gradient(0deg, rgba(0,0,0,.9), transparent);
+      }
+
+      .hero::after {
+        display: none;
+      }
+
+      .hero-content {
+        padding-top: 80px;
+      }
+
+      .hero h1 {
+        font-size: clamp(62px, 18vw, 100px);
+        letter-spacing: .01em;
+      }
+
+      .hero-description {
+        font-size: 14px;
+        max-width: 430px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        max-width: 310px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .scroll-indicator {
+        display: none;
+      }
+
+      .section {
+        padding: 80px 0;
+      }
+
+      .intro-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .intro-item,
+      .intro-item:nth-child(2) {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255,255,255,.2);
+      }
+
+      .intro-item:last-child {
+        border-bottom: 0;
       }
 
       .services-grid {
@@ -1034,57 +1290,67 @@
       }
 
       .service-card {
-        min-height: 245px;
+        min-height: 240px;
       }
 
-      .service-number {
-        margin-bottom: 55px;
-      }
-
-      .gallery-grid {
+      .gallery {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-auto-rows: 220px;
       }
 
       .gallery-item:nth-child(1),
       .gallery-item:nth-child(2),
       .gallery-item:nth-child(3),
-      .gallery-item:nth-child(4) {
-        grid-column: auto;
-        grid-row: auto;
-        height: auto;
+      .gallery-item:nth-child(4),
+      .gallery-item:nth-child(5) {
+        grid-column: span 1;
+        grid-row: span 1;
       }
 
       .gallery-item:nth-child(1) {
         grid-column: span 2;
-        grid-row: span 2;
       }
 
-      .gallery-item:nth-child(4) {
-        grid-column: span 2;
+      .gallery-item img {
+        min-height: 220px;
       }
 
-      .cta-inner {
-        min-height: 430px;
+      .gallery-overlay {
+        opacity: 1;
       }
 
-      .cta h2 {
-        font-size: clamp(43px,12vw,65px);
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-step {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .process-step:last-child {
+        border-bottom: 0;
+      }
+
+      .cta {
+        padding: 75px 0;
+      }
+
+      .cta::before {
+        font-size: 120px;
       }
 
       .quote-form {
         grid-template-columns: 1fr;
       }
 
-      .form-group.full,
-      .quote-form button {
+      .field-full {
         grid-column: auto;
       }
 
-      .footer-main {
+      .footer-top {
         grid-template-columns: 1fr;
-        gap: 38px;
+        gap: 40px;
       }
 
       .footer-bottom {
@@ -1092,879 +1358,565 @@
       }
     }
 
-    @media (max-width: 480px) {
+    /* =========================
+       REDUCED MOTION
+    ========================= */
 
-      .container {
-        width: 90%;
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
       }
 
-      .hero {
-        min-height: 780px;
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
       }
 
-      .hero h1 {
-        font-size: 51px;
-      }
-
-      .intro-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .intro-item {
-        border-right: 0 !important;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .intro-item:last-child {
-        border-bottom: 0;
-      }
-
-      .gallery-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .gallery-item:nth-child(1),
-      .gallery-item:nth-child(4) {
-        grid-column: auto;
-      }
-
-      .gallery-item:nth-child(1) {
-        grid-row: span 1;
-      }
-
-      .gallery-item {
-        height: 330px !important;
+      .reveal {
+        opacity: 1;
+        transform: none;
       }
     }
-
   </style>
 </head>
 
 <body>
 
-  <!-- =========================
-       NAVBAR
-  ========================== -->
+  <!-- PRELOADER -->
+  <div class="loader">
+    <div class="loader-inner">
+      <img src="images/logo.webp" alt="Your Mobile Detailers" class="loader-logo">
+      <div class="loader-line"></div>
+    </div>
+  </div>
 
-  <header class="navbar">
-
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
     <div class="container nav-inner">
 
       <a href="#home" class="logo">
-        <img
-          src="images/logo.webp"
-          alt="Your Mobile Detailers"
-        >
+        <img src="images/logo.webp" alt="Your Mobile Detailers">
       </a>
 
-      <button
-        class="menu-btn"
-        id="menuBtn"
-        aria-label="Open menu"
-      >
-        ☰
-      </button>
-
       <nav class="nav-links" id="navLinks">
-
         <a href="#home">Home</a>
         <a href="#services">Services</a>
         <a href="#gallery">Gallery</a>
         <a href="#process">Process</a>
-
-        <a
-          href="tel:+13238804067"
-          class="nav-phone"
-        >
-          (323) 880-4067
-        </a>
-
-        <a href="#quote" class="nav-cta">
-          Book Now
-        </a>
-
+        <a href="#quote">Contact</a>
       </nav>
 
-    </div>
+      <a href="tel:+13238804067" class="nav-phone">
+        (323) 880-4067
+      </a>
 
+      <a href="#quote" class="nav-button">
+        Book Now
+      </a>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
   </header>
 
 
-  <!-- =========================
-       HERO
-  ========================== -->
+  <!-- HERO -->
+  <section class="hero" id="home">
 
-  <main>
+    <div class="hero-bg">
+      <img src="images/1.jpg" alt="Premium mobile car detailing">
+    </div>
 
-    <section class="hero" id="home">
+    <div class="hero-overlay"></div>
 
-      <div class="hero-bg">
-        <img
-          src="images/1.jpg"
-          alt="Premium car detailing"
-        >
-      </div>
+    <div class="container">
+      <div class="hero-content">
 
-      <div class="hero-overlay"></div>
+        <div class="eyebrow">
+          Houston • Mobile Detailing
+        </div>
 
-      <div class="container">
+        <h1>
+          DETAILING
+          <span>DONE RIGHT.</span>
+          AT YOUR DOOR.
+        </h1>
 
-        <div class="hero-content">
+        <p class="hero-description">
+          Professional mobile car detailing brought directly
+          to your home, workplace, or wherever your vehicle
+          is parked.
+        </p>
 
-          <div class="eyebrow">
-            Premium Mobile Detailing
-          </div>
-
-          <h1>
-            DETAILING
-            <span>DONE RIGHT.</span>
-            AT YOUR DOOR.
-          </h1>
-
-          <p class="hero-description">
-            Professional mobile car detailing brought directly
-            to your home, workplace, or wherever your vehicle
-            is parked.
-          </p>
-
-          <div class="hero-actions">
-
-            <a
-              href="#quote"
-              class="btn btn-primary"
-            >
-              Book A Detail
-            </a>
-
-            <a
-              href="#services"
-              class="btn btn-outline"
-            >
-              Explore Services
-            </a>
-
-          </div>
-
-          <a
-            href="tel:+13238804067"
-            class="hero-phone"
-          >
-            <span>CALL</span>
-            (323) 880-4067
+        <div class="hero-actions">
+          <a href="#quote" class="btn btn-primary">
+            Book A Detail
           </a>
 
+          <a href="#services" class="btn btn-outline">
+            Explore Services
+          </a>
         </div>
+
+        <a href="tel:+13238804067" class="hero-phone">
+          <span>CALL</span>
+          (323) 880-4067
+        </a>
 
       </div>
+    </div>
 
-    </section>
+    <div class="scroll-indicator">
+      Scroll
+    </div>
+
+  </section>
 
 
-    <!-- =========================
-         INTRO STRIP
-    ========================== -->
+  <!-- INTRO STRIP -->
+  <section class="intro-strip">
+    <div class="container intro-grid">
 
-    <div class="intro-strip">
+      <div class="intro-item">
+        <div class="intro-number">01</div>
+        <strong>Mobile Service</strong>
+      </div>
 
-      <div class="container intro-grid">
+      <div class="intro-item">
+        <div class="intro-number">02</div>
+        <strong>Premium Finish</strong>
+      </div>
 
-        <div class="intro-item">
-          <div class="intro-number">01</div>
-          <strong>Mobile Service</strong>
-          <span>We come to you</span>
+      <div class="intro-item">
+        <div class="intro-number">03</div>
+        <strong>Professional</strong>
+      </div>
+
+      <div class="intro-item">
+        <div class="intro-number">04</div>
+        <strong>Easy Booking</strong>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- WHY -->
+  <section class="section section-light" id="about">
+
+    <div class="container">
+
+      <div class="why-grid">
+
+        <div class="why-image reveal">
+          <img src="images/2.jpg" alt="Mobile car detailing service">
         </div>
 
-        <div class="intro-item">
-          <div class="intro-number">02</div>
-          <strong>Premium Finish</strong>
-          <span>Attention to detail</span>
-        </div>
+        <div class="why-content reveal delay-1">
 
-        <div class="intro-item">
-          <div class="intro-number">03</div>
-          <strong>Professional</strong>
-          <span>Detail-focused service</span>
-        </div>
+          <div class="section-label">
+            Why Your Mobile Detailers
+          </div>
 
-        <div class="intro-item">
-          <div class="intro-number">04</div>
-          <strong>Easy Booking</strong>
-          <span>Simple scheduling</span>
+          <h3>
+            WE BRING THE
+            <span>DETAIL</span>
+            TO YOU.
+          </h3>
+
+          <p>
+            Your vehicle deserves more than a quick wash.
+            We make premium detailing convenient by bringing
+            professional vehicle care directly to you.
+          </p>
+
+          <div class="feature-list">
+
+            <div class="feature">
+              <strong>Mobile Convenience</strong>
+              <span>01</span>
+            </div>
+
+            <div class="feature">
+              <strong>Professional Service</strong>
+              <span>02</span>
+            </div>
+
+            <div class="feature">
+              <strong>Attention To Detail</strong>
+              <span>03</span>
+            </div>
+
+            <div class="feature">
+              <strong>Customer First</strong>
+              <span>04</span>
+            </div>
+
+          </div>
+
         </div>
 
       </div>
 
     </div>
 
+  </section>
 
-    <!-- =========================
-         WHY US
-    ========================== -->
 
-    <section class="why">
+  <!-- SERVICES -->
+  <section class="section section-dark" id="services">
 
-      <div class="container why-grid">
+    <div class="container">
 
-        <div class="why-image">
-
-          <img
-            src="images/2.jpg"
-            alt="Professional vehicle detailing"
-            loading="lazy"
-          >
-
+      <div class="section-head reveal">
+        <div class="section-label">
+          What We Do
         </div>
 
-        <div class="why-content">
-
-          <div class="eyebrow">
-            The Difference
-          </div>
-
-          <div class="section-title">
-            <h2>
-              Your car deserves better.
-            </h2>
-          </div>
-
-          <p class="section-copy">
-            Forget the waiting room. Forget driving across town.
-            Your Mobile Detailers brings professional detailing
-            directly to wherever your vehicle is.
-          </p>
-
-          <div class="why-points">
-
-            <div class="why-point">
-
-              <div class="why-point-number">
-                01
-              </div>
-
-              <div>
-                <h3>We Come To You</h3>
-
-                <p>
-                  Home, work, driveway or wherever your vehicle
-                  is parked.
-                </p>
-              </div>
-
-            </div>
-
-            <div class="why-point">
-
-              <div class="why-point-number">
-                02
-              </div>
-
-              <div>
-                <h3>Attention To Detail</h3>
-
-                <p>
-                  Every vehicle receives focused cleaning,
-                  finishing and presentation.
-                </p>
-              </div>
-
-            </div>
-
-            <div class="why-point">
-
-              <div class="why-point-number">
-                03
-              </div>
-
-              <div>
-                <h3>Built Around You</h3>
-
-                <p>
-                  A convenient detailing experience designed
-                  around your schedule.
-                </p>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         SERVICES
-    ========================== -->
-
-    <section class="services" id="services">
-
-      <div class="container">
-
-        <div class="section-top">
-
-          <div class="section-title">
-
-            <div class="eyebrow">
-              What We Do
-            </div>
-
-            <h2>
-              Services built around your vehicle.
-            </h2>
-
-          </div>
-
-          <p class="section-copy">
-            From interior refreshes to complete details,
-            choose the service your vehicle needs.
-          </p>
-
-        </div>
-
-
-        <div class="services-grid">
-
-          <div class="service-card">
-
-            <div class="service-number">
-              SERVICE 01
-            </div>
-
-            <div class="service-arrow">
-              ↗
-            </div>
-
-            <h3>
-              Interior Detailing
-            </h3>
-
-            <p>
-              Deep cleaning for seats, carpets, mats,
-              dashboards, panels and interior surfaces.
-            </p>
-
-          </div>
-
-
-          <div class="service-card">
-
-            <div class="service-number">
-              SERVICE 02
-            </div>
-
-            <div class="service-arrow">
-              ↗
-            </div>
-
-            <h3>
-              Exterior Detailing
-            </h3>
-
-            <p>
-              A thorough exterior wash and detail focused
-              on restoring a clean, refreshed appearance.
-            </p>
-
-          </div>
-
-
-          <div class="service-card">
-
-            <div class="service-number">
-              SERVICE 03
-            </div>
-
-            <div class="service-arrow">
-              ↗
-            </div>
-
-            <h3>
-              Full Detail
-            </h3>
-
-            <p>
-              Complete interior and exterior detailing
-              for the full vehicle treatment.
-            </p>
-
-          </div>
-
-
-          <div class="service-card">
-
-            <div class="service-number">
-              SERVICE 04
-            </div>
-
-            <div class="service-arrow">
-              ↗
-            </div>
-
-            <h3>
-              Paint Enhancement
-            </h3>
-
-            <p>
-              Improve exterior gloss and bring a cleaner,
-              sharper finish back to the paint.
-            </p>
-
-          </div>
-
-
-          <div class="service-card">
-
-            <div class="service-number">
-              SERVICE 05
-            </div>
-
-            <div class="service-arrow">
-              ↗
-            </div>
-
-            <h3>
-              Maintenance Detail
-            </h3>
-
-            <p>
-              Keep your vehicle looking its best with
-              regular detailing between deeper services.
-            </p>
-
-          </div>
-
-
-          <div class="service-card">
-
-            <div class="service-number">
-              SERVICE 06
-            </div>
-
-            <div class="service-arrow">
-              ↗
-            </div>
-
-            <h3>
-              Custom Request
-            </h3>
-
-            <p>
-              Have something specific in mind?
-              Contact us for a custom quote.
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         GALLERY
-    ========================== -->
-
-    <section class="gallery" id="gallery">
-
-      <div class="container">
-
-        <div class="section-top">
-
-          <div class="section-title">
-
-            <div class="eyebrow">
-              Selected Work
-            </div>
-
-            <h2>
-              Clean. Sharp. Detailed.
-            </h2>
-
-          </div>
-
-          <p class="section-copy">
-            A look at the level of finish we aim to deliver
-            on every vehicle.
-          </p>
-
-        </div>
-
-
-        <div class="gallery-grid">
-
-          <div class="gallery-item">
-
-            <img
-              src="images/3.jpg"
-              alt="Vehicle detailing work"
-              loading="lazy"
-            >
-
-          </div>
-
-
-          <div class="gallery-item">
-
-            <img
-              src="images/4.jpg"
-              alt="Professional car detailing"
-              loading="lazy"
-            >
-
-          </div>
-
-
-          <div class="gallery-item">
-
-            <img
-              src="images/5.jpg"
-              alt="Detailed vehicle finish"
-              loading="lazy"
-            >
-
-          </div>
-
-
-          <div class="gallery-item">
-
-            <img
-              src="images/6.jpg"
-              alt="Mobile detailing service"
-              loading="lazy"
-            >
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         PROCESS
-    ========================== -->
-
-    <section class="process" id="process">
-
-      <div class="container">
-
-        <div class="section-top">
-
-          <div class="section-title">
-
-            <div class="eyebrow">
-              The Process
-            </div>
-
-            <h2>
-              Simple from start to finish.
-            </h2>
-
-          </div>
-
-          <p class="section-copy">
-            Tell us what your vehicle needs, choose a time,
-            and we'll take care of the rest.
-          </p>
-
-        </div>
-
-
-        <div class="process-grid">
-
-          <div class="process-card">
-
-            <div class="process-number">
-              STEP 01
-            </div>
-
-            <h3>
-              Request
-            </h3>
-
-            <p>
-              Tell us about your vehicle and the detailing
-              service you're looking for.
-            </p>
-
-          </div>
-
-
-          <div class="process-card">
-
-            <div class="process-number">
-              STEP 02
-            </div>
-
-            <h3>
-              Schedule
-            </h3>
-
-            <p>
-              Choose a convenient appointment time that
-              works around your schedule.
-            </p>
-
-          </div>
-
-
-          <div class="process-card">
-
-            <div class="process-number">
-              STEP 03
-            </div>
-
-            <h3>
-              We Detail
-            </h3>
-
-            <p>
-              We bring the detailing service directly
-              to your location.
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         CTA
-    ========================== -->
-
-    <section class="cta">
-
-      <div class="container cta-inner">
-
-        <h2>
-          Ready to give your car the treatment it deserves?
+        <h2 class="section-title">
+          BUILT FOR YOUR
+          <span>VEHICLE.</span>
         </h2>
 
-        <div class="cta-actions">
+        <p class="section-description">
+          From routine maintenance to a full interior and exterior
+          refresh, choose the service your vehicle needs.
+        </p>
+      </div>
 
-          <a
-            href="#quote"
-            class="btn"
-          >
-            Book A Detail
-          </a>
+      <div class="services-grid">
 
-          <a
-            href="tel:+13238804067"
-            class="cta-phone"
-          >
-            (323) 880-4067
-          </a>
+        <article class="service-card reveal">
+          <div class="service-number">01</div>
+          <h3>Exterior Detail</h3>
+          <p>
+            Thorough exterior cleaning designed to restore
+            the appearance and finish of your vehicle.
+          </p>
+          <div class="service-arrow">→</div>
+        </article>
 
+        <article class="service-card reveal delay-1">
+          <div class="service-number">02</div>
+          <h3>Interior Detail</h3>
+          <p>
+            Deep interior cleaning for seats, carpets,
+            surfaces, panels and high-touch areas.
+          </p>
+          <div class="service-arrow">→</div>
+        </article>
+
+        <article class="service-card reveal delay-2">
+          <div class="service-number">03</div>
+          <h3>Full Detail</h3>
+          <p>
+            A complete interior and exterior treatment
+            for vehicles that need the full reset.
+          </p>
+          <div class="service-arrow">→</div>
+        </article>
+
+        <article class="service-card reveal">
+          <div class="service-number">04</div>
+          <h3>Paint Care</h3>
+          <p>
+            Careful washing and finishing focused on
+            maintaining a clean, glossy exterior.
+          </p>
+          <div class="service-arrow">→</div>
+        </article>
+
+        <article class="service-card reveal delay-1">
+          <div class="service-number">05</div>
+          <h3>Maintenance</h3>
+          <p>
+            Keep your vehicle looking its best with
+            convenient recurring detailing service.
+          </p>
+          <div class="service-arrow">→</div>
+        </article>
+
+        <article class="service-card reveal delay-2">
+          <div class="service-number">06</div>
+          <h3>Custom Service</h3>
+          <p>
+            Need something specific? Tell us what your
+            vehicle needs and we'll help arrange it.
+          </p>
+          <div class="service-arrow">→</div>
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- GALLERY -->
+  <section class="section section-dark" id="gallery">
+
+    <div class="container">
+
+      <div class="section-head reveal">
+        <div class="section-label">
+          Our Work
+        </div>
+
+        <h2 class="section-title">
+          THE DETAIL
+          <span>MAKES</span>
+          THE DIFFERENCE.
+        </h2>
+      </div>
+
+      <div class="gallery">
+
+        <div class="gallery-item reveal">
+          <img src="images/3.jpg" alt="Car detailing result">
+          <div class="gallery-overlay">
+            <span>Exterior Finish</span>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal delay-1">
+          <img src="images/4.jpg" alt="Professional car detailing">
+          <div class="gallery-overlay">
+            <span>Premium Detail</span>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal delay-2">
+          <img src="images/5.jpg" alt="Detailed vehicle">
+          <div class="gallery-overlay">
+            <span>Vehicle Care</span>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal">
+          <img src="images/6.jpg" alt="Mobile detailing">
+          <div class="gallery-overlay">
+            <span>Mobile Service</span>
+          </div>
         </div>
 
       </div>
 
-    </section>
+    </div>
+
+  </section>
 
 
-    <!-- =========================
-         QUOTE
-    ========================== -->
+  <!-- PROCESS -->
+  <section class="section process" id="process">
 
-    <section class="quote" id="quote">
+    <div class="container">
 
-      <div class="container quote-grid">
+      <div class="section-head reveal">
+        <div class="section-label">
+          Simple Process
+        </div>
 
-        <div class="quote-title">
+        <h2 class="section-title">
+          THREE STEPS.
+          <span>ZERO HASSLE.</span>
+        </h2>
+      </div>
 
-          <div class="eyebrow">
+      <div class="process-grid">
+
+        <div class="process-step reveal">
+          <div class="process-step-number">01</div>
+          <h3>Request</h3>
+          <p>
+            Tell us about your vehicle and the detailing
+            service you're looking for.
+          </p>
+        </div>
+
+        <div class="process-step reveal delay-1">
+          <div class="process-step-number">02</div>
+          <h3>Schedule</h3>
+          <p>
+            Choose a convenient time and location for
+            your mobile detailing service.
+          </p>
+        </div>
+
+        <div class="process-step reveal delay-2">
+          <div class="process-step-number">03</div>
+          <h3>Relax</h3>
+          <p>
+            Our detailing team comes to you and takes
+            care of the vehicle while you get on with your day.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CTA -->
+  <section class="cta">
+
+    <div class="container cta-inner">
+
+      <div class="reveal">
+        <div class="section-label" style="color:white;">
+          Ready When You Are
+        </div>
+
+        <h2>
+          YOUR CAR.
+          <br>
+          YOUR PLACE.
+          <br>
+          OUR <span>DETAIL.</span>
+        </h2>
+
+        <p>
+          Professional mobile detailing brought directly
+          to your location in Houston.
+        </p>
+      </div>
+
+      <div class="cta-right reveal delay-1">
+
+        <a href="#quote" class="cta-button">
+          Request A Quote
+        </a>
+
+        <a href="tel:+13238804067" class="cta-phone">
+          (323) 880-4067
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- QUOTE -->
+  <section class="section section-dark" id="quote">
+
+    <div class="container">
+
+      <div class="quote-grid">
+
+        <div class="quote-info reveal">
+
+          <div class="section-label">
             Get Started
           </div>
 
           <h2>
-            Let's get your car looking right.
+            LET'S GET
+            YOUR CAR
+            <span>LOOKING RIGHT.</span>
           </h2>
 
           <p>
-            Send us a few details about your vehicle and
-            the service you're interested in.
+            Fill out the form and tell us what your vehicle needs.
+            We'll use your information to help arrange the right
+            detailing service.
           </p>
 
-          <div class="quote-contact">
-
-            <span>
-              Call Us
-            </span>
-
-            <a href="tel:+13238804067">
+          <p>
+            Prefer to talk? Call
+            <a href="tel:+13238804067" style="color:white;font-weight:700;">
               (323) 880-4067
             </a>
-
-          </div>
-
-          <div class="quote-contact">
-
-            <span>
-              Service Area
-            </span>
-
-            <strong>
-              Houston, Texas
-            </strong>
-
-          </div>
+          </p>
 
         </div>
 
 
-        <form
-          class="quote-form"
-          id="quoteForm"
-        >
+        <form class="quote-form reveal delay-1" id="quoteForm">
 
-          <div class="form-group">
-
-            <label for="name">
-              Name
-            </label>
-
+          <div class="field">
             <input
               type="text"
-              id="name"
               name="name"
-              placeholder="Your name"
+              placeholder="Your Name"
               required
             >
-
           </div>
 
-
-          <div class="form-group">
-
-            <label for="phone">
-              Phone
-            </label>
-
+          <div class="field">
             <input
               type="tel"
-              id="phone"
               name="phone"
-              placeholder="Your phone number"
+              placeholder="Phone Number"
               required
             >
-
           </div>
 
+          <div class="field">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+            >
+          </div>
 
-          <div class="form-group">
-
-            <label for="vehicle">
-              Vehicle
-            </label>
-
+          <div class="field">
             <input
               type="text"
-              id="vehicle"
               name="vehicle"
-              placeholder="Year, make & model"
+              placeholder="Vehicle — e.g. 2022 BMW X5"
               required
             >
-
           </div>
 
-
-          <div class="form-group">
-
-            <label for="service">
-              Service
-            </label>
-
-            <select
-              id="service"
-              name="service"
-              required
-            >
-
-              <option value="">
-                Select a service
-              </option>
-
-              <option>
-                Interior Detailing
-              </option>
-
-              <option>
-                Exterior Detailing
-              </option>
-
-              <option>
-                Full Detail
-              </option>
-
-              <option>
-                Paint Enhancement
-              </option>
-
-              <option>
-                Maintenance Detail
-              </option>
-
-              <option>
-                Custom Request
-              </option>
-
+          <div class="field field-full">
+            <select name="service" required>
+              <option value="">Select Service</option>
+              <option value="Exterior Detail">Exterior Detail</option>
+              <option value="Interior Detail">Interior Detail</option>
+              <option value="Full Detail">Full Detail</option>
+              <option value="Paint Care">Paint Care</option>
+              <option value="Maintenance">Maintenance</option>
+              <option value="Custom Service">Custom Service</option>
             </select>
-
           </div>
 
-
-          <div class="form-group full">
-
-            <label for="message">
-              Additional Details
-            </label>
-
+          <div class="field field-full">
             <textarea
-              id="message"
               name="message"
-              placeholder="Tell us anything else about your vehicle or service needs."
+              placeholder="Tell us anything else about your vehicle..."
             ></textarea>
-
           </div>
 
-
-          <button
-            type="submit"
-            class="btn btn-primary"
-          >
-            Request My Quote
+          <button type="submit" class="quote-submit field-full">
+            Request A Quote
           </button>
 
         </form>
 
       </div>
 
-    </section>
+    </div>
 
-  </main>
+  </section>
 
 
-  <!-- =========================
-       FOOTER
-  ========================== -->
-
+  <!-- FOOTER -->
   <footer>
 
     <div class="container">
 
-      <div class="footer-main">
+      <div class="footer-top">
 
         <div class="footer-brand">
 
@@ -1975,52 +1927,46 @@
           >
 
           <p>
-            Premium mobile car detailing designed around
-            your schedule. We bring the detail to you.
+            Premium mobile car detailing brought directly
+            to your home, workplace, or wherever your vehicle
+            is parked.
           </p>
 
         </div>
 
 
-        <div>
+        <div class="footer-col">
 
-          <div class="footer-heading">
-            Navigation
-          </div>
+          <h4>Navigation</h4>
 
-          <div class="footer-links">
-
-            <a href="#home">Home</a>
-            <a href="#services">Services</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#process">Process</a>
-            <a href="#quote">Book Now</a>
-
-          </div>
+          <a href="#home">Home</a>
+          <a href="#services">Services</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#process">Process</a>
+          <a href="#quote">Contact</a>
 
         </div>
 
 
-        <div>
+        <div class="footer-col">
 
-          <div class="footer-heading">
-            Contact
-          </div>
+          <h4>Contact</h4>
 
-          <div class="footer-links">
+          <a href="tel:+13238804067">
+            (323) 880-4067
+          </a>
 
-            <a
-              href="tel:+13238804067"
-              class="footer-phone"
-            >
-              (323) 880-4067
-            </a>
+          <p>
+            Houston, Texas
+          </p>
 
-            <a href="#quote">
-              Houston, Texas
-            </a>
+          <p>
+            Mobile Service
+          </p>
 
-          </div>
+          <p>
+            By Appointment
+          </p>
 
         </div>
 
@@ -2044,64 +1990,103 @@
   </footer>
 
 
-  <!-- =========================
-       JAVASCRIPT
-  ========================== -->
-
+  <!-- JAVASCRIPT -->
   <script>
 
-    const menuBtn =
-      document.getElementById("menuBtn");
+    /* =========================
+       NAVBAR SCROLL EFFECT
+    ========================= */
 
-    const navLinks =
-      document.getElementById("navLinks");
+    const navbar = document.getElementById("navbar");
 
+    function handleNavbar() {
+      if (window.scrollY > 40) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    }
+
+    window.addEventListener("scroll", handleNavbar);
+    handleNavbar();
+
+
+    /* =========================
+       MOBILE MENU
+    ========================= */
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
 
     menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("mobile-open");
+    });
 
-      navLinks.classList.toggle("active");
-
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("mobile-open");
+      });
     });
 
 
-    document
-      .querySelectorAll(".nav-links a")
-      .forEach(link => {
+    /* =========================
+       SCROLL REVEAL
+    ========================= */
 
-        link.addEventListener("click", () => {
+    const revealElements = document.querySelectorAll(".reveal");
 
-          navLinks.classList.remove("active");
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+
+        entries.forEach(entry => {
+
+          if (entry.isIntersecting) {
+
+            entry.target.classList.add("is-visible");
+
+            observer.unobserve(entry.target);
+
+          }
 
         });
 
-      });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -40px 0px"
+      }
+    );
+
+    revealElements.forEach(element => {
+      revealObserver.observe(element);
+    });
 
 
-    const quoteForm =
-      document.getElementById("quoteForm");
+    /* =========================
+       QUOTE FORM
+    ========================= */
 
+    const quoteForm = document.getElementById("quoteForm");
 
     quoteForm.addEventListener("submit", function(event) {
 
       event.preventDefault();
 
-      const button =
-        quoteForm.querySelector("button");
+      const button = quoteForm.querySelector(".quote-submit");
 
-      button.textContent =
-        "REQUEST SUBMITTED";
+      button.textContent = "REQUEST RECEIVED ✓";
 
-      button.style.background =
-        "#1683ff";
+      button.style.background = "#ffffff";
+      button.style.color = "#050607";
 
       setTimeout(() => {
 
-        button.textContent =
-          "Request My Quote";
+        button.textContent = "Request A Quote";
 
         button.style.background = "";
+        button.style.color = "";
 
-      }, 3000);
+      }, 3500);
 
     });
 
