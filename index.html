@@ -1,1964 +1,1671 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Your Mobile Detailers | Houston</title>
-
-  <meta
-    name="description"
-    content="Your Mobile Detailers — premium mobile car detailing in Houston, Texas."
-  >
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <style>
-
-    /* =========================================================
-       CORE
-    ========================================================= */
-
-    :root {
-      --bg: #020407;
-      --bg2: #05080d;
-      --panel: rgba(8, 13, 20, .72);
-      --blue: #1494ff;
-      --blue2: #00c8ff;
-      --white: #f5f9ff;
-      --muted: #7f8b99;
-      --line: rgba(20,148,255,.22);
-      --green: #00ff9d;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--white);
-      font-family: Inter, sans-serif;
-      overflow-x: hidden;
-      cursor: default;
-    }
-
-    body::selection {
-      background: var(--blue);
-      color: white;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      width: 100%;
-      display: block;
-    }
-
-    button,
-    input,
-    select,
-    textarea {
-      font-family: inherit;
-    }
-
-    /* =========================================================
-       BACKGROUND FX
-    ========================================================= */
-
-    .noise {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 9990;
-      opacity: .035;
-      background-image:
-        radial-gradient(circle at 20% 20%, white 0 1px, transparent 1px),
-        radial-gradient(circle at 80% 70%, white 0 1px, transparent 1px);
-      background-size: 5px 5px, 7px 7px;
-    }
-
-    .grid-bg {
-      position: fixed;
-      inset: 0;
-      z-index: -4;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(20,148,255,.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(20,148,255,.045) 1px, transparent 1px);
-      background-size: 70px 70px;
-      mask-image: linear-gradient(to bottom, black, transparent 90%);
-    }
-
-    .glow {
-      position: fixed;
-      width: 500px;
-      height: 500px;
-      border-radius: 50%;
-      background: radial-gradient(
-        circle,
-        rgba(20,148,255,.11),
-        transparent 68%
-      );
-      pointer-events: none;
-      z-index: -3;
-      transform: translate(-50%, -50%);
-    }
-
-    /* =========================================================
-       LOADER
-    ========================================================= */
-
-    .loader {
-      position: fixed;
-      inset: 0;
-      z-index: 10000;
-      background: #010204;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      animation: loaderHide 1s ease 2s forwards;
-      pointer-events: none;
-    }
-
-    .loader-box {
-      width: 300px;
-      text-align: center;
-    }
-
-    .loader-logo {
-      width: 150px;
-      margin: 0 auto 25px;
-    }
-
-    .loader-system {
-      font-size: 9px;
-      color: var(--blue);
-      letter-spacing: .3em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .loader-bar {
-      height: 2px;
-      background: rgba(255,255,255,.1);
-      overflow: hidden;
-    }
-
-    .loader-bar span {
-      display: block;
-      width: 0;
-      height: 100%;
-      background: linear-gradient(90deg, var(--blue), var(--blue2));
-      animation: loadBar 1.7s ease forwards;
-      box-shadow: 0 0 15px var(--blue);
-    }
-
-    @keyframes loadBar {
-      to {
-        width: 100%;
-      }
-    }
-
-    @keyframes loaderHide {
-      to {
-        opacity: 0;
-        visibility: hidden;
-      }
-    }
-
-    /* =========================================================
-       NAV
-    ========================================================= */
-
-    .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 900;
-      border-bottom: 1px solid transparent;
-      transition: .35s ease;
-    }
-
-    .nav.scrolled {
-      background: rgba(2,4,7,.78);
-      backdrop-filter: blur(20px);
-      border-color: var(--line);
-      box-shadow: 0 10px 50px rgba(0,0,0,.35);
-    }
-
-    .nav-inner {
-      max-width: 1400px;
-      width: calc(100% - 50px);
-      margin: auto;
-      height: 82px;
-      display: flex;
-      align-items: center;
-      gap: 35px;
-    }
-
-    .logo {
-      width: 145px;
-      flex-shrink: 0;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      margin-left: auto;
-    }
-
-    .nav-links a {
-      position: relative;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: .16em;
-      color: #aeb8c4;
-      text-transform: uppercase;
-      transition: .25s;
-    }
-
-    .nav-links a:hover {
-      color: white;
-      text-shadow: 0 0 12px rgba(20,148,255,.7);
-    }
-
-    .nav-links a::before {
-      content: "//";
-      position: absolute;
-      left: -15px;
-      opacity: 0;
-      color: var(--blue);
-      transition: .25s;
-    }
-
-    .nav-links a:hover::before {
-      opacity: 1;
-    }
-
-    .nav-call {
-      font-size: 11px;
-      font-weight: 800;
-      color: var(--blue2);
-      white-space: nowrap;
-    }
-
-    .nav-book {
-      border: 1px solid var(--blue);
-      padding: 13px 19px;
-      font-size: 9px;
-      font-weight: 900;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      transition: .3s;
-      box-shadow: inset 0 0 0 rgba(20,148,255,0);
-    }
-
-    .nav-book:hover {
-      background: var(--blue);
-      box-shadow:
-        0 0 15px rgba(20,148,255,.45),
-        inset 0 0 20px rgba(255,255,255,.08);
-    }
-
-    .menu {
-      display: none;
-      margin-left: auto;
-      background: transparent;
-      border: 0;
-      cursor: pointer;
-    }
-
-    .menu span {
-      display: block;
-      width: 25px;
-      height: 2px;
-      background: white;
-      margin: 5px;
-    }
-
-    /* =========================================================
-       HUD ELEMENTS
-    ========================================================= */
-
-    .hud {
-      position: absolute;
-      z-index: 5;
-      color: rgba(255,255,255,.42);
-      font-size: 8px;
-      font-weight: 800;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-    }
-
-    .hud-top {
-      top: 105px;
-      right: 35px;
-    }
-
-    .hud-bottom {
-      bottom: 35px;
-      left: 35px;
-    }
-
-    .hud-line {
-      width: 55px;
-      height: 1px;
-      background: var(--blue);
-      display: inline-block;
-      vertical-align: middle;
-      margin-right: 10px;
-      box-shadow: 0 0 10px var(--blue);
-    }
-
-    /* =========================================================
-       HERO
-    ========================================================= */
-
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      background: #020406;
-    }
-
-    .hero-image {
-      position: absolute;
-      inset: 0;
-    }
-
-    .hero-image img {
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      filter: saturate(.9) contrast(1.1);
-      transform: scale(1.12);
-      animation: heroZoom 10s cubic-bezier(.2,.7,.2,1) forwards;
-    }
-
-    @keyframes heroZoom {
-      to {
-        transform: scale(1);
-      }
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background:
-        linear-gradient(
-          90deg,
-          rgba(1,3,5,.97) 0%,
-          rgba(1,3,5,.83) 38%,
-          rgba(1,3,5,.38) 72%,
-          rgba(1,3,5,.75) 100%
-        ),
-        linear-gradient(
-          0deg,
-          rgba(1,3,5,.92),
-          transparent 55%
-        );
-    }
-
-    .scan {
-      position: absolute;
-      z-index: 3;
-      left: 0;
-      right: 0;
-      top: -10%;
-      height: 1px;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(0,200,255,.7),
-        transparent
-      );
-      box-shadow: 0 0 18px rgba(0,200,255,.7);
-      animation: scan 5s linear infinite;
-      pointer-events: none;
-    }
-
-    @keyframes scan {
-      from {
-        top: -10%;
-      }
-      to {
-        top: 110%;
-      }
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 4;
-      width: min(1400px, calc(100% - 50px));
-      margin: auto;
-      padding-top: 90px;
-    }
-
-    .hero-status {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 22px;
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: .2em;
-      color: var(--blue2);
-      text-transform: uppercase;
-      opacity: 0;
-      animation: enter .8s ease .3s forwards;
-    }
-
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 15px var(--green);
-      animation: pulse 1.4s infinite;
-    }
-
-    @keyframes pulse {
-      50% {
-        opacity: .3;
-        transform: scale(.7);
-      }
-    }
-
-    .hero h1 {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: clamp(85px, 12vw, 180px);
-      line-height: .76;
-      letter-spacing: .02em;
-      font-weight: 400;
-      max-width: 1050px;
-      text-transform: uppercase;
-      opacity: 0;
-      animation: enter 1s cubic-bezier(.2,.8,.2,1) .45s forwards;
-    }
-
-    .hero h1 .blue {
-      color: var(--blue);
-      text-shadow:
-        0 0 15px rgba(20,148,255,.4),
-        0 0 50px rgba(20,148,255,.15);
-    }
-
-    .hero-sub {
-      max-width: 520px;
-      margin-top: 30px;
-      color: #aab3be;
-      font-size: 14px;
-      line-height: 1.8;
-      opacity: 0;
-      animation: enter .8s ease .7s forwards;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-      margin-top: 32px;
-      opacity: 0;
-      animation: enter .8s ease .85s forwards;
-    }
-
-    .btn {
-      min-height: 55px;
-      padding: 0 27px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 9px;
-      font-weight: 900;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      transition: .35s;
-    }
-
-    .btn-blue {
-      background: var(--blue);
-      color: white;
-      box-shadow:
-        0 0 0 rgba(20,148,255,0),
-        inset 0 0 20px rgba(255,255,255,.06);
-    }
-
-    .btn-blue:hover {
-      transform: translateY(-4px);
-      background: var(--blue2);
-      box-shadow:
-        0 10px 35px rgba(20,148,255,.3),
-        0 0 25px rgba(20,148,255,.35);
-    }
-
-    .btn-ghost {
-      border: 1px solid rgba(255,255,255,.2);
-      background: rgba(255,255,255,.02);
-      backdrop-filter: blur(10px);
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--blue);
-      background: rgba(20,148,255,.08);
-      transform: translateY(-4px);
-    }
-
-    .hero-phone {
-      margin-top: 25px;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      color: #dbe4ee;
-      font-size: 11px;
-      font-weight: 700;
-      opacity: 0;
-      animation: enter .8s ease 1s forwards;
-    }
-
-    .hero-phone small {
-      color: var(--muted);
-      letter-spacing: .15em;
-      font-size: 8px;
-    }
-
-    @keyframes enter {
-      from {
-        opacity: 0;
-        transform: translateY(35px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* =========================================================
-       SYSTEM BAR
-    ========================================================= */
-
-    .system-bar {
-      position: relative;
-      z-index: 10;
-      background: rgba(3,7,11,.96);
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .system-grid {
-      width: min(1400px, calc(100% - 50px));
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(4,1fr);
-    }
-
-    .system-item {
-      padding: 25px;
-      border-right: 1px solid var(--line);
-    }
-
-    .system-item:last-child {
-      border-right: 0;
-    }
-
-    .system-label {
-      color: var(--muted);
-      font-size: 8px;
-      font-weight: 800;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      margin-bottom: 7px;
-    }
-
-    .system-value {
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    .system-value span {
-      color: var(--green);
-    }
-
-    /* =========================================================
-       SECTION
-    ========================================================= */
-
-    .section {
-      position: relative;
-      padding: 130px 0;
-      overflow: hidden;
-    }
-
-    .container {
-      width: min(1200px, calc(100% - 40px));
-      margin: auto;
-    }
-
-    .section-tag {
-      color: var(--blue);
-      font-size: 9px;
-      font-weight: 900;
-      letter-spacing: .25em;
-      text-transform: uppercase;
-      margin-bottom: 15px;
-    }
-
-    .section-title {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: clamp(65px, 9vw, 115px);
-      font-weight: 400;
-      line-height: .8;
-      letter-spacing: .02em;
-      text-transform: uppercase;
-    }
-
-    .section-title span {
-      color: var(--blue);
-    }
-
-    .section-copy {
-      max-width: 600px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.9;
-      margin-top: 25px;
-    }
-
-    /* =========================================================
-       WHY
-    ========================================================= */
-
-    .why {
-      background:
-        radial-gradient(
-          circle at 80% 30%,
-          rgba(20,148,255,.08),
-          transparent 30%
-        );
-    }
-
-    .why-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .image-frame {
-      position: relative;
-      padding: 12px;
-      border: 1px solid var(--line);
-      background: rgba(20,148,255,.025);
-    }
-
-    .image-frame::before,
-    .image-frame::after {
-      content: "";
-      position: absolute;
-      width: 50px;
-      height: 50px;
-      border-color: var(--blue);
-      border-style: solid;
-      z-index: 2;
-    }
-
-    .image-frame::before {
-      top: -1px;
-      left: -1px;
-      border-width: 2px 0 0 2px;
-    }
-
-    .image-frame::after {
-      right: -1px;
-      bottom: -1px;
-      border-width: 0 2px 2px 0;
-    }
-
-    .image-frame img {
-      aspect-ratio: 4/5;
-      object-fit: cover;
-      filter: saturate(.8);
-      transition: 1s;
-    }
-
-    .image-frame:hover img {
-      transform: scale(1.035);
-      filter: saturate(1);
-    }
-
-    .why-copy h3 {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: clamp(55px,6vw,85px);
-      line-height: .82;
-      font-weight: 400;
-      margin-bottom: 25px;
-    }
-
-    .why-copy h3 span {
-      color: var(--blue);
-    }
-
-    .why-copy p {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.9;
-      margin-bottom: 30px;
-    }
-
-    .feature {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 17px 0;
-      border-top: 1px solid rgba(255,255,255,.08);
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .feature-number {
-      color: var(--blue);
-    }
-
-    /* =========================================================
-       SERVICES HUD
-    ========================================================= */
-
-    .services {
-      background: #03070b;
-    }
-
-    .services-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 40px;
-      margin-bottom: 65px;
-    }
-
-    .services-counter {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 70px;
-      color: rgba(255,255,255,.08);
-      line-height: .7;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 12px;
-    }
-
-    .service {
-      position: relative;
-      min-height: 300px;
-      padding: 30px;
-      background:
-        linear-gradient(
-          145deg,
-          rgba(20,148,255,.08),
-          rgba(255,255,255,.015) 45%,
-          rgba(0,0,0,.3)
-        );
-      border: 1px solid rgba(20,148,255,.12);
-      overflow: hidden;
-      transition: .45s cubic-bezier(.2,.8,.2,1);
-    }
-
-    .service::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        var(--blue),
-        transparent
-      );
-      transform: translateX(-100%);
-      transition: .6s;
-    }
-
-    .service::after {
-      content: "";
-      position: absolute;
-      right: -60px;
-      bottom: -60px;
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      background: rgba(20,148,255,.08);
-      filter: blur(30px);
-      transition: .5s;
-    }
-
-    .service:hover {
-      transform: translateY(-8px);
-      border-color: rgba(20,148,255,.5);
-      box-shadow:
-        0 20px 60px rgba(0,0,0,.35),
-        0 0 30px rgba(20,148,255,.07);
-    }
-
-    .service:hover::before {
-      transform: translateX(100%);
-    }
-
-    .service:hover::after {
-      transform: scale(1.4);
-      background: rgba(20,148,255,.15);
-    }
-
-    .service-id {
-      color: var(--blue);
-      font-size: 9px;
-      font-weight: 900;
-      letter-spacing: .2em;
-    }
-
-    .service h3 {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 40px;
-      font-weight: 400;
-      margin-top: 45px;
-      letter-spacing: .03em;
-    }
-
-    .service p {
-      max-width: 300px;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.8;
-      margin-top: 10px;
-    }
-
-    .service-arrow {
-      position: absolute;
-      right: 25px;
-      bottom: 22px;
-      font-size: 25px;
-      color: rgba(255,255,255,.2);
-      transition: .35s;
-    }
-
-    .service:hover .service-arrow {
-      color: var(--blue);
-      transform: translate(5px,-5px);
-      text-shadow: 0 0 15px var(--blue);
-    }
-
-    /* =========================================================
-       GALLERY
-    ========================================================= */
-
-    .gallery-head {
-      margin-bottom: 55px;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(12,1fr);
-      gap: 10px;
-    }
-
-    .gallery-card {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,.08);
-      background: #030609;
-    }
-
-    .gallery-card:nth-child(1) {
-      grid-column: span 7;
-      grid-row: span 2;
-    }
-
-    .gallery-card:nth-child(2),
-    .gallery-card:nth-child(3) {
-      grid-column: span 5;
-    }
-
-    .gallery-card:nth-child(4) {
-      grid-column: span 6;
-    }
-
-    .gallery-card img {
-      height: 100%;
-      min-height: 280px;
-      object-fit: cover;
-      transition: transform 1s cubic-bezier(.2,.8,.2,1);
-      filter: saturate(.8);
-    }
-
-    .gallery-card:hover img {
-      transform: scale(1.08);
-      filter: saturate(1.15);
-    }
-
-    .gallery-ui {
-      position: absolute;
-      inset: 0;
-      padding: 20px;
-      pointer-events: none;
-    }
-
-    .gallery-ui::before {
-      content: "";
-      position: absolute;
-      inset: 15px;
-      border: 1px solid rgba(255,255,255,.18);
-      opacity: 0;
-      transition: .4s;
-    }
-
-    .gallery-card:hover .gallery-ui::before {
-      opacity: 1;
-    }
-
-    .gallery-number {
-      position: absolute;
-      top: 25px;
-      left: 25px;
-      font-size: 9px;
-      font-weight: 900;
-      letter-spacing: .15em;
-      color: white;
-    }
-
-    .gallery-label {
-      position: absolute;
-      bottom: 25px;
-      left: 25px;
-      font-size: 9px;
-      font-weight: 900;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-    }
-
-    /* =========================================================
-       PROCESS
-    ========================================================= */
-
-    .process {
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      background:
-        radial-gradient(
-          circle at 20% 50%,
-          rgba(20,148,255,.08),
-          transparent 25%
-        );
-    }
-
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      margin-top: 60px;
-      border: 1px solid var(--line);
-    }
-
-    .process-step {
-      min-height: 320px;
-      padding: 35px;
-      border-right: 1px solid var(--line);
-      position: relative;
-    }
-
-    .process-step:last-child {
-      border-right: 0;
-    }
-
-    .process-big {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 100px;
-      line-height: .7;
-      color: rgba(20,148,255,.13);
-      transition: .4s;
-    }
-
-    .process-step:hover .process-big {
-      color: rgba(20,148,255,.4);
-      text-shadow: 0 0 25px rgba(20,148,255,.15);
-    }
-
-    .process-step h3 {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 42px;
-      font-weight: 400;
-      margin-top: 55px;
-    }
-
-    .process-step p {
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.8;
-      margin-top: 10px;
-    }
-
-    /* =========================================================
-       CTA
-    ========================================================= */
-
-    .cta {
-      position: relative;
-      padding: 120px 0;
-      overflow: hidden;
-      background:
-        radial-gradient(
-          circle at 50% 100%,
-          rgba(0,200,255,.28),
-          transparent 40%
-        ),
-        #03101b;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .cta-grid {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 50px;
-      align-items: end;
-    }
-
-    .cta h2 {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: clamp(75px, 11vw, 145px);
-      line-height: .76;
-      font-weight: 400;
-    }
-
-    .cta h2 span {
-      color: var(--blue);
-      text-shadow: 0 0 25px rgba(20,148,255,.3);
-    }
-
-    .cta-copy {
-      color: #8998a8;
-      max-width: 500px;
-      margin-top: 25px;
-      font-size: 13px;
-      line-height: 1.8;
-    }
-
-    .cta-side {
-      text-align: right;
-    }
-
-    .cta-phone {
-      display: block;
-      margin-top: 17px;
-      font-size: 12px;
-      font-weight: 800;
-      color: var(--blue2);
-    }
-
-    /* =========================================================
-       CONTACT
-    ========================================================= */
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: .75fr 1.25fr;
-      gap: 80px;
-    }
-
-    .contact-title {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: clamp(60px,7vw,95px);
-      line-height: .8;
-      font-weight: 400;
-    }
-
-    .contact-title span {
-      color: var(--blue);
-    }
-
-    .contact-text {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.9;
-      margin-top: 25px;
-    }
-
-    .contact-number {
-      display: inline-block;
-      margin-top: 25px;
-      color: var(--blue2);
-      font-weight: 800;
-      font-size: 13px;
-    }
-
-    .form {
-      display: grid;
-      grid-template-columns: repeat(2,1fr);
-      gap: 12px;
-    }
-
-    .field.full {
-      grid-column: 1/-1;
-    }
-
-    .field input,
-    .field select,
-    .field textarea {
-      width: 100%;
-      padding: 18px;
-      background: rgba(255,255,255,.025);
-      border: 1px solid rgba(20,148,255,.15);
-      color: white;
-      outline: none;
-      border-radius: 0;
-      transition: .3s;
-    }
-
-    .field textarea {
-      min-height: 130px;
-      resize: vertical;
-    }
-
-    .field select {
-      color: #8995a3;
-    }
-
-    .field input::placeholder,
-    .field textarea::placeholder {
-      color: #586471;
-    }
-
-    .field input:focus,
-    .field textarea:focus,
-    .field select:focus {
-      border-color: var(--blue);
-      box-shadow:
-        0 0 0 1px rgba(20,148,255,.1),
-        0 0 25px rgba(20,148,255,.06);
-    }
-
-    .submit {
-      border: 0;
-      cursor: pointer;
-      background: var(--blue);
-      color: white;
-      min-height: 55px;
-      font-size: 9px;
-      font-weight: 900;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      transition: .35s;
-    }
-
-    .submit:hover {
-      background: var(--blue2);
-      box-shadow: 0 0 30px rgba(20,148,255,.3);
-    }
-
-    /* =========================================================
-       FOOTER
-    ========================================================= */
-
-    footer {
-      padding: 70px 0 25px;
-      background: #010305;
-      border-top: 1px solid var(--line);
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 60px;
-      padding-bottom: 55px;
-      border-bottom: 1px solid rgba(255,255,255,.07);
-    }
-
-    .footer-logo {
-      width: 150px;
-      margin-bottom: 20px;
-    }
-
-    .footer-desc {
-      max-width: 350px;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.8;
-    }
-
-    .footer-heading {
-      color: var(--blue);
-      font-size: 8px;
-      font-weight: 900;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    .footer-col a,
-    .footer-col p {
-      display: block;
-      color: #8c98a5;
-      font-size: 11px;
-      margin-bottom: 12px;
-      transition: .25s;
-    }
-
-    .footer-col a:hover {
-      color: white;
-      transform: translateX(3px);
-    }
-
-    .footer-bottom {
-      padding-top: 25px;
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      color: #4e5964;
-      font-size: 8px;
-      font-weight: 800;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-    }
-
-    /* =========================================================
-       REVEAL
-    ========================================================= */
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(45px);
-      transition:
-        opacity .9s ease,
-        transform .9s cubic-bezier(.2,.8,.2,1);
-    }
-
-    .reveal.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .delay1 {
-      transition-delay: .12s;
-    }
-
-    .delay2 {
-      transition-delay: .24s;
-    }
-
-    .delay3 {
-      transition-delay: .36s;
-    }
-
-    /* =========================================================
-       RESPONSIVE
-    ========================================================= */
-
-    @media(max-width: 1000px) {
-
-      .nav-links,
-      .nav-call,
-      .nav-book {
-        display: none;
-      }
-
-      .menu {
-        display: block;
-      }
-
-      .nav-links.open {
-        position: absolute;
-        top: 75px;
-        left: 20px;
-        right: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 0;
-        padding: 10px 20px;
-        background: rgba(2,5,8,.97);
-        border: 1px solid var(--line);
-        backdrop-filter: blur(20px);
-      }
-
-      .nav-links.open a {
-        padding: 17px 0;
-        border-bottom: 1px solid rgba(255,255,255,.08);
-      }
-
-      .why-grid,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .services-grid {
-        grid-template-columns: repeat(2,1fr);
-      }
-
-      .process-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .process-step {
-        border-right: 0;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .process-step:last-child {
-        border-bottom: 0;
-      }
-
-      .cta-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .cta-side {
-        text-align: left;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media(max-width: 650px) {
-
-      .nav-inner {
-        width: calc(100% - 28px);
-        height: 70px;
-      }
-
-      .logo {
-        width: 120px;
-      }
-
-      .hero-inner {
-        width: calc(100% - 28px);
-        padding-top: 80px;
-      }
-
-      .hero {
-        min-height: 850px;
-      }
-
-      .hero h1 {
-        font-size: clamp(70px, 21vw, 110px);
-      }
-
-      .hero-sub {
-        font-size: 13px;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-        max-width: 300px;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .hud {
-        display: none;
-      }
-
-      .system-grid {
-        width: 100%;
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .system-item {
-        padding: 20px 15px;
-      }
-
-      .system-item:nth-child(2) {
-        border-right: 0;
-      }
-
-      .system-item:nth-child(-n+2) {
-        border-bottom: 1px solid var(--line);
-      }
-
-      .section {
-        padding: 90px 0;
-      }
-
-      .container {
-        width: calc(100% - 28px);
-      }
-
-      .services-head {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .service {
-        min-height: 260px;
-      }
-
-      .gallery-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .gallery-card:nth-child(1) {
-        grid-column: span 2;
-        grid-row: span 1;
-      }
-
-      .gallery-card:nth-child(2),
-      .gallery-card:nth-child(3),
-      .gallery-card:nth-child(4) {
-        grid-column: span 1;
-      }
-
-      .gallery-card img {
-        min-height: 220px;
-      }
-
-      .form {
-        grid-template-columns: 1fr;
-      }
-
-      .field.full {
-        grid-column: auto;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-      }
-    }
-
-    @media(prefers-reduced-motion: reduce) {
-
-      *,
-      *::before,
-      *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .01ms !important;
-      }
-
-      html {
-        scroll-behavior: auto;
-      }
-
-      .reveal {
-        opacity: 1;
-        transform: none;
-      }
-    }
-
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Your Mobile Detailers | Premium Mobile Car Detailing Houston</title>
+
+<meta name="description" content="Your Mobile Detailers provides premium mobile car detailing in Houston, Texas. Professional interior, exterior, paint correction, ceramic coating and more. We bring the detail to you.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#050b13;
+  --bg2:#081321;
+  --bg3:#0b1726;
+  --blue:#1683ff;
+  --blue2:#48adff;
+  --white:#fff;
+  --text:#dce7f3;
+  --muted:#8798aa;
+  --line:rgba(255,255,255,.09);
+  --glass:rgba(255,255,255,.045);
+  --green:#25c77a;
+  --max:1200px;
+  --radius:24px;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:"Inter",sans-serif;
+  background:var(--bg);
+  color:var(--white);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");
+}
+
+::selection{
+  background:var(--blue);
+  color:white;
+}
+
+img{
+  display:block;
+  width:100%;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,input,textarea,select{
+  font:inherit;
+}
+
+.container{
+  width:min(92%,var(--max));
+  margin:auto;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1000;
+  transition:.4s ease;
+}
+
+.navbar.scrolled{
+  background:rgba(5,11,19,.86);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line);
+}
+
+.nav-inner{
+  height:86px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  width:195px;
+}
+
+.logo img{
+  max-height:60px;
+  object-fit:contain;
+  object-position:left center;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:30px;
+}
+
+.nav-links a{
+  position:relative;
+  color:#cbd7e3;
+  font-size:13px;
+  font-weight:700;
+  transition:.3s;
+}
+
+.nav-links a:not(.nav-cta)::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-8px;
+  width:0;
+  height:2px;
+  background:var(--blue2);
+  transition:.3s;
+}
+
+.nav-links a:hover{
+  color:white;
+}
+
+.nav-links a:hover::after{
+  width:100%;
+}
+
+.nav-cta{
+  padding:12px 20px;
+  border-radius:999px;
+  background:var(--blue);
+  box-shadow:0 10px 30px rgba(22,131,255,.3);
+}
+
+.nav-cta:hover{
+  transform:translateY(-2px);
+  background:var(--blue2);
+}
+
+.menu-btn{
+  display:none;
+  border:0;
+  background:none;
+  color:white;
+  font-size:28px;
+  cursor:pointer;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  min-height:100vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  padding:150px 0 100px;
+  background:
+    radial-gradient(circle at 75% 40%,rgba(22,131,255,.16),transparent 30%),
+    radial-gradient(circle at 10% 90%,rgba(22,131,255,.08),transparent 30%),
+    var(--bg);
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  width:700px;
+  height:700px;
+  right:-250px;
+  top:-250px;
+  border:1px solid rgba(72,173,255,.08);
+  border-radius:50%;
+  animation:rotateSlow 20s linear infinite;
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  left:-250px;
+  bottom:-250px;
+  border:1px solid rgba(72,173,255,.06);
+  border-radius:50%;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:75px;
+  align-items:center;
+  position:relative;
+  z-index:2;
+}
+
+.hero-content{
+  animation:heroIn 1s ease both;
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  color:var(--blue2);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  margin-bottom:22px;
+}
+
+.eyebrow::before{
+  content:"";
+  width:32px;
+  height:2px;
+  background:var(--blue);
+  box-shadow:0 0 12px rgba(22,131,255,.7);
+}
+
+.hero h1{
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(52px,6.4vw,86px);
+  line-height:.94;
+  letter-spacing:-4px;
+  max-width:700px;
+  margin-bottom:28px;
+}
+
+.hero h1 span{
+  color:transparent;
+  -webkit-text-stroke:1px var(--blue2);
+  position:relative;
+}
+
+.hero h1 span::after{
+  content:"DETAIL";
+  position:absolute;
+  left:0;
+  top:0;
+  color:var(--blue2);
+  width:0;
+  overflow:hidden;
+  white-space:nowrap;
+  animation:textReveal 2s .5s forwards;
+}
+
+.hero p{
+  max-width:560px;
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.85;
+  margin-bottom:34px;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  min-height:54px;
+  padding:0 25px;
+  border-radius:13px;
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  font-size:13px;
+  font-weight:800;
+  transition:.3s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+.btn::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  transform:translateX(-110%);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);
+  transition:.6s;
+}
+
+.btn:hover::before{
+  transform:translateX(110%);
+}
+
+.btn-primary{
+  background:var(--blue);
+  box-shadow:0 15px 40px rgba(22,131,255,.28);
+}
+
+.btn-primary:hover{
+  transform:translateY(-3px);
+  background:var(--blue2);
+}
+
+.btn-secondary{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.035);
+}
+
+.btn-secondary:hover{
+  border-color:rgba(72,173,255,.5);
+  transform:translateY(-3px);
+}
+
+.hero-visual{
+  position:relative;
+  animation:heroImageIn 1.1s .15s ease both;
+}
+
+.hero-frame{
+  position:relative;
+  padding:10px;
+  border-radius:32px;
+  background:linear-gradient(135deg,rgba(72,173,255,.4),transparent 40%,rgba(22,131,255,.2));
+}
+
+.hero-frame::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:32px;
+  border:1px solid rgba(72,173,255,.25);
+  pointer-events:none;
+}
+
+.hero-image{
+  height:610px;
+  object-fit:cover;
+  border-radius:25px;
+}
+
+.hero-image-wrap{
+  position:relative;
+  overflow:hidden;
+  border-radius:25px;
+}
+
+.hero-image-wrap::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:40%;
+  height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);
+  transform:skewX(-18deg);
+  animation:shine 5s 1.5s infinite;
+}
+
+.hero-badge{
+  position:absolute;
+  left:-25px;
+  bottom:35px;
+  padding:18px 22px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:rgba(5,11,19,.82);
+  backdrop-filter:blur(18px);
+  box-shadow:0 20px 50px rgba(0,0,0,.3);
+}
+
+.hero-badge strong{
+  display:block;
+  font-size:18px;
+  margin-bottom:2px;
+}
+
+.hero-badge span{
+  color:var(--muted);
+  font-size:11px;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:#07111d;
+}
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+
+.stat{
+  padding:28px 20px;
+  text-align:center;
+  border-right:1px solid var(--line);
+}
+
+.stat:last-child{
+  border:0;
+}
+
+.stat strong{
+  display:block;
+  font-family:"Manrope",sans-serif;
+  font-size:25px;
+  margin-bottom:3px;
+}
+
+.stat span{
+  color:var(--muted);
+  font-size:11px;
+}
+
+/* =========================
+   GENERAL
+========================= */
+
+section{
+  padding:115px 0;
+}
+
+.section-heading{
+  max-width:700px;
+  margin-bottom:55px;
+}
+
+.section-heading.center{
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+}
+
+.section-heading.center .eyebrow{
+  justify-content:center;
+}
+
+.section-heading h2{
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(38px,4.5vw,60px);
+  line-height:1.02;
+  letter-spacing:-2.8px;
+  margin-bottom:18px;
+}
+
+.section-heading p{
+  color:var(--muted);
+  line-height:1.8;
+}
+
+/* =========================
+   WHY
+========================= */
+
+.why{
+  background:var(--bg2);
+}
+
+.why-grid{
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:80px;
+  align-items:center;
+}
+
+.image-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:26px;
+  border:1px solid var(--line);
+}
+
+.image-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.45));
+  pointer-events:none;
+}
+
+.image-card img{
+  height:560px;
+  object-fit:cover;
+  transition:transform .8s ease;
+}
+
+.image-card:hover img{
+  transform:scale(1.045);
+}
+
+.corner-label{
+  position:absolute;
+  z-index:2;
+  left:22px;
+  bottom:20px;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:2px;
+  color:white;
+}
+
+.features{
+  display:grid;
+  gap:16px;
+}
+
+.feature{
+  position:relative;
+  display:flex;
+  gap:18px;
+  padding:22px;
+  border:1px solid var(--line);
+  background:var(--glass);
+  border-radius:18px;
+  transition:.35s ease;
+  overflow:hidden;
+}
+
+.feature::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:2px;
+  background:var(--blue);
+  transform:scaleY(0);
+  transition:.3s;
+}
+
+.feature:hover{
+  transform:translateX(5px);
+  border-color:rgba(72,173,255,.3);
+  background:rgba(22,131,255,.05);
+}
+
+.feature:hover::before{
+  transform:scaleY(1);
+}
+
+.feature-number{
+  flex:0 0 44px;
+  width:44px;
+  height:44px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border-radius:13px;
+  background:rgba(22,131,255,.11);
+  color:var(--blue2);
+  font-weight:800;
+  font-size:12px;
+}
+
+.feature h3{
+  font-size:16px;
+  margin-bottom:5px;
+}
+
+.feature p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.7;
+}
+
+/* =========================
+   PACKAGES
+========================= */
+
+.packages{
+  background:
+    radial-gradient(circle at 50% 0,rgba(22,131,255,.08),transparent 35%),
+    var(--bg);
+}
+
+.package-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  align-items:stretch;
+}
+
+.package{
+  position:relative;
+  padding:34px 30px;
+  border:1px solid var(--line);
+  border-radius:25px;
+  background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
+  transition:.4s ease;
+  overflow:hidden;
+}
+
+.package::after{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  right:-100px;
+  top:-100px;
+  border-radius:50%;
+  background:rgba(22,131,255,.1);
+  transition:.5s;
+}
+
+.package:hover{
+  transform:translateY(-10px);
+  border-color:rgba(72,173,255,.4);
+  box-shadow:0 25px 70px rgba(0,0,0,.25);
+}
+
+.package:hover::after{
+  transform:scale(1.5);
+}
+
+.package.popular{
+  border-color:rgba(72,173,255,.5);
+  background:
+    linear-gradient(145deg,rgba(22,131,255,.13),rgba(255,255,255,.025));
+  transform:translateY(-10px);
+}
+
+.package.popular:hover{
+  transform:translateY(-17px);
+}
+
+.popular-tag{
+  position:absolute;
+  right:20px;
+  top:20px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:var(--blue);
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:1px;
+}
+
+.package-number{
+  color:var(--blue2);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:2px;
+  margin-bottom:22px;
+}
+
+.package h3{
+  font-family:"Manrope",sans-serif;
+  font-size:26px;
+  margin-bottom:8px;
+}
+
+.price{
+  margin-bottom:25px;
+}
+
+.price small{
+  color:var(--muted);
+  font-size:11px;
+}
+
+.price strong{
+  display:block;
+  font-family:"Manrope",sans-serif;
+  font-size:43px;
+  line-height:1;
+  margin-top:4px;
+}
+
+.package-description{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.7;
+  min-height:60px;
+  margin-bottom:23px;
+}
+
+.package ul{
+  list-style:none;
+  display:grid;
+  gap:12px;
+  margin-bottom:30px;
+}
+
+.package li{
+  color:#cbd7e3;
+  font-size:12px;
+  display:flex;
+  gap:10px;
+}
+
+.package li::before{
+  content:"✓";
+  color:var(--blue2);
+  font-weight:800;
+}
+
+.package .btn{
+  width:100%;
+}
+
+/* =========================
+   SPECIALTY
+========================= */
+
+.specialty{
+  background:var(--bg2);
+}
+
+.specialty-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+
+.specialty-card{
+  padding:24px 20px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:rgba(255,255,255,.025);
+  transition:.3s ease;
+}
+
+.specialty-card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(72,173,255,.3);
+  background:rgba(22,131,255,.05);
+}
+
+.specialty-card span{
+  color:var(--blue2);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1px;
+}
+
+.specialty-card h3{
+  font-size:15px;
+  margin:9px 0 7px;
+}
+
+.specialty-card strong{
+  font-size:13px;
+  color:#fff;
+}
+
+/* =========================
+   GALLERY
+========================= */
+
+.gallery{
+  background:#050c15;
+}
+
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:220px;
+  gap:14px;
+}
+
+.gallery-item{
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  border:1px solid var(--line);
+}
+
+.gallery-item:nth-child(1){
+  grid-column:span 6;
+  grid-row:span 2;
+}
+
+.gallery-item:nth-child(2){
+  grid-column:span 3;
+  grid-row:span 2;
+}
+
+.gallery-item:nth-child(3){
+  grid-column:span 3;
+}
+
+.gallery-item:nth-child(4){
+  grid-column:span 3;
+}
+
+.gallery-item:nth-child(5){
+  grid-column:span 3;
+}
+
+.gallery-item:nth-child(6){
+  grid-column:span 3;
+}
+
+.gallery-item:nth-child(7),
+.gallery-item:nth-child(8),
+.gallery-item:nth-child(9),
+.gallery-item:nth-child(10){
+  grid-column:span 3;
+}
+
+.gallery-item img{
+  height:100%;
+  object-fit:cover;
+  transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .5s;
+}
+
+.gallery-item::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,transparent 45%,rgba(22,131,255,.2));
+  opacity:0;
+  transition:.4s;
+}
+
+.gallery-item:hover img{
+  transform:scale(1.08);
+  filter:saturate(1.1);
+}
+
+.gallery-item:hover::after{
+  opacity:1;
+}
+
+/* =========================
+   PROCESS
+========================= */
+
+.process{
+  background:var(--bg);
+}
+
+.process-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.process-card{
+  position:relative;
+  padding:34px;
+  min-height:260px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:var(--glass);
+  overflow:hidden;
+  transition:.35s;
+}
+
+.process-card:hover{
+  transform:translateY(-7px);
+  border-color:rgba(72,173,255,.3);
+}
+
+.process-card::after{
+  content:attr(data-number);
+  position:absolute;
+  right:15px;
+  bottom:-35px;
+  font-family:"Manrope",sans-serif;
+  font-size:120px;
+  line-height:1;
+  font-weight:800;
+  color:rgba(255,255,255,.025);
+}
+
+.process-number{
+  color:var(--blue2);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:2px;
+  margin-bottom:45px;
+}
+
+.process-card h3{
+  font-size:20px;
+  margin-bottom:10px;
+}
+
+.process-card p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.75;
+  max-width:300px;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.cta-section{
+  padding:70px 0;
+  background:var(--bg);
+}
+
+.cta-box{
+  position:relative;
+  overflow:hidden;
+  padding:75px;
+  border:1px solid rgba(72,173,255,.2);
+  border-radius:30px;
+  background:
+    radial-gradient(circle at 90% 50%,rgba(22,131,255,.2),transparent 35%),
+    linear-gradient(135deg,#0c1d31,#07101d);
+}
+
+.cta-box::before{
+  content:"";
+  position:absolute;
+  width:350px;
+  height:350px;
+  border:1px solid rgba(72,173,255,.1);
+  border-radius:50%;
+  right:-100px;
+  top:-100px;
+}
+
+.cta-box h2{
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(38px,5vw,65px);
+  line-height:1;
+  letter-spacing:-3px;
+  max-width:720px;
+  margin-bottom:20px;
+}
+
+.cta-box p{
+  color:var(--muted);
+  max-width:570px;
+  margin-bottom:30px;
+}
+
+/* =========================
+   QUOTE
+========================= */
+
+.quote{
+  background:var(--bg2);
+}
+
+.quote-grid{
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:80px;
+  align-items:start;
+}
+
+.quote-info h2{
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(38px,4vw,55px);
+  line-height:1.02;
+  letter-spacing:-2px;
+  margin-bottom:18px;
+}
+
+.quote-info p{
+  color:var(--muted);
+  line-height:1.8;
+  margin-bottom:30px;
+}
+
+.contact-card{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:18px;
+  border:1px solid var(--line);
+  border-radius:17px;
+  background:var(--glass);
+  margin-bottom:12px;
+}
+
+.contact-icon{
+  width:42px;
+  height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:12px;
+  background:rgba(22,131,255,.12);
+  color:var(--blue2);
+}
+
+.contact-card small{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  margin-bottom:2px;
+}
+
+.contact-card strong{
+  font-size:14px;
+}
+
+.quote-form{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  padding:30px;
+  border:1px solid var(--line);
+  border-radius:25px;
+  background:rgba(255,255,255,.025);
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.form-group.full{
+  grid-column:1/-1;
+}
+
+.form-group label{
+  font-size:11px;
+  font-weight:700;
+  color:#cbd7e3;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+  width:100%;
+  padding:14px;
+  border:1px solid var(--line);
+  outline:none;
+  border-radius:12px;
+  color:white;
+  background:rgba(255,255,255,.035);
+  transition:.25s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+  border-color:rgba(72,173,255,.65);
+  box-shadow:0 0 0 3px rgba(22,131,255,.08);
+}
+
+.form-group select option{
+  color:#111;
+}
+
+.form-group textarea{
+  min-height:130px;
+  resize:vertical;
+}
+
+.quote-form .btn{
+  border:0;
+  grid-column:1/-1;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  padding:60px 0 25px;
+  border-top:1px solid var(--line);
+  background:#040910;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.4fr .6fr .7fr;
+  gap:60px;
+  padding-bottom:45px;
+}
+
+.footer-logo{
+  width:190px;
+  margin-bottom:17px;
+}
+
+.footer-brand p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.8;
+  max-width:370px;
+}
+
+.footer-column h4{
+  font-size:12px;
+  margin-bottom:18px;
+}
+
+.footer-column a{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:11px;
+  transition:.2s;
+}
+
+.footer-column a:hover{
+  color:var(--blue2);
+}
+
+.footer-bottom{
+  padding-top:23px;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  color:#627181;
+  font-size:10px;
+}
+
+/* =========================
+   FLOATING PHONE
+========================= */
+
+.phone-float{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  z-index:999;
+  width:58px;
+  height:58px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:var(--blue);
+  box-shadow:0 10px 35px rgba(22,131,255,.4);
+  transition:.3s;
+  font-size:20px;
+}
+
+.phone-float:hover{
+  transform:scale(1.08);
+  background:var(--blue2);
+}
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+.reveal{
+  opacity:0;
+  transform:translateY(35px);
+  transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1);
+}
+
+.reveal.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes heroIn{
+  from{
+    opacity:0;
+    transform:translateY(35px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+@keyframes heroImageIn{
+  from{
+    opacity:0;
+    transform:translateX(45px) scale(.97);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+@keyframes textReveal{
+  to{
+    width:100%;
+  }
+}
+
+@keyframes shine{
+  0%,45%{left:-100%}
+  65%,100%{left:140%}
+}
+
+@keyframes rotateSlow{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1000px){
+
+  .hero-grid,
+  .why-grid,
+  .quote-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero-grid{
+    gap:50px;
+  }
+
+  .hero-visual{
+    max-width:750px;
+  }
+
+  .package-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .package.popular{
+    transform:none;
+  }
+
+  .specialty-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:760px){
+
+  .nav-inner{
+    height:72px;
+  }
+
+  .logo{
+    width:160px;
+  }
+
+  .menu-btn{
+    display:block;
+  }
+
+  .nav-links{
+    position:absolute;
+    display:none;
+    left:0;
+    right:0;
+    top:72px;
+    padding:20px;
+    flex-direction:column;
+    align-items:stretch;
+    gap:5px;
+    background:rgba(5,11,19,.98);
+    border-bottom:1px solid var(--line);
+  }
+
+  .nav-links.active{
+    display:flex;
+  }
+
+  .nav-links a{
+    padding:13px 10px;
+  }
+
+  .nav-cta{
+    text-align:center;
+  }
+
+  .hero{
+    padding:125px 0 75px;
+  }
+
+  .hero h1{
+    font-size:clamp(47px,14vw,65px);
+    letter-spacing:-3px;
+  }
+
+  .hero p{
+    font-size:14px;
+  }
+
+  .hero-image{
+    height:440px;
+  }
+
+  .hero-badge{
+    left:10px;
+    bottom:20px;
+  }
+
+  .stats-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .stat{
+    border-bottom:1px solid var(--line);
+  }
+
+  section{
+    padding:80px 0;
+  }
+
+  .why-grid,
+  .quote-grid{
+    gap:45px;
+  }
+
+  .image-card img{
+    height:420px;
+  }
+
+  .package-grid{
+    grid-template-columns:1fr;
+  }
+
+  .package.popular{
+    transform:none;
+  }
+
+  .gallery-grid{
+    grid-template-columns:1fr 1fr;
+    grid-auto-rows:190px;
+  }
+
+  .gallery-item:nth-child(1){
+    grid-column:span 2;
+    grid-row:span 2;
+  }
+
+  .gallery-item:nth-child(2){
+    grid-column:span 2;
+  }
+
+  .gallery-item:nth-child(n+3){
+    grid-column:span 1;
+  }
+
+  .process-grid{
+    grid-template-columns:1fr;
+  }
+
+  .cta-box{
+    padding:45px 27px;
+  }
+
+  .quote-form{
+    grid-template-columns:1fr;
+  }
+
+  .form-group.full,
+  .quote-form .btn{
+    grid-column:auto;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr;
+    gap:35px;
+  }
+
+  .footer-bottom{
+    flex-direction:column;
+  }
+}
+
+@media(max-width:480px){
+
+  .container{
+    width:90%;
+  }
+
+  .hero-buttons{
+    flex-direction:column;
+  }
+
+  .btn{
+    width:100%;
+  }
+
+  .hero-image{
+    height:370px;
+  }
+
+  .gallery-grid{
+    grid-template-columns:1fr;
+    grid-auto-rows:310px;
+  }
+
+  .gallery-item:nth-child(1),
+  .gallery-item:nth-child(2),
+  .gallery-item:nth-child(n+3){
+    grid-column:span 1;
+    grid-row:span 1;
+  }
+
+  .specialty-grid{
+    grid-template-columns:1fr;
+  }
+
+  .stats-grid{
+    grid-template-columns:1fr;
+  }
+
+  .stat{
+    border-right:0;
+  }
+
+  .phone-float{
+    width:52px;
+    height:52px;
+    right:15px;
+    bottom:15px;
+  }
+}
+
+/* Reduced motion */
+@media(prefers-reduced-motion:reduce){
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    scroll-behavior:auto!important;
+    transition-duration:.01ms!important;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- FX -->
-  <div class="noise"></div>
-  <div class="grid-bg"></div>
-  <div class="glow" id="glow"></div>
+<!-- NAVBAR -->
+<header class="navbar" id="navbar">
+  <div class="container nav-inner">
 
+    <a href="#home" class="logo">
+      <img src="images/logo.webp" alt="Your Mobile Detailers">
+    </a>
 
-  <!-- LOADER -->
-  <div class="loader">
-    <div class="loader-box">
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+      ☰
+    </button>
 
-      <img
-        src="images/logo.webp"
-        alt="Your Mobile Detailers"
-        class="loader-logo"
-      >
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#packages">Packages</a>
+      <a href="#services">Services</a>
+      <a href="#gallery">Our Work</a>
+      <a href="#process">How It Works</a>
+      <a href="#quote" class="nav-cta">Get a Quote</a>
+    </nav>
 
-      <div class="loader-system">
-        INITIALIZING DETAIL SYSTEM
-      </div>
-
-      <div class="loader-bar">
-        <span></span>
-      </div>
-
-    </div>
   </div>
+</header>
 
 
-  <!-- NAV -->
-  <header class="nav" id="nav">
+<main>
 
-    <div class="nav-inner">
+<!-- HERO -->
+<section class="hero" id="home">
 
-      <a href="#home" class="logo">
-        <img
-          src="images/logo.webp"
-          alt="Your Mobile Detailers"
-        >
-      </a>
+  <div class="container hero-grid">
 
-      <nav class="nav-links" id="navLinks">
+    <div class="hero-content">
 
-        <a href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#gallery">Showcase</a>
-        <a href="#process">Process</a>
-        <a href="#contact">Contact</a>
-
-      </nav>
-
-      <a
-        href="tel:+13238804067"
-        class="nav-call"
-      >
-        (323) 880-4067
-      </a>
-
-      <a href="#contact" class="nav-book">
-        Book Now
-      </a>
-
-      <button class="menu" id="menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-    </div>
-
-  </header>
-
-
-  <!-- HERO -->
-  <section class="hero" id="home">
-
-    <div class="hero-image">
-      <img
-        src="images/1.jpg"
-        alt="Premium car detailing"
-      >
-    </div>
-
-    <div class="scan"></div>
-
-    <div class="hud hud-top">
-      SYSTEM // MOBILE_DETAILING // HOUSTON_TX
-    </div>
-
-    <div class="hud hud-bottom">
-      <span class="hud-line"></span>
-      YOUR VEHICLE // OUR MISSION
-    </div>
-
-    <div class="hero-inner">
-
-      <div class="hero-status">
-        <span class="status-dot"></span>
-        MOBILE DETAILING SYSTEM ONLINE
+      <div class="eyebrow">
+        Houston Mobile Detailing
       </div>
 
       <h1>
-        DETAILING
-        <span class="blue">DONE RIGHT.</span>
-        AT YOUR DOOR.
+        WE BRING THE
+        <span>DETAIL</span>
+        TO YOU.
       </h1>
 
-      <p class="hero-sub">
-        Premium mobile car detailing brought directly
-        to your home, workplace, or wherever your vehicle
-        is parked.
+      <p>
+        Premium mobile car detailing brought directly to your
+        home, workplace, or wherever your vehicle is parked.
+        Professional care without the shop wait.
       </p>
 
-      <div class="hero-actions">
+      <div class="hero-buttons">
 
-        <a
-          href="#contact"
-          class="btn btn-blue"
-        >
-          Start Your Detail
+        <a href="#quote" class="btn btn-primary">
+          Get a Free Quote
         </a>
 
-        <a
-          href="#services"
-          class="btn btn-ghost"
-        >
-          Explore Services
+        <a href="#packages" class="btn btn-secondary">
+          View Packages
         </a>
 
       </div>
 
-      <a
-        href="tel:+13238804067"
-        class="hero-phone"
-      >
-        <small>DIRECT LINE</small>
-        (323) 880-4067
-      </a>
-
     </div>
 
-  </section>
 
+    <div class="hero-visual">
 
-  <!-- SYSTEM BAR -->
-  <section class="system-bar">
+      <div class="hero-frame">
 
-    <div class="system-grid">
+        <div class="hero-image-wrap">
 
-      <div class="system-item">
-        <div class="system-label">Service Mode</div>
-        <div class="system-value">
-          Mobile <span>●</span>
-        </div>
-      </div>
-
-      <div class="system-item">
-        <div class="system-label">Availability</div>
-        <div class="system-value">
-          By Appointment
-        </div>
-      </div>
-
-      <div class="system-item">
-        <div class="system-label">Service Area</div>
-        <div class="system-value">
-          Houston, TX
-        </div>
-      </div>
-
-      <div class="system-item">
-        <div class="system-label">Booking</div>
-        <div class="system-value">
-          Online / Phone
-        </div>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- WHY -->
-  <section class="section why">
-
-    <div class="container">
-
-      <div class="why-grid">
-
-        <div class="image-frame reveal">
           <img
-            src="images/2.jpg"
-            alt="Mobile detailing service"
+            src="images/1.jpg"
+            alt="Premium mobile car detailing"
+            class="hero-image"
           >
-        </div>
-
-        <div class="why-copy reveal delay1">
-
-          <div class="section-tag">
-            // 01 — THE DIFFERENCE
-          </div>
-
-          <h3>
-            WE BRING THE
-            <span>DETAIL</span>
-            TO YOU.
-          </h3>
-
-          <p>
-            Your vehicle deserves more than a basic wash.
-            We make premium detailing convenient by bringing
-            professional vehicle care directly to your location.
-          </p>
-
-          <div class="feature">
-            <span>Mobile Convenience</span>
-            <span class="feature-number">01</span>
-          </div>
-
-          <div class="feature">
-            <span>Professional Service</span>
-            <span class="feature-number">02</span>
-          </div>
-
-          <div class="feature">
-            <span>Attention To Detail</span>
-            <span class="feature-number">03</span>
-          </div>
-
-          <div class="feature">
-            <span>Customer First</span>
-            <span class="feature-number">04</span>
-          </div>
 
         </div>
 
+      </div>
+
+      <div class="hero-badge">
+        <strong>Mobile. Professional. Convenient.</strong>
+        <span>Serving Houston, Texas</span>
       </div>
 
     </div>
 
-  </section>
+  </div>
+
+</section>
 
 
-  <!-- SERVICES -->
-  <section class="section services" id="services">
+<!-- STATS -->
+<div class="stats">
 
-    <div class="container">
+  <div class="container stats-grid">
 
-      <div class="services-head reveal">
+    <div class="stat">
+      <strong>100%</strong>
+      <span>Mobile Service</span>
+    </div>
 
-        <div>
+    <div class="stat">
+      <strong>01</strong>
+      <span>Simple Booking</span>
+    </div>
 
-          <div class="section-tag">
-            // 02 — SERVICE MODULES
-          </div>
+    <div class="stat">
+      <strong>03</strong>
+      <span>Detail Packages</span>
+    </div>
 
-          <h2 class="section-title">
-            CHOOSE YOUR
-            <span>LEVEL.</span>
-          </h2>
+    <div class="stat">
+      <strong>24/7</strong>
+      <span>Quote Requests</span>
+    </div>
 
-          <p class="section-copy">
-            Select the service your vehicle needs.
-            From a focused exterior refresh to a complete
-            interior and exterior detail.
-          </p>
+  </div>
 
-        </div>
-
-        <div class="services-counter">
-          06
-        </div>
-
-      </div>
+</div>
 
 
-      <div class="services-grid">
+<!-- WHY -->
+<section class="why">
 
-        <article class="service reveal">
+  <div class="container why-grid">
 
-          <div class="service-id">SERVICE // 001</div>
+    <div class="image-card reveal">
 
-          <h3>Exterior Detail</h3>
+      <img
+        src="images/2.jpg"
+        alt="Professional vehicle detailing"
+        loading="lazy"
+      >
 
-          <p>
-            Thorough exterior cleaning designed to restore
-            the appearance and finish of your vehicle.
-          </p>
-
-          <div class="service-arrow">↗</div>
-
-        </article>
-
-
-        <article class="service reveal delay1">
-
-          <div class="service-id">SERVICE // 002</div>
-
-          <h3>Interior Detail</h3>
-
-          <p>
-            Deep interior cleaning for seats, carpets,
-            surfaces, panels and high-touch areas.
-          </p>
-
-          <div class="service-arrow">↗</div>
-
-        </article>
-
-
-        <article class="service reveal delay2">
-
-          <div class="service-id">SERVICE // 003</div>
-
-          <h3>Full Detail</h3>
-
-          <p>
-            A complete interior and exterior treatment
-            for vehicles that need the full reset.
-          </p>
-
-          <div class="service-arrow">↗</div>
-
-        </article>
-
-
-        <article class="service reveal">
-
-          <div class="service-id">SERVICE // 004</div>
-
-          <h3>Paint Care</h3>
-
-          <p>
-            Careful washing and finishing focused on
-            maintaining a clean, glossy exterior.
-          </p>
-
-          <div class="service-arrow">↗</div>
-
-        </article>
-
-
-        <article class="service reveal delay1">
-
-          <div class="service-id">SERVICE // 005</div>
-
-          <h3>Maintenance</h3>
-
-          <p>
-            Keep your vehicle looking its best with
-            convenient recurring detailing service.
-          </p>
-
-          <div class="service-arrow">↗</div>
-
-        </article>
-
-
-        <article class="service reveal delay2">
-
-          <div class="service-id">SERVICE // 006</div>
-
-          <h3>Custom Service</h3>
-
-          <p>
-            Need something specific? Tell us what your
-            vehicle needs and we'll help arrange it.
-          </p>
-
-          <div class="service-arrow">↗</div>
-
-        </article>
-
+      <div class="corner-label">
+        YOUR VEHICLE. YOUR LOCATION.
       </div>
 
     </div>
 
-  </section>
 
+    <div class="reveal">
 
-  <!-- GALLERY -->
-  <section class="section" id="gallery">
+      <div class="section-heading">
 
-    <div class="container">
-
-      <div class="gallery-head reveal">
-
-        <div class="section-tag">
-          // 03 — VISUAL PROOF
+        <div class="eyebrow">
+          The Mobile Difference
         </div>
 
-        <h2 class="section-title">
-          THE FINISH
-          <span>SPEAKS.</span>
+        <h2>
+          Detailing built around your day.
         </h2>
 
-        <p class="section-copy">
-          A closer look at the level of finish we're
-          built around.
+        <p>
+          You shouldn't have to rearrange your day just to get
+          your vehicle professionally cleaned. We bring the
+          detailing experience directly to you.
         </p>
 
       </div>
 
 
-      <div class="gallery-grid">
+      <div class="features">
 
-        <div class="gallery-card reveal">
+        <div class="feature">
 
-          <img
-            src="images/3.jpg"
-            alt="Car detailing result"
-          >
+          <div class="feature-number">01</div>
 
-          <div class="gallery-ui">
-            <div class="gallery-number">
-              FRAME // 001
-            </div>
+          <div>
+            <h3>We Come To You</h3>
 
-            <div class="gallery-label">
-              Exterior Finish
-            </div>
+            <p>
+              Home, workplace, driveway or another convenient
+              location — your vehicle stays where it is.
+            </p>
           </div>
 
         </div>
 
 
-        <div class="gallery-card reveal delay1">
+        <div class="feature">
 
-          <img
-            src="images/4.jpg"
-            alt="Professional detailing"
-          >
+          <div class="feature-number">02</div>
 
-          <div class="gallery-ui">
-            <div class="gallery-number">
-              FRAME // 002
-            </div>
+          <div>
+            <h3>Attention To Detail</h3>
 
-            <div class="gallery-label">
-              Premium Detail
-            </div>
+            <p>
+              From interior surfaces to exterior finish,
+              every service is focused on a clean,
+              refreshed appearance.
+            </p>
           </div>
 
         </div>
 
 
-        <div class="gallery-card reveal delay2">
+        <div class="feature">
 
-          <img
-            src="images/5.jpg"
-            alt="Detailed vehicle"
-          >
+          <div class="feature-number">03</div>
 
-          <div class="gallery-ui">
-            <div class="gallery-number">
-              FRAME // 003
-            </div>
+          <div>
+            <h3>Simple Scheduling</h3>
 
-            <div class="gallery-label">
-              Vehicle Care
-            </div>
-          </div>
-
-        </div>
-
-
-        <div class="gallery-card reveal">
-
-          <img
-            src="images/6.jpg"
-            alt="Mobile detailing service"
-          >
-
-          <div class="gallery-ui">
-            <div class="gallery-number">
-              FRAME // 004
-            </div>
-
-            <div class="gallery-label">
-              Mobile Service
-            </div>
+            <p>
+              Tell us what your vehicle needs, choose a
+              convenient time, and we'll take care of the rest.
+            </p>
           </div>
 
         </div>
@@ -1967,464 +1674,801 @@
 
     </div>
 
-  </section>
+  </div>
+
+</section>
 
 
-  <!-- PROCESS -->
-  <section class="section process" id="process">
+<!-- PACKAGES -->
+<section class="packages" id="packages">
 
-    <div class="container">
+  <div class="container">
 
-      <div class="section-tag reveal">
-        // 04 — OPERATION
+    <div class="section-heading center reveal">
+
+      <div class="eyebrow">
+        Detailing Packages
       </div>
 
-      <h2 class="section-title reveal">
-        THREE STEPS.
-        <span>ZERO HASSLE.</span>
+      <h2>
+        Choose your level of clean.
       </h2>
 
-      <div class="process-grid">
+      <p>
+        Straightforward packages designed for different
+        vehicle needs. Final pricing may vary by vehicle size
+        and condition.
+      </p>
 
-        <div class="process-step reveal">
+    </div>
 
-          <div class="process-big">
-            01
-          </div>
 
-          <h3>Request</h3>
+    <div class="package-grid">
 
-          <p>
-            Tell us about your vehicle and the detailing
-            service you're looking for.
-          </p>
+      <!-- ESSENTIAL -->
+      <div class="package reveal">
 
+        <div class="package-number">
+          PACKAGE 01
         </div>
 
+        <h3>Essential Detail</h3>
 
-        <div class="process-step reveal delay1">
-
-          <div class="process-big">
-            02
-          </div>
-
-          <h3>Schedule</h3>
-
-          <p>
-            Choose a convenient time and location
-            for your mobile detailing service.
-          </p>
-
+        <div class="price">
+          <small>Starting at</small>
+          <strong>$149+</strong>
         </div>
 
+        <p class="package-description">
+          A complete refresh for vehicles that need a clean,
+          polished and well-maintained appearance.
+        </p>
 
-        <div class="process-step reveal delay2">
+        <ul>
+          <li>Interior vacuum & wipe-down</li>
+          <li>Dashboard & console cleaning</li>
+          <li>Windows & glass</li>
+          <li>Exterior wash</li>
+          <li>Wheels & tires</li>
+          <li>Exterior finish treatment</li>
+        </ul>
 
-          <div class="process-big">
-            03
-          </div>
+        <a href="#quote" class="btn btn-secondary">
+          Request This Package
+        </a>
 
-          <h3>Relax</h3>
+      </div>
 
-          <p>
-            Our detailing team comes to you and takes
-            care of the vehicle while you get on with your day.
-          </p>
 
+      <!-- SIGNATURE -->
+      <div class="package popular reveal">
+
+        <div class="popular-tag">
+          MOST POPULAR
         </div>
+
+        <div class="package-number">
+          PACKAGE 02
+        </div>
+
+        <h3>Signature Detail</h3>
+
+        <div class="price">
+          <small>Starting at</small>
+          <strong>$249+</strong>
+        </div>
+
+        <p class="package-description">
+          Our complete interior and exterior detail for
+          customers looking for the full treatment.
+        </p>
+
+        <ul>
+          <li>Everything in Essential</li>
+          <li>Deep interior cleaning</li>
+          <li>Carpet & mat treatment</li>
+          <li>Detailed trim & panels</li>
+          <li>Enhanced exterior finish</li>
+          <li>Tire dressing</li>
+          <li>Final detail inspection</li>
+        </ul>
+
+        <a href="#quote" class="btn btn-primary">
+          Request This Package
+        </a>
+
+      </div>
+
+
+      <!-- EXECUTIVE -->
+      <div class="package reveal">
+
+        <div class="package-number">
+          PACKAGE 03
+        </div>
+
+        <h3>Executive Detail</h3>
+
+        <div class="price">
+          <small>Starting at</small>
+          <strong>$399+</strong>
+        </div>
+
+        <p class="package-description">
+          A premium-level service focused on deeper cleaning,
+          enhanced finish and maximum presentation.
+        </p>
+
+        <ul>
+          <li>Everything in Signature</li>
+          <li>Advanced interior treatment</li>
+          <li>Paint enhancement</li>
+          <li>Deep exterior decontamination</li>
+          <li>Premium protection</li>
+          <li>Engine bay detail</li>
+          <li>Final presentation check</li>
+        </ul>
+
+        <a href="#quote" class="btn btn-secondary">
+          Request This Package
+        </a>
 
       </div>
 
     </div>
 
-  </section>
+  </div>
+
+</section>
 
 
-  <!-- CTA -->
-  <section class="cta">
+<!-- SPECIALTY SERVICES -->
+<section class="specialty" id="services">
 
-    <div class="container">
+  <div class="container">
 
-      <div class="cta-grid">
+    <div class="section-heading center reveal">
 
-        <div class="reveal">
+      <div class="eyebrow">
+        Specialty Services
+      </div>
 
-          <div class="section-tag">
-            // READY TO DEPLOY
-          </div>
+      <h2>
+        Need something more specific?
+      </h2>
 
-          <h2>
-            YOUR CAR.
-            <br>
-            YOUR PLACE.
-            <br>
-            OUR <span>DETAIL.</span>
-          </h2>
+      <p>
+        Add-on and specialty services for vehicles that need
+        more than a standard detail.
+      </p>
 
-          <p class="cta-copy">
-            Professional mobile detailing brought directly
-            to your location in Houston.
-          </p>
+    </div>
 
+
+    <div class="specialty-grid">
+
+      <div class="specialty-card reveal">
+        <span>01</span>
+        <h3>Interior Deep Clean</h3>
+        <strong>From $149</strong>
+      </div>
+
+      <div class="specialty-card reveal">
+        <span>02</span>
+        <h3>Exterior Detail</h3>
+        <strong>From $119</strong>
+      </div>
+
+      <div class="specialty-card reveal">
+        <span>03</span>
+        <h3>Paint Correction</h3>
+        <strong>From $349</strong>
+      </div>
+
+      <div class="specialty-card reveal">
+        <span>04</span>
+        <h3>Ceramic Coating</h3>
+        <strong>From $599</strong>
+      </div>
+
+      <div class="specialty-card reveal">
+        <span>05</span>
+        <h3>Pet Hair Removal</h3>
+        <strong>Custom Quote</strong>
+      </div>
+
+      <div class="specialty-card reveal">
+        <span>06</span>
+        <h3>Odor Removal</h3>
+        <strong>From $75</strong>
+      </div>
+
+      <div class="specialty-card reveal">
+        <span>07</span>
+        <h3>Headlight Restoration</h3>
+        <strong>From $89</strong>
+      </div>
+
+      <div class="specialty-card reveal">
+        <span>08</span>
+        <h3>Engine Bay Detail</h3>
+        <strong>From $75</strong>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+
+  <div class="container">
+
+    <div class="section-heading center reveal">
+
+      <div class="eyebrow">
+        Our Work
+      </div>
+
+      <h2>
+        Clean. Sharp. Detailed.
+      </h2>
+
+      <p>
+        A closer look at the vehicles and finishes behind
+        Your Mobile Detailers.
+      </p>
+
+    </div>
+
+
+    <div class="gallery-grid">
+
+      <div class="gallery-item reveal">
+        <img src="images/3.jpg" alt="Vehicle detailing work" loading="lazy">
+      </div>
+
+      <div class="gallery-item reveal">
+        <img src="images/4.jpg" alt="Professional car detail" loading="lazy">
+      </div>
+
+      <div class="gallery-item reveal">
+        <img src="images/5.jpg" alt="Car detailing finish" loading="lazy">
+      </div>
+
+      <div class="gallery-item reveal">
+        <img src="images/6.jpg" alt="Mobile detailing service" loading="lazy">
+      </div>
+
+      <div class="gallery-item reveal">
+        <img src="images/7.jpg" alt="Automotive detailing" loading="lazy">
+      </div>
+
+      <div class="gallery-item reveal">
+        <img src="images/8.jpg" alt="Premium vehicle detail" loading="lazy">
+      </div>
+
+      <div class="gallery-item reveal">
+        <img src="images/9.jpg" alt="Detailed vehicle exterior" loading="lazy">
+      </div>
+
+      <div class="gallery-item reveal">
+        <img src="images/10.jpg" alt="Professional vehicle finish" loading="lazy">
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PROCESS -->
+<section class="process" id="process">
+
+  <div class="container">
+
+    <div class="section-heading center reveal">
+
+      <div class="eyebrow">
+        Simple Process
+      </div>
+
+      <h2>
+        Three steps. Zero hassle.
+      </h2>
+
+      <p>
+        Getting your vehicle detailed should be simple.
+        Here's how it works.
+      </p>
+
+    </div>
+
+
+    <div class="process-grid">
+
+      <div class="process-card reveal" data-number="01">
+
+        <div class="process-number">
+          STEP 01
         </div>
 
-        <div class="cta-side reveal delay1">
+        <h3>Request Your Quote</h3>
 
-          <a
-            href="#contact"
-            class="btn btn-blue"
-          >
-            Request A Quote
-          </a>
+        <p>
+          Tell us your vehicle, the service you need and
+          anything else we should know.
+        </p>
 
-          <a
-            href="tel:+13238804067"
-            class="cta-phone"
-          >
-            (323) 880-4067
-          </a>
+      </div>
 
+
+      <div class="process-card reveal" data-number="02">
+
+        <div class="process-number">
+          STEP 02
         </div>
+
+        <h3>Choose Your Time</h3>
+
+        <p>
+          We'll help arrange a convenient appointment around
+          your schedule and location.
+        </p>
+
+      </div>
+
+
+      <div class="process-card reveal" data-number="03">
+
+        <div class="process-number">
+          STEP 03
+        </div>
+
+        <h3>We Come To You</h3>
+
+        <p>
+          Your vehicle gets the attention it deserves right
+          where it's parked.
+        </p>
 
       </div>
 
     </div>
 
-  </section>
+  </div>
+
+</section>
 
 
-  <!-- CONTACT -->
-  <section class="section" id="contact">
+<!-- CTA -->
+<section class="cta-section">
 
-    <div class="container">
+  <div class="container">
 
-      <div class="contact-grid">
+    <div class="cta-box reveal">
 
-        <div class="reveal">
-
-          <div class="section-tag">
-            // 05 — BOOKING TERMINAL
-          </div>
-
-          <h2 class="contact-title">
-            LET'S GET
-            YOUR CAR
-            <span>RIGHT.</span>
-          </h2>
-
-          <p class="contact-text">
-            Tell us what your vehicle needs and we'll help
-            arrange the right detailing service.
-          </p>
-
-          <a
-            href="tel:+13238804067"
-            class="contact-number"
-          >
-            CALL // (323) 880-4067
-          </a>
-
-        </div>
-
-
-        <form
-          class="form reveal delay1"
-          id="quoteForm"
-        >
-
-          <div class="field">
-            <input
-              type="text"
-              placeholder="YOUR NAME"
-              required
-            >
-          </div>
-
-          <div class="field">
-            <input
-              type="tel"
-              placeholder="PHONE NUMBER"
-              required
-            >
-          </div>
-
-          <div class="field">
-            <input
-              type="email"
-              placeholder="EMAIL ADDRESS"
-            >
-          </div>
-
-          <div class="field">
-            <input
-              type="text"
-              placeholder="VEHICLE — 2022 BMW X5"
-              required
-            >
-          </div>
-
-          <div class="field full">
-
-            <select required>
-
-              <option value="">
-                SELECT SERVICE
-              </option>
-
-              <option>
-                Exterior Detail
-              </option>
-
-              <option>
-                Interior Detail
-              </option>
-
-              <option>
-                Full Detail
-              </option>
-
-              <option>
-                Paint Care
-              </option>
-
-              <option>
-                Maintenance
-              </option>
-
-              <option>
-                Custom Service
-              </option>
-
-            </select>
-
-          </div>
-
-          <div class="field full">
-
-            <textarea
-              placeholder="TELL US ABOUT YOUR VEHICLE..."
-            ></textarea>
-
-          </div>
-
-          <button
-            type="submit"
-            class="submit full"
-          >
-            TRANSMIT REQUEST
-          </button>
-
-        </form>
-
+      <div class="eyebrow">
+        Ready When You Are
       </div>
+
+      <h2>
+        Your car deserves more than a quick wash.
+      </h2>
+
+      <p>
+        Give your vehicle a professional refresh without
+        leaving your driveway. Request your quote today.
+      </p>
+
+      <a href="#quote" class="btn btn-primary">
+        Get My Quote
+      </a>
 
     </div>
 
-  </section>
+  </div>
+
+</section>
 
 
-  <!-- FOOTER -->
-  <footer>
+<!-- QUOTE -->
+<section class="quote" id="quote">
 
-    <div class="container">
+  <div class="container quote-grid">
 
-      <div class="footer-grid">
+    <div class="quote-info reveal">
+
+      <div class="eyebrow">
+        Get Started
+      </div>
+
+      <h2>
+        Let's get your car looking right.
+      </h2>
+
+      <p>
+        Send us a few details about your vehicle and we'll
+        help determine the right service for you.
+      </p>
+
+
+      <div class="contact-card">
+
+        <div class="contact-icon">
+          ☎
+        </div>
 
         <div>
-
-          <img
-            src="images/logo.webp"
-            alt="Your Mobile Detailers"
-            class="footer-logo"
-          >
-
-          <p class="footer-desc">
-            Premium mobile car detailing brought directly
-            to your home, workplace, or wherever your
-            vehicle is parked.
-          </p>
-
-        </div>
-
-
-        <div class="footer-col">
-
-          <div class="footer-heading">
-            Navigation
-          </div>
-
-          <a href="#home">Home</a>
-          <a href="#services">Services</a>
-          <a href="#gallery">Showcase</a>
-          <a href="#process">Process</a>
-          <a href="#contact">Contact</a>
-
-        </div>
-
-
-        <div class="footer-col">
-
-          <div class="footer-heading">
-            Contact
-          </div>
-
-          <a href="tel:+13238804067">
-            (323) 880-4067
-          </a>
-
-          <p>Houston, Texas</p>
-          <p>Mobile Service</p>
-          <p>By Appointment</p>
-
+          <small>CALL OR TEXT</small>
+          <strong>(323) 880-4067</strong>
         </div>
 
       </div>
 
 
-      <div class="footer-bottom">
+      <div class="contact-card">
 
-        <span>
-          © 2026 YOUR MOBILE DETAILERS
-        </span>
+        <div class="contact-icon">
+          ◆
+        </div>
 
-        <span>
-          WE BRING THE DETAIL TO YOU.
-        </span>
+        <div>
+          <small>SERVICE AREA</small>
+          <strong>Houston, Texas</strong>
+        </div>
 
       </div>
 
     </div>
 
-  </footer>
+
+    <form class="quote-form reveal" id="quoteForm">
+
+      <div class="form-group">
+
+        <label for="name">
+          Name
+        </label>
+
+        <input
+          id="name"
+          name="name"
+          type="text"
+          placeholder="Your name"
+          required
+        >
+
+      </div>
 
 
-  <!-- JAVASCRIPT -->
-  <script>
+      <div class="form-group">
 
-    /* =========================================================
-       NAVBAR
-    ========================================================= */
+        <label for="phone">
+          Phone
+        </label>
 
-    const nav = document.getElementById("nav");
+        <input
+          id="phone"
+          name="phone"
+          type="tel"
+          placeholder="Your phone number"
+          required
+        >
 
-    window.addEventListener("scroll", () => {
+      </div>
 
-      if (window.scrollY > 40) {
-        nav.classList.add("scrolled");
-      } else {
-        nav.classList.remove("scrolled");
+
+      <div class="form-group">
+
+        <label for="vehicle">
+          Vehicle
+        </label>
+
+        <input
+          id="vehicle"
+          name="vehicle"
+          type="text"
+          placeholder="Year, make & model"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="service">
+          Service
+        </label>
+
+        <select id="service" name="service" required>
+
+          <option value="">
+            Select a service
+          </option>
+
+          <option value="Essential Detail">
+            Essential Detail — $149+
+          </option>
+
+          <option value="Signature Detail">
+            Signature Detail — $249+
+          </option>
+
+          <option value="Executive Detail">
+            Executive Detail — $399+
+          </option>
+
+          <option value="Interior Deep Clean">
+            Interior Deep Clean — $149+
+          </option>
+
+          <option value="Exterior Detail">
+            Exterior Detail — $119+
+          </option>
+
+          <option value="Paint Correction">
+            Paint Correction — $349+
+          </option>
+
+          <option value="Ceramic Coating">
+            Ceramic Coating — $599+
+          </option>
+
+          <option value="Custom Request">
+            Custom Request
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="form-group full">
+
+        <label for="message">
+          Vehicle Details
+        </label>
+
+        <textarea
+          id="message"
+          name="message"
+          placeholder="Tell us about your vehicle, its condition, or anything you'd like us to know."
+        ></textarea>
+
+      </div>
+
+
+      <button type="submit" class="btn btn-primary">
+        Request My Quote
+      </button>
+
+    </form>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer>
+
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+
+        <img
+          src="images/logo.webp"
+          alt="Your Mobile Detailers"
+          class="footer-logo"
+        >
+
+        <p>
+          Premium mobile car detailing designed around your
+          schedule. We bring the detail to you.
+        </p>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h4>Navigation</h4>
+
+        <a href="#home">Home</a>
+        <a href="#packages">Packages</a>
+        <a href="#services">Services</a>
+        <a href="#gallery">Our Work</a>
+        <a href="#process">How It Works</a>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h4>Contact</h4>
+
+        <a href="tel:+13238804067">
+          (323) 880-4067
+        </a>
+
+        <a href="#quote">
+          Request a Quote
+        </a>
+
+        <a href="#home">
+          Houston, Texas
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+      <span>
+        © 2026 Your Mobile Detailers. All rights reserved.
+      </span>
+
+      <span>
+        WE BRING THE DETAIL TO YOU.
+      </span>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+<!-- FLOATING PHONE -->
+<a
+  href="tel:+13238804067"
+  class="phone-float"
+  aria-label="Call Your Mobile Detailers"
+>
+  ☎
+</a>
+
+
+<script>
+
+/* =========================
+   NAVBAR SCROLL
+========================= */
+
+const navbar = document.getElementById("navbar");
+
+window.addEventListener("scroll", () => {
+
+  if(window.scrollY > 40){
+    navbar.classList.add("scrolled");
+  }else{
+    navbar.classList.remove("scrolled");
+  }
+
+});
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+
+  navLinks.classList.toggle("active");
+
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+
+  link.addEventListener("click", () => {
+
+    navLinks.classList.remove("active");
+
+  });
+
+});
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const revealElements = document.querySelectorAll(".reveal");
+
+const revealObserver = new IntersectionObserver(
+
+  entries => {
+
+    entries.forEach(entry => {
+
+      if(entry.isIntersecting){
+
+        entry.target.classList.add("show");
+
+        revealObserver.unobserve(entry.target);
+
       }
 
     });
 
+  },
 
-    /* =========================================================
-       MOBILE MENU
-    ========================================================= */
+  {
+    threshold:.12
+  }
 
-    const menu = document.getElementById("menu");
-    const navLinks = document.getElementById("navLinks");
+);
 
-    menu.addEventListener("click", () => {
-      navLinks.classList.toggle("open");
-    });
+revealElements.forEach(element => {
 
-    document.querySelectorAll(".nav-links a").forEach(link => {
+  revealObserver.observe(element);
 
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-      });
-
-    });
+});
 
 
-    /* =========================================================
-       SCROLL REVEAL
-    ========================================================= */
+/* =========================
+   QUOTE FORM
+========================= */
 
-    const revealItems =
-      document.querySelectorAll(".reveal");
+const quoteForm = document.getElementById("quoteForm");
 
-    const observer =
-      new IntersectionObserver(
-        entries => {
+quoteForm.addEventListener("submit", function(event){
 
-          entries.forEach(entry => {
+  event.preventDefault();
 
-            if (entry.isIntersecting) {
+  const button = quoteForm.querySelector("button");
 
-              entry.target.classList.add("show");
+  const originalText = button.textContent;
 
-              observer.unobserve(entry.target);
+  button.textContent = "Request Received ✓";
+  button.style.background = "#25c77a";
 
-            }
+  setTimeout(() => {
 
-          });
+    button.textContent = originalText;
+    button.style.background = "";
 
-        },
-        {
-          threshold: .12,
-          rootMargin: "0px 0px -50px 0px"
-        }
-      );
+  }, 3500);
 
-    revealItems.forEach(item => {
-      observer.observe(item);
-    });
+});
 
 
-    /* =========================================================
-       MOUSE GLOW
-    ========================================================= */
+/* =========================
+   SUBTLE MOUSE PARALLAX
+========================= */
 
-    const glow = document.getElementById("glow");
+const heroVisual = document.querySelector(".hero-visual");
 
-    window.addEventListener("mousemove", event => {
+if(window.matchMedia("(min-width: 900px)").matches){
 
-      glow.style.left = event.clientX + "px";
-      glow.style.top = event.clientY + "px";
+  document.addEventListener("mousemove", event => {
 
-    });
+    const x = (window.innerWidth / 2 - event.clientX) / 80;
+    const y = (window.innerHeight / 2 - event.clientY) / 100;
 
+    heroVisual.style.transform =
+      `translate(${x}px, ${y}px)`;
 
-    /* =========================================================
-       FORM
-    ========================================================= */
+  });
 
-    const form = document.getElementById("quoteForm");
+}
 
-    form.addEventListener("submit", event => {
-
-      event.preventDefault();
-
-      const button =
-        form.querySelector(".submit");
-
-      button.textContent =
-        "REQUEST RECEIVED ✓";
-
-      button.style.background =
-        "#00ff9d";
-
-      button.style.color =
-        "#020407";
-
-      setTimeout(() => {
-
-        button.textContent =
-          "TRANSMIT REQUEST";
-
-        button.style.background =
-          "";
-
-        button.style.color =
-          "";
-
-      }, 3500);
-
-    });
-
-  </script>
+</script>
 
 </body>
 </html>
