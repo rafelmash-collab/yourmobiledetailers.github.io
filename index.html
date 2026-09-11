@@ -1530,7 +1530,27 @@ footer{
 .float-call:hover{
   transform:scale(1.08);
 }
+/* FLOAT MESSENGER */
+.float-messenger{
+  position:fixed;
+  right:22px;
+  bottom:160px;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#1688ff,#49b4ff);
+  color:#fff;
+  z-index:900;
+  box-shadow:0 12px 40px rgba(22,136,255,.4);
+  font-size:24px;
+  transition:.3s;
+}
 
+.float-messenger:hover{
+  transform:scale(1.08);
+}
 /* REVEAL */
 .reveal{
   opacity:0;
@@ -1768,6 +1788,12 @@ footer{
     right:25px;
     bottom:85px;
   }
+  .float-messenger{
+  width:54px;
+  height:54px;
+  right:25px;
+  bottom:150px;
+}
 }
 </style>
 </head>
