@@ -2030,6 +2030,71 @@ footer{
   }
 
 }
+  /* HERO PHONE CTA */
+
+.hero-meta .meta-phone{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:10px 16px;
+  min-width:210px;
+  border:1px solid rgba(86,188,255,.20);
+  border-radius:10px;
+  background:rgba(5,10,18,.58);
+  color:#fff;
+  text-decoration:none;
+  box-shadow:0 8px 24px rgba(0,0,0,.20);
+  transition:all .25s ease;
+}
+
+.hero-meta .meta-phone::before{
+  content:"☎";
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:32px;
+  height:32px;
+  flex:0 0 32px;
+  border-radius:50%;
+  background:rgba(86,188,255,.10);
+  color:#56bcff;
+  font-size:14px;
+}
+
+.hero-meta .meta-phone strong{
+  display:block;
+  margin:0;
+  color:#fff;
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:.3px;
+  white-space:nowrap;
+}
+
+.hero-meta .meta-phone span{
+  display:block;
+  margin-top:3px;
+  color:rgba(255,255,255,.45);
+  font-size:8px;
+  font-weight:600;
+  letter-spacing:1.1px;
+  text-transform:uppercase;
+}
+
+.hero-meta .meta-phone:hover{
+  transform:translateY(-2px);
+  border-color:rgba(86,188,255,.55);
+  background:rgba(8,18,30,.78);
+  box-shadow:0 12px 30px rgba(0,0,0,.30);
+}
+
+@media(max-width:650px){
+  .hero-meta .meta-phone{
+    width:100%;
+    max-width:250px;
+    min-width:0;
+  }
+}
 </style>
 </head>
 
