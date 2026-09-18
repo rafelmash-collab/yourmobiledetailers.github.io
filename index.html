@@ -1,69 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <!-- SEO Structured Data -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "AutoDetailing",
-  "name": "Your Mobile Detailers",
-  "description": "Premium mobile car detailing services across Houston, Katy, Sugar Land, Pearland, Cypress, Spring, The Woodlands, Missouri City and surrounding Texas areas.",
-  "url": "https://yourmobiledetailers.com/",
-  "telephone": "+13238804067",
-  "priceRange": "$$",
-  "areaServed": [
-    {
-      "@type": "City",
-      "name": "Houston"
-    },
-    {
-      "@type": "City",
-      "name": "Katy"
-    },
-    {
-      "@type": "City",
-      "name": "Sugar Land"
-    },
-    {
-      "@type": "City",
-      "name": "Pearland"
-    },
-    {
-      "@type": "City",
-      "name": "Cypress"
-    },
-    {
-      "@type": "City",
-      "name": "Spring"
-    },
-    {
-      "@type": "City",
-      "name": "The Woodlands"
-    },
-    {
-      "@type": "City",
-      "name": "Missouri City"
-    },
-    {
-      "@type": "State",
-      "name": "Texas"
-    }
-  ],
-  "serviceType": [
-    "Mobile Car Detailing",
-    "Essential Detail",
-    "Full Detail",
-    "Premium Detail",
-    "Ceramic Coating",
-    "Pet Hair Removal",
-    "Seat & Carpet Shampoo",
-    "Engine Bay Detail",
-    "Headlight Restoration",
-    "Paint Decontamination",
-    "Spray Wax / Sealant",
-    "Heavy Stain Treatment"
-  ]
-}
-</script>
+
 
 <head>
 <meta charset="UTF-8">
@@ -76,6 +11,76 @@
 <meta name="geo.region" content="US-TX">
 <meta name="geo.placename" content="Houston">
 <title>Your Mobile Detailers | Mobile Car Detailing in Houston & Texas</title>
+  <link rel="canonical" href="https://yourmobiledetailers.com/">
+
+<meta property="og:title" content="Your Mobile Detailers | Premium Mobile Car Detailing">
+<meta property="og:description" content="Premium mobile car detailing brought directly to your home, office, or driveway across Texas and Alabama.">
+<meta property="og:url" content="https://yourmobiledetailers.com/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://yourmobiledetailers.com/images/1.jpg">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoDetailing",
+  "name": "Your Mobile Detailers",
+  "url": "https://yourmobiledetailers.com/",
+  "logo": "https://yourmobiledetailers.com/images/logo.webp",
+  "image": "https://yourmobiledetailers.com/images/1.jpg",
+  "description": "Premium mobile car detailing services brought directly to your location across Texas and Alabama.",
+  "telephone": "+13238804067",
+  "priceRange": "$$",
+  "founder": [
+    {
+      "@type": "Person",
+      "name": "Rafel Mash"
+    },
+    {
+      "@type": "Person",
+      "name": "Mikael Scott"
+    }
+  ],
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+13238804067",
+      "contactType": "customer service"
+    },
+    {
+      "@type": "ContactPoint",
+      "telephone": "+18325691403",
+      "contactType": "customer service"
+    }
+  ],
+  "sameAs": [
+    "https://www.facebook.com/YourMobileDetailers"
+  ],
+  "areaServed": [
+    {
+      "@type": "State",
+      "name": "Texas"
+    },
+    {
+      "@type": "State",
+      "name": "Alabama"
+    }
+  ],
+  "serviceType": [
+    "Mobile Car Detailing",
+    "Interior Car Detailing",
+    "Exterior Car Detailing",
+    "Full Car Detailing",
+    "Ceramic Coating",
+    "Pet Hair Removal",
+    "Seat and Carpet Shampoo",
+    "Engine Bay Detail",
+    "Headlight Restoration",
+    "Paint Decontamination",
+    "Spray Wax and Sealant",
+    "Heavy Stain Treatment"
+  ]
+}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1578,18 +1583,15 @@ footer{
   display:block;
 }
 
-/* REVEAL */
 .reveal{
   opacity:0;
   transform:translateY(35px);
   transition:opacity .8s ease,transform .8s ease;
 }
-
 .reveal.show{
   opacity:1;
   transform:none;
 }
-
 .delay-1{transition-delay:.1s}
 .delay-2{transition-delay:.2s}
 .delay-3{transition-delay:.3s}
@@ -1827,6 +1829,33 @@ footer{
   right:25px;
   bottom:215px;
 }
+}
+  /* V2 HERO AUTOMOTIVE MOTION */
+
+.hero{
+  overflow:hidden;
+  isolation:isolate;
+}
+
+.hero-bg{
+  transform:translate3d(0,var(--hero-shift,0px),0) scale(1.035);
+  transition:transform .08s linear;
+  will-change:transform;
+}
+
+.hero-bg img{
+  animation:heroEngine 11s ease-in-out infinite alternate;
+  will-change:transform;
+}
+
+@keyframes heroEngine{
+  0%{
+    transform:scale(1.04);
+  }
+
+  100%{
+    transform:scale(1.095);
+  }
 }
 </style>
 </head>
@@ -3050,6 +3079,7 @@ const counterObserver = new IntersectionObserver((entries)=>{
 document.querySelectorAll(".counter").forEach(counter=>{
   counterObserver.observe(counter);
 });
+  
 
 /* FORM — FORMSPREE */
 const form = document.getElementById("quoteForm");
@@ -3139,6 +3169,49 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
   });
 });
 
+  /* =========================================
+   HERO PARALLAX
+========================================= */
+
+(function(){
+
+  const hero = document.querySelector(".hero");
+
+  if(!hero) return;
+
+  let ticking = false;
+
+  function updateHero(){
+
+    const scrollY = window.scrollY || window.pageYOffset;
+
+    if(scrollY < window.innerHeight * 1.2){
+
+      const shift = Math.min(scrollY * 0.16, 85);
+
+      hero.style.setProperty(
+        "--hero-shift",
+        shift + "px"
+      );
+
+    }
+
+    ticking = false;
+  }
+
+  window.addEventListener("scroll", function(){
+
+    if(!ticking){
+
+      window.requestAnimationFrame(updateHero);
+
+      ticking = true;
+
+    }
+
+  }, {passive:true});
+
+})();
 </script>
 
   <!--Start of Tawk.to Script-->
