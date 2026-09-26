@@ -3985,5 +3985,31 @@ s0.parentNode.insertBefore(s1,s0);
 
   </div>
 </div>
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  setTimeout(function () {
+    const popup = document.getElementById("leadPopup");
+
+    if (popup && !sessionStorage.getItem("leadPopupShown")) {
+      popup.style.display = "flex";
+      sessionStorage.setItem("leadPopupShown", "true");
+    }
+  }, 5000);
+});
+
+function closeLeadPopup() {
+  const popup = document.getElementById("leadPopup");
+
+  if (popup) {
+    popup.style.display = "none";
+  }
+}
+
+document.getElementById("leadPopup")?.addEventListener("click", function (e) {
+  if (e.target === this) {
+    closeLeadPopup();
+  }
+});
+</script>
 </body>
 </html>
