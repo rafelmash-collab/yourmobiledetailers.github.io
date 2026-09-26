@@ -3985,14 +3985,13 @@ s0.parentNode.insertBefore(s1,s0);
 
   </div>
 </div>
-  <script>
+<script>
 document.addEventListener("DOMContentLoaded", function () {
   setTimeout(function () {
     const popup = document.getElementById("leadPopup");
 
-    if (popup && !sessionStorage.getItem("leadPopupShown")) {
+    if (popup) {
       popup.style.display = "flex";
-      sessionStorage.setItem("leadPopupShown", "true");
     }
   }, 5000);
 });
