@@ -2223,6 +2223,146 @@ footer{
 <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
 <!-- End Trustpilot script -->
 
+<style>
+/* LEAD POPUP */
+.lead-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 8, 18, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 99999;
+}
+
+.lead-popup {
+  position: relative;
+  width: min(100%, 520px);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #07111f;
+  border: 1px solid rgba(0, 153, 255, 0.35);
+  border-radius: 20px;
+  padding: 34px;
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(0, 140, 255, 0.12);
+}
+
+.lead-popup-label {
+  color: #1597ff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.lead-popup h2 {
+  margin: 0 0 10px;
+  color: #fff;
+  font-size: 32px;
+  line-height: 1.1;
+}
+
+.lead-popup p {
+  color: #aab7c7;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.lead-popup-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.lead-popup-close:hover {
+  background: rgba(0, 153, 255, 0.18);
+}
+
+.lead-popup form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lead-popup input,
+.lead-popup select,
+.lead-popup textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: #0b1828;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 14px 15px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+}
+
+.lead-popup input:focus,
+.lead-popup select:focus,
+.lead-popup textarea:focus {
+  border-color: #1597ff;
+  box-shadow: 0 0 0 3px rgba(21,151,255,0.10);
+}
+
+.lead-popup select {
+  color: #aab7c7;
+}
+
+.lead-popup textarea {
+  resize: vertical;
+}
+
+.lead-popup form button {
+  border: 0;
+  border-radius: 10px;
+  padding: 15px 20px;
+  background: #1597ff;
+  color: #fff;
+  font-weight: 800;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.lead-popup form button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 30px rgba(21,151,255,0.25);
+}
+
+.lead-popup-note {
+  margin-top: 15px;
+  color: #718196;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .lead-popup {
+    padding: 26px 20px;
+    border-radius: 16px;
+  }
+
+  .lead-popup h2 {
+    font-size: 27px;
+  }
+}
+</style>
 </head>
 
 <body>
