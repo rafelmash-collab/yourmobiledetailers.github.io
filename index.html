@@ -3771,6 +3771,79 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
-  
+  <!-- LEAD CAPTURE POPUP -->
+<div id="leadPopup" class="lead-popup-overlay">
+  <div class="lead-popup">
+
+    <button type="button" class="lead-popup-close" onclick="closeLeadPopup()">×</button>
+
+    <div class="lead-popup-label">YOUR MOBILE DETAILERS</div>
+
+    <h2>Get Your Free Quote</h2>
+
+    <p>
+      Tell us a little about your vehicle and we'll get back to you with pricing and availability.
+    </p>
+
+    <form action="https://formspree.io/f/mkjnkywz" method="POST">
+
+      <input
+        type="text"
+        name="name"
+        placeholder="Your Name"
+        required
+      >
+
+      <input
+        type="tel"
+        name="phone"
+        placeholder="Phone Number"
+        required
+      >
+
+      <input
+        type="text"
+        name="vehicle"
+        placeholder="Vehicle Make & Model"
+        required
+      >
+
+      <select name="service" required>
+        <option value="">What service do you need?</option>
+        <option value="Full Detail">Full Detail</option>
+        <option value="Interior Detail">Interior Detail</option>
+        <option value="Exterior Detail">Exterior Detail</option>
+        <option value="Ceramic Coating">Ceramic Coating</option>
+        <option value="Paint Correction">Paint Correction</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <input
+        type="text"
+        name="location"
+        placeholder="City / ZIP Code"
+        required
+      >
+
+      <textarea
+        name="message"
+        placeholder="Anything else we should know?"
+        rows="3"
+      ></textarea>
+
+      <button type="submit">
+        Get My Free Quote →
+      </button>
+
+      <input type="hidden" name="_subject" value="New Website Lead - Your Mobile Detailers">
+
+    </form>
+
+    <div class="lead-popup-note">
+      🔒 Your information is only used to contact you about your detailing request.
+    </div>
+
+  </div>
+</div>
 </body>
 </html>
