@@ -1,5 +1,3 @@
-
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +12,7 @@
   <link rel="canonical" href="https://yourmobiledetailers.com/">
 
 <meta property="og:title" content="Your Mobile Detailers | Premium Mobile Car Detailing">
-<meta property="og:description" content="Premium mobile car detailing brought directly to your home, office, or driveway across Texas and Alabama.">
+<meta property="og:description" content="Premium mobile car detailing brought directly to your home, office, or driveway across Houston, Texas and surrounding areas.">
 <meta property="og:url" content="https://yourmobiledetailers.com/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://yourmobiledetailers.com/images/1.jpg">
@@ -27,9 +25,22 @@
   "url": "https://yourmobiledetailers.com/",
   "logo": "https://yourmobiledetailers.com/images/logo.webp",
   "image": "https://yourmobiledetailers.com/images/1.jpg",
-  "description": "Premium mobile car detailing services brought directly to your location across Texas and Alabama.",
+  "description": "Premium mobile car detailing services brought directly to your location across Houston, Texas and surrounding areas.",
   "telephone": "+13238804067",
   "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "5008 Hwy 90 Alt",
+    "addressLocality": "Houston",
+    "addressRegion": "TX",
+    "postalCode": "77021",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 29.7079,
+    "longitude": -95.3381
+  },
   "founder": [
     {
       "@type": "Person",
@@ -45,25 +56,21 @@
       "@type": "ContactPoint",
       "telephone": "+13238804067",
       "contactType": "customer service"
-    },
-    {
-      "@type": "ContactPoint",
-      "telephone": "+13467063507",
-      "contactType": "customer service"
     }
   ],
   "sameAs": [
     "https://www.facebook.com/YourMobileDetailers"
   ],
   "areaServed": [
-    {
-      "@type": "State",
-      "name": "Texas"
-    },
-    {
-      "@type": "State",
-      "name": "Alabama"
-    }
+    { "@type": "City", "name": "Houston" },
+    { "@type": "City", "name": "Katy" },
+    { "@type": "City", "name": "Sugar Land" },
+    { "@type": "City", "name": "Pearland" },
+    { "@type": "City", "name": "Cypress" },
+    { "@type": "City", "name": "Spring" },
+    { "@type": "City", "name": "The Woodlands" },
+    { "@type": "City", "name": "Missouri City" },
+    { "@type": "City", "name": "Pasadena" }
   ],
   "serviceType": [
     "Mobile Car Detailing",
@@ -1316,6 +1323,60 @@ section{
   letter-spacing:1px;
 }
 
+/* REVIEW RATING CARD */
+.review-rating-card{
+  width:min(320px,100%);
+  margin:0 auto;
+  padding:30px 26px;
+  border:1px solid rgba(73,180,255,.18);
+  border-radius:22px;
+  background:rgba(255,255,255,.03);
+  text-align:center;
+  box-shadow:0 20px 55px rgba(0,0,0,.28);
+}
+
+.rating-brand{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  font-size:13px;
+  font-weight:800;
+  color:#fff;
+}
+
+.rating-stars{
+  color:#ffc531;
+  font-size:26px;
+  letter-spacing:4px;
+  margin:14px 0 6px;
+}
+
+.rating-score{
+  font-family:Manrope,sans-serif;
+  font-size:44px;
+  font-weight:800;
+  letter-spacing:-1px;
+}
+
+.rating-score span{
+  font-size:18px;
+  color:#7d8d9f;
+  font-weight:600;
+}
+
+.rating-count{
+  color:#7d8d9f;
+  font-size:12px;
+  margin-top:6px;
+}
+
+.rating-divider{
+  height:1px;
+  background:var(--line);
+  margin:20px 0;
+}
+
 /* SERVICE AREA */
 .area-grid{
   margin-top:50px;
@@ -1954,7 +2015,7 @@ footer{
 
   .founder-card h3{
     font-size:22px;
-  
+
 }
 }
   /* =========================================
@@ -2398,10 +2459,6 @@ footer{
 <a class="nav-call" href="tel:+13238804067">
   (323) 880-4067
 </a>
-
-<a class="nav-call" href="tel:+13467063507">
-  (346) 706-3507
-</a>
     </nav>
 
     <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
@@ -2465,8 +2522,8 @@ footer{
     <span>& Surrounding Areas</span>
   </div>
 
-  <a href="tel:+13467063507" class="meta-phone">
-    <strong>(346) 706-3507</strong>
+  <a href="tel:+13238804067" class="meta-phone">
+    <strong>(323) 880-4067</strong>
     <span>Call Us Directly →</span>
   </a>
 
@@ -2494,7 +2551,7 @@ footer{
     </div>
 
     <div class="stat">
-       <strong>Houston + AL</strong>
+       <strong>Houston + TX</strong>
       <span>Service Focus</span>
     </div>
 
@@ -3326,7 +3383,6 @@ footer{
   </div>
 
 </section>
-</section>
 
 <!-- SERVICE AREAS -->
 <section>
@@ -3371,23 +3427,6 @@ footer{
   <div class="area">West Houston</div>
   <div class="area">South Houston</div>
   <div class="area">Surrounding Houston Areas</div>
-     <!-- ALABAMA SERVICE AREAS -->
-
-<div class="area">Alabama</div>
-<div class="area">Birmingham</div>
-<div class="area">Montgomery</div>
-<div class="area">Mobile</div>
-<div class="area">Huntsville</div>
-<div class="area">Tuscaloosa</div>
-<div class="area">Hoover</div>
-<div class="area">Auburn</div>
-<div class="area">Dothan</div>
-<div class="area">Decatur</div>
-<div class="area">Madison</div>
-<div class="area">Vestavia Hills</div>
-<div class="area">Homewood</div>
-<div class="area">Trussville</div>
-<div class="area">Surrounding Alabama Areas</div>
 
 <div class="map-panel reveal">
 
@@ -3458,10 +3497,6 @@ footer{
           <span>☎</span>
           <a href="tel:+13238804067">(323) 880-4067</a>
         </div>
-        <div class="contact-line">
-  <span>☎</span>
-  <a href="tel:+13467063507">(346) 706-3507</a>
-</div>
 
         <div class="contact-line">
           <span>⌖</span>
@@ -3674,7 +3709,7 @@ footer{
 <!-- FLOAT WHATSAPP -->
 <a
   class="float-whatsapp"
-  href="https://wa.me/13467063507?text=Hi%20Your%20Mobile%20Detailers%2C%20I%27d%20like%20a%20quote%20for%20my%20vehicle."
+  href="https://wa.me/13238804067?text=Hi%20Your%20Mobile%20Detailers%2C%20I%27d%20like%20a%20quote%20for%20my%20vehicle."
   target="_blank"
   rel="noopener noreferrer"
   aria-label="Message Your Mobile Detailers on WhatsApp"
@@ -3987,11 +4022,15 @@ s0.parentNode.insertBefore(s1,s0);
 </div>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+  try{
+    if(sessionStorage.getItem("ymdLeadShown")) return;
+  }catch(e){}
   setTimeout(function () {
     const popup = document.getElementById("leadPopup");
 
     if (popup) {
       popup.style.display = "flex";
+      try{ sessionStorage.setItem("ymdLeadShown","1"); }catch(e){}
     }
   }, 5000);
 });
@@ -4048,14 +4087,14 @@ async function submitLeadForm(event) {
 
           <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
 
-            <a href="https://wa.me/13467063507"
+            <a href="https://wa.me/13238804067"
                target="_blank"
                rel="noopener"
                style="display:inline-block; padding:12px 18px; border-radius:10px; background:#25D366; color:#fff; text-decoration:none; font-weight:700;">
               WhatsApp Us
             </a>
 
-            <a href="sms:+13467063507"
+            <a href="sms:+13238804067"
                style="display:inline-block; padding:12px 18px; border-radius:10px; background:#1597ff; color:#fff; text-decoration:none; font-weight:700;">
               Text Us
             </a>
